@@ -41,6 +41,9 @@
                                                 <a href="<?php echo base_url('admin/course/edit_course') . '/' . encode_url($con->id); ?>" class="btn btn-info btn-xs">
                                                     <i class="fa fa-pencil"></i> Edit
                                                 </a>
+												<a href="<?php echo base_url('admin/course/view_course') . '/' . encode_url($con->id); ?>" class="btn btn-primary btn-xs">
+                                                    <i class="fa fa-folder"></i> View
+                                                </a>
                                             </td>
                                         </tr>
                                         <?php

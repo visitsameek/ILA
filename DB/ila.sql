@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2017 at 12:15 PM
+-- Generation Time: Feb 23, 2017 at 01:20 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `ila_admin` (
 --
 
 INSERT INTO `ila_admin` (`id`, `name`, `user_name`, `user_pass`, `contact_email`, `last_login_time`, `last_login_ip`) VALUES
-(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-02-22 10:42:25', '::1');
+(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-02-23 10:09:07', '::1');
 
 -- --------------------------------------------------------
 
@@ -581,6 +581,34 @@ CREATE TABLE IF NOT EXISTS `ila_core_values_lang` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ila_courses`
+--
+
+CREATE TABLE IF NOT EXISTS `ila_courses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `course_category_id` int(11) NOT NULL,
+  `age_from` int(11) NOT NULL,
+  `age_to` int(11) NOT NULL,
+  `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
+  `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `ila_courses`
+--
+
+INSERT INTO `ila_courses` (`id`, `title`, `course_category_id`, `age_from`, `age_to`, `isblocked`, `isdeleted`) VALUES
+(1, 'Jumpstart', 1, 3, 6, 0, 0),
+(2, 'Super Juniors', 1, 6, 11, 0, 0),
+(3, 'Global English', 2, 0, 0, 0, 0),
+(4, 'Smart Teens', 1, 11, 16, 0, 0),
+(5, 'Exam English', 2, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ila_course_categories`
 --
 
@@ -623,6 +651,83 @@ INSERT INTO `ila_course_categories_lang` (`id`, `course_category_id`, `category_
 (2, 2, 'wwwww', 2),
 (3, 1, 'bbbbb', 2),
 (4, 2, 'EA', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ila_course_levels`
+--
+
+CREATE TABLE IF NOT EXISTS `ila_course_levels` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `course_level` varchar(100) NOT NULL,
+  `level_name` varchar(100) NOT NULL,
+  `duration_hours` double(10,2) NOT NULL,
+  `duration_months` double(10,2) NOT NULL,
+  `age_from` int(11) NOT NULL,
+  `age_to` int(11) NOT NULL,
+  `video_link` text NOT NULL,
+  `cefr` varchar(50) NOT NULL,
+  `cambridge_exam` varchar(50) NOT NULL,
+  `ielts` varchar(50) NOT NULL,
+  `toefl_ibt` varchar(50) NOT NULL,
+  `toeic_reading` varchar(50) NOT NULL,
+  `toeic_writing` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `ila_course_levels`
+--
+
+INSERT INTO `ila_course_levels` (`id`, `course_id`, `course_level`, `level_name`, `duration_hours`, `duration_months`, `age_from`, `age_to`, `video_link`, `cefr`, `cambridge_exam`, `ielts`, `toefl_ibt`, `toeic_reading`, `toeic_writing`) VALUES
+(1, 1, 'aaa', '1-2', 48.00, 3.60, 3, 9, 'vvxvsd', '-A1', 'Flyers', 'sdf', 'rfwer', 'klhjki', 'retetr'),
+(2, 1, 'bbb', '3-4', 7.00, 2.00, 3, 12, 'dfdf', 'A1', 'CAE', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ila_course_level_lang`
+--
+
+CREATE TABLE IF NOT EXISTS `ila_course_level_lang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_level_id` int(11) NOT NULL,
+  `title` varchar(100) CHARACTER SET utf16 NOT NULL,
+  `language_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `ila_course_level_lang`
+--
+
+INSERT INTO `ila_course_level_lang` (`id`, `course_level_id`, `title`, `language_id`) VALUES
+(1, 1, 'aaa', 1),
+(2, 2, 'bbb', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ila_course_schedules`
+--
+
+CREATE TABLE IF NOT EXISTS `ila_course_schedules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `center_id` int(11) NOT NULL,
+  `level_id` int(11) NOT NULL,
+  `class_code` varchar(50) NOT NULL,
+  `weeks` int(11) NOT NULL,
+  `hours` int(11) NOT NULL,
+  `days` varchar(50) NOT NULL,
+  `class_time` varchar(50) NOT NULL,
+  `start_date` date NOT NULL,
+  `fee` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
