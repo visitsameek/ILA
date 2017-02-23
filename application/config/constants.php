@@ -101,14 +101,19 @@ defined('BASIC_SETTINGS_LANG') ? null : define('BASIC_SETTINGS_LANG', 'ila_basic
 defined('CMS_PAGE') ? null : define('CMS_PAGE', 'ila_cms_page');
 defined('CMS_LANG') ? null : define('CMS_LANG', 'ila_cms_language');
 
-defined('COURSE_CATEGORIES') ? null : define('COURSE_CATEGORIES', 'ila_course_categories');
-defined('COURSE_CATEGORIES_LANG') ? null : define('COURSE_CATEGORIES_LANG', 'ila_course_categories_lang');
 defined('CITIES') ? null : define('CITIES', 'ila_cities');
 defined('CITIES_LANG') ? null : define('CITIES_LANG', 'ila_cities_lang');
 defined('DISTRICTS') ? null : define('DISTRICTS', 'ila_districts');
 defined('DISTRICTS_LANG') ? null : define('DISTRICTS_LANG', 'ila_districts_lang');
 defined('TRAINING_CENTERS') ? null : define('TRAINING_CENTERS', 'ila_training_centers');
 defined('TRAINING_CENTERS_LANG') ? null : define('TRAINING_CENTERS_LANG', 'ila_training_centers_lang');
+
+defined('COURSE_CATEGORIES') ? null : define('COURSE_CATEGORIES', 'ila_course_categories');
+defined('COURSE_CATEGORIES_LANG') ? null : define('COURSE_CATEGORIES_LANG', 'ila_course_categories_lang');
+defined('COURSES') ? null : define('COURSES', 'ila_courses');
+defined('COURSE_LEVELS') ? null : define('COURSE_LEVELS', 'ila_course_levels');
+defined('COURSE_LEVEL_LANG') ? null : define('COURSE_LEVEL_LANG', 'ila_course_level_lang');
+defined('COURSE_SCHEDULES') ? null : define('COURSE_SCHEDULES', 'ila_course_schedules');
 
 defined('CORE_VALUES') ? null : define('CORE_VALUES', 'ila_core_values');
 defined('CORE_VALUES_LANG') ? null : define('CORE_VALUES_LANG', 'ila_core_values_lang');

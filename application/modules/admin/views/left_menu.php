@@ -41,8 +41,8 @@
                 </li>
 				<li><a><i class="fa fa-book"></i> Courses <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/cms/list_courses">List Courses</a></li>
-                        <li><a href="<?php echo base_url(); ?>admin/cms/add_course">Add Course</a></li>
+                        <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/course/list_courses">List Courses</a></li>
+                        <li><a href="<?php echo base_url(); ?>admin/course/add_course">Add Course</a></li>
                     </ul>
                 </li>
 				<li>

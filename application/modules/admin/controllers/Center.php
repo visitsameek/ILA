@@ -23,7 +23,7 @@ class Center extends MY_Controller {
 
         /* Pagination Code Start */
         $this->load->library('pagination');
-        $config['base_url'] = base_url() . 'admin/master/list_centers/';
+        $config['base_url'] = base_url() . 'admin/center/list_centers/';
         /* Row Count Code */
         $config['total_rows'] = $this->Custom_model->row_count(TRAINING_CENTERS, array(TRAINING_CENTERS . '.id'), array());
 
@@ -238,7 +238,7 @@ class Center extends MY_Controller {
 
                     $res = $this->Custom_model->edit_data($ins_data, array('center_id' => $center_id, 'language_id' => $selected_lang), TRAINING_CENTERS_LANG);
 
-                    $this->session->set_flashdata('success_message', 'District updated successfully.');
+                    $this->session->set_flashdata('success_message', 'Training center updated successfully.');
                     redirect(base_url() . 'admin/center/list_centers');
                 }
             }
