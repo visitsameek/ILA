@@ -200,6 +200,7 @@
 
 					$(function () {
 						$("#table_id").DataTable();
+						$("#table_id_2").DataTable();
 					});
 
         $('#wizard').smartWizard();

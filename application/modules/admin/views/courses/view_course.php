@@ -7,7 +7,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Course Details</h2>
+                    <h2><?php echo !empty($course_details->title) ? $course_details->title : '---'; ?> Course Details</h2>
                     <ul class="nav navbar-right panel_toolbox">
 						<li><a href="<?php echo base_url('admin/course/edit_course') . '/' . encode_url($course_details->id); ?>"><i class="fa fa-pencil"></i></a></li>
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -87,7 +87,7 @@
 												<td><?php echo isset($con->duration_hours) ? $con->duration_hours : "---"; ?></td> 
 												<td><?php echo isset($con->duration_months) ? $con->duration_months : "---"; ?></td> 
 												<td>
-													<a href="<?php echo base_url('admin/course/edit_course_level') . '/' . encode_url($con->id); ?>" class="btn btn-info btn-xs">
+													<a href="<?php echo base_url('admin/course/edit_course_level') . '/' . encode_url($course_details->id) . '/' . encode_url($con->id); ?>" class="btn btn-info btn-xs">
 														<i class="fa fa-pencil"></i> Edit
 													</a>
 												</td>
@@ -101,11 +101,6 @@
 								</tbody>
 							</table>
 							</div>
-							<?php if (!empty($categories)) { ?>
-								<ul class="pagination">
-									<?php echo $page_link; ?>
-								</ul>
-							<?php } ?>
                         </div>
 						<!-- level ends -->
 						<!-- schedule starts -->
@@ -116,7 +111,7 @@
 								<div class="clearfix"></div>
 							</div>
 							<div class="table-responsive">							
-							<table id="table_id" class="table table-striped jambo_table bulk_action">
+							<table id="table_id_2" class="table table-striped jambo_table bulk_action">
 								<thead>
 									<tr class="headings">
 										<th>Sl.No.</th>
@@ -163,11 +158,6 @@
 								</tbody>
 							</table>
 							</div>
-							<?php if (!empty($categories)) { ?>
-								<ul class="pagination">
-									<?php echo $page_link; ?>
-								</ul>
-							<?php } ?>
                         </div>
 						<!-- schedule ends -->
                       </div>

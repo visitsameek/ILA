@@ -58,12 +58,6 @@
                             </tbody>
                         </table>
                     </div>
-
-                    <?php if (!empty($categories)) { ?>
-                        <ul class="pagination">
-                            <?php echo $page_link; ?>
-                        </ul>
-                    <?php } ?>
                 </div>
             </div>
         </div>

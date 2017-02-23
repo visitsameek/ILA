@@ -186,16 +186,16 @@ class Course extends MY_Controller {
 
             if ($this->input->post('course_level') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter course level');
-                redirect(base_url() . 'admin/course/add_course_level');
+                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
             } else if ($this->input->post('title') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter course level');
-                redirect(base_url() . 'admin/course/add_course_level');
+                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
             } else if ($this->input->post('duration_hours') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter duration in hours');
-                redirect(base_url() . 'admin/course/add_course_level');
+                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
             } else if ($this->input->post('duration_months') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter duration in months');
-                redirect(base_url() . 'admin/course/add_course_level');
+                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
             } else {
 
                 $ins_data['course_id'] = $this->input->post('hid_course_id');
@@ -228,15 +228,96 @@ class Course extends MY_Controller {
                     } else {
                         $this->Custom_model->delete_row(COURSE_LEVELS, array('id' => $res));
                         $this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
-                        redirect(base_url() . 'admin/course/add_course_level');
+                        redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
                     }
                 } else {
                     $this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
-                    redirect(base_url() . 'admin/course/add_course_level');
+                    redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
                 }
             }
         }
         $partials = array('content' => 'courses/add_course_level', 'left_menu' => 'left_menu', 'header' => 'header');
+        $this->template->load('template', $partials, $data);
+    }
+
+	function edit_course_level($course_id = NULL, $course_level_id = NULL) {
+        $selected_lang = ($this->session->userdata('language')) ? $this->session->userdata('language') : 1;
+        $data['selected_lang'] = $selected_lang;
+
+        $course_id = decode_url($course_id);
+		$course_level_id = decode_url($course_level_id);
+
+        $chk_course_level = $this->Custom_model->row_present_check(COURSE_LEVELS, array('id' => $course_level_id));
+        if ($chk_course_level == false) {
+            redirect(base_url() . 'admin/course/view_course/'.encode_url($course_id));
+        }
+
+        $course_level_details = $this->Custom_model->fetch_data(COURSE_LEVELS, array(
+            COURSE_LEVELS . '.*',
+            COURSE_LEVEL_LANG . '.language_id',
+            COURSE_LEVEL_LANG . '.course_level_id',
+            COURSE_LEVEL_LANG . '.title'
+                ), array(COURSE_LEVELS . '.id' => $course_level_id), array(COURSE_LEVEL_LANG => COURSE_LEVELS . '.id=' . COURSE_LEVEL_LANG . '.course_level_id AND ' . COURSE_LEVEL_LANG . '.language_id=' . $selected_lang . '|left')
+        );
+
+        $data['course_level_details'] = $course_level_details[0];
+		$data['course_id'] = $course_id;
+		$data['course_level_id'] = $course_level_id;
+
+        if ($this->input->post('submit')) {
+            if ($this->input->post('course_level') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter course level');
+                redirect(base_url() . 'admin/course/edit_course_level/'.encode_url($course_id).'/'.encode_url($course_level_id));
+            } else if ($this->input->post('title') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter course level');
+                redirect(base_url() . 'admin/course/edit_course_level/'.encode_url($course_id).'/'.encode_url($course_level_id));
+            } else if ($this->input->post('duration_hours') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter duration in hours');
+                redirect(base_url() . 'admin/course/edit_course_level/'.encode_url($course_id).'/'.encode_url($course_level_id));
+            } else if ($this->input->post('duration_months') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter duration in months');
+                redirect(base_url() . 'admin/course/edit_course_level/'.encode_url($course_id).'/'.encode_url($course_level_id));
+            } else {
+
+                $ins_type['course_id'] = $this->input->post('hid_course_id');
+				$ins_type['course_level'] = $this->input->post('course_level');
+				$ins_type['level_name'] = $this->input->post('level_name');
+				$ins_type['duration_hours'] = $this->input->post('duration_hours');
+				$ins_type['duration_months'] = $this->input->post('duration_months');
+				$ins_type['age_from'] = $this->input->post('age_from');
+				$ins_type['age_to'] = $this->input->post('age_to');
+				$ins_type['video_link'] = $this->input->post('video_link');
+				$ins_type['cefr'] = $this->input->post('cefr');
+				$ins_type['cambridge_exam'] = $this->input->post('cambridge_exam');
+				$ins_type['ielts'] = $this->input->post('ielts');
+				$ins_type['toefl_ibt'] = $this->input->post('toefl_ibt');
+				$ins_type['toeic_reading'] = $this->input->post('toeic_reading');
+				$ins_type['toeic_writing'] = $this->input->post('toeic_writing');
+
+                $this->Custom_model->edit_data($ins_type, array('id' => $course_level_id), COURSE_LEVELS);
+
+                $chk_row = $this->Custom_model->row_present_check(COURSE_LEVEL_LANG, array('course_level_id' => $course_level_id, 'language_id' => $selected_lang));
+
+                if ($chk_row == FALSE) {
+                    $ins_inner['language_id'] = $selected_lang;
+                    $ins_inner['course_level_id'] = $course_level_id;
+                    $ins_inner['title'] = $this->input->post('title');
+
+                    $inner = $this->Custom_model->insert_data($ins_inner, COURSE_LEVEL_LANG);
+
+                    $this->session->set_flashdata('success_message', 'Course level updated successfully.');
+                    redirect(base_url() . 'admin/course/view_course/'.encode_url($course_id));
+                } else {
+                    $ins_data['title'] = $this->input->post('title');
+
+                    $res = $this->Custom_model->edit_data($ins_data, array('course_level_id' => $course_level_id, 'language_id' => $selected_lang), COURSE_LEVEL_LANG);
+
+                    $this->session->set_flashdata('success_message', 'Course level updated successfully.');
+                    redirect(base_url() . 'admin/course/view_course/'.encode_url($course_id));
+                }
+            }
+        }
+        $partials = array('content' => 'courses/edit_course_level', 'left_menu' => 'left_menu', 'header' => 'header');
         $this->template->load('template', $partials, $data);
     }
 
