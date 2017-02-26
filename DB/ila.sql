@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2017 at 01:20 PM
+-- Generation Time: Feb 26, 2017 at 11:38 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `ila_admin` (
 --
 
 INSERT INTO `ila_admin` (`id`, `name`, `user_name`, `user_pass`, `contact_email`, `last_login_time`, `last_login_ip`) VALUES
-(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-02-23 10:09:07', '::1');
+(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-02-26 11:10:01', '::1');
 
 -- --------------------------------------------------------
 
@@ -682,8 +682,8 @@ CREATE TABLE IF NOT EXISTS `ila_course_levels` (
 --
 
 INSERT INTO `ila_course_levels` (`id`, `course_id`, `course_level`, `level_name`, `duration_hours`, `duration_months`, `age_from`, `age_to`, `video_link`, `cefr`, `cambridge_exam`, `ielts`, `toefl_ibt`, `toeic_reading`, `toeic_writing`) VALUES
-(1, 1, 'aaa', '1-2', 48.00, 3.60, 3, 9, 'vvxvsd', '-A1', 'Flyers', 'sdf', 'rfwer', 'klhjki', 'retetr'),
-(2, 1, 'bbb', '3-4', 7.00, 2.00, 3, 12, 'dfdf', 'A1', 'CAE', '', '', '', '');
+(1, 1, 'Level 1', 'Level 1', 74.00, 4.60, 3, 4, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '', '', '', '', '', ''),
+(2, 1, 'Level 2', 'Level 2', 74.00, 4.60, 3, 4, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -704,8 +704,8 @@ CREATE TABLE IF NOT EXISTS `ila_course_level_lang` (
 --
 
 INSERT INTO `ila_course_level_lang` (`id`, `course_level_id`, `title`, `language_id`) VALUES
-(1, 1, 'aaa', 1),
-(2, 2, 'bbb', 1);
+(1, 1, 'Level 1', 1),
+(2, 2, 'Level 2', 1);
 
 -- --------------------------------------------------------
 
@@ -722,12 +722,20 @@ CREATE TABLE IF NOT EXISTS `ila_course_schedules` (
   `weeks` int(11) NOT NULL,
   `hours` int(11) NOT NULL,
   `days` varchar(50) NOT NULL,
-  `class_time` varchar(50) NOT NULL,
+  `class_time_from` varchar(50) NOT NULL,
+  `class_time_to` varchar(50) NOT NULL,
   `start_date` date NOT NULL,
   `fee` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ila_course_schedules`
+--
+
+INSERT INTO `ila_course_schedules` (`id`, `course_id`, `center_id`, `level_id`, `class_code`, `weeks`, `hours`, `days`, `class_time_from`, `class_time_to`, `start_date`, `fee`, `status`) VALUES
+(1, 1, 2, 1, 'S242wsfsr45', 6, 49, 'Sat/Sun', '01:00 PM', '03:30 PM', '2017-02-27', '100000', 'Next Class');
 
 -- --------------------------------------------------------
 
