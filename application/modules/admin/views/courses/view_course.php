@@ -107,7 +107,7 @@
                         <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="schedule-tab">
                           <div class="x_title">
 								<h2>Course Schedule List</h2>
-								<a href="<?php echo base_url();?>admin/course/add_course_schedule" class="btn btn-info pull-right">Add Course Schedule</a>
+								<a href="<?php echo base_url();?>admin/course/add_course_schedule/<?php echo encode_url($course_details->id);?>" class="btn btn-info pull-right">Add Course Schedule</a>
 								<div class="clearfix"></div>
 							</div>
 							<div class="table-responsive">							
@@ -129,8 +129,8 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php if (!empty($levels)) { ?>
-										<?php foreach ($levels as $key => $con) { ?>
+									<?php if (!empty($schedules)) { ?>
+										<?php foreach ($schedules as $key => $con) { ?>
 											<tr>
 												<td><?php echo ($key + 1) . '.' ?></td>  
 												<td><?php echo isset($con->course_level_title) ? $con->course_level_title : "---"; ?></td> 
@@ -139,12 +139,12 @@
 												<td><?php echo isset($con->weeks) ? $con->weeks : "---"; ?></td> 
 												<td><?php echo isset($con->hours) ? $con->hours : "---"; ?></td> 
 												<td><?php echo isset($con->days) ? $con->days : "---"; ?></td> 
-												<td><?php echo isset($con->class_time) ? $con->class_time : "---"; ?></td> 
+												<td><?php echo isset($con->class_time_from) ? $con->class_time_from.' - '.$con->class_time_to : "---"; ?></td> 
 												<td><?php echo isset($con->start_date) ? $con->start_date : "---"; ?></td> 
 												<td><?php echo isset($con->fee) ? $con->fee : "---"; ?></td> 
 												<td><?php echo isset($con->status) ? $con->status : "---"; ?></td>
 												<td>
-													<a href="<?php echo base_url('admin/course/edit_course_schedule') . '/' . encode_url($con->id); ?>" class="btn btn-info btn-xs">
+													<a href="<?php echo base_url('admin/course/edit_course_schedule') . '/' . encode_url($course_details->id) . '/' . encode_url($con->id); ?>" class="btn btn-info btn-xs">
 														<i class="fa fa-pencil"></i> Edit
 													</a>
 												</td>

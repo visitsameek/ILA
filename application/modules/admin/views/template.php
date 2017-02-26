@@ -196,8 +196,7 @@
 			<script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
             <!-- bootstrap-wysiwyg -->
             <script>
-                $(document).ready(function () {
-
+                $(document).ready(function () {					
 					$(function () {
 						$("#table_id").DataTable();
 						$("#table_id_2").DataTable();

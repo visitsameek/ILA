@@ -186,16 +186,16 @@ class Course extends MY_Controller {
 
             if ($this->input->post('course_level') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter course level');
-                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
+                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($this->input->post('hid_course_id')));
             } else if ($this->input->post('title') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter course level');
-                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
+                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($this->input->post('hid_course_id')));
             } else if ($this->input->post('duration_hours') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter duration in hours');
-                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
+                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($this->input->post('hid_course_id')));
             } else if ($this->input->post('duration_months') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter duration in months');
-                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
+                redirect(base_url() . 'admin/course/add_course_level/'.encode_url($this->input->post('hid_course_id')));
             } else {
 
                 $ins_data['course_id'] = $this->input->post('hid_course_id');
@@ -228,11 +228,11 @@ class Course extends MY_Controller {
                     } else {
                         $this->Custom_model->delete_row(COURSE_LEVELS, array('id' => $res));
                         $this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
-                        redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
+                        redirect(base_url() . 'admin/course/add_course_level/'.encode_url($this->input->post('hid_course_id')));
                     }
                 } else {
                     $this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
-                    redirect(base_url() . 'admin/course/add_course_level/'.encode_url($course_id));
+                    redirect(base_url() . 'admin/course/add_course_level/'.encode_url($this->input->post('hid_course_id')));
                 }
             }
         }
@@ -322,5 +322,166 @@ class Course extends MY_Controller {
     }
 
 	//*********** end course level ************//
+
+	//*********** start course schedule ************//
+
+	function add_course_schedule($course_id = NULL) {
+        $data = array();
+        $selected_lang = ($this->session->userdata('language')) ? $this->session->userdata('language') : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$data['course_id'] = decode_url($course_id);
+
+		$data['course_level_list'] = $this->Custom_model->fetch_data(COURSE_LEVELS, array('id', 'course_level'), array('course_id' => $data['course_id']), array());
+		$data['center_list'] = $this->Custom_model->fetch_data(TRAINING_CENTERS, array('id', 'center'), array(), array());
+
+        if ($this->input->post('submit')) {
+
+            if ($this->input->post('level_id') == "") {
+                $this->session->set_flashdata('error_message', 'Please select course level');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('center_id') == "") {
+                $this->session->set_flashdata('error_message', 'Please select training center');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('class_code') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter class code');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('weeks') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter weeks');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('hours') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter hours');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('days') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter days');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('class_time_from') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter class time from');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('class_time_to') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter class time to');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('start_date') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter start date');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('fee') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter fee');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('status') == "") {
+                $this->session->set_flashdata('error_message', 'Please select status');
+                redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+            } else {
+
+				$start_date = explode('/', $this->input->post('start_date'));
+
+                $ins_data['course_id'] = $this->input->post('hid_course_id');
+				$ins_data['center_id'] = $this->input->post('center_id');
+				$ins_data['level_id'] = $this->input->post('level_id');
+				$ins_data['class_code'] = $this->input->post('class_code');
+				$ins_data['weeks'] = $this->input->post('weeks');
+				$ins_data['hours'] = $this->input->post('hours');
+				$ins_data['days'] = $this->input->post('days');
+				$ins_data['class_time_from'] = $this->input->post('class_time_from');
+				$ins_data['class_time_to'] = $this->input->post('class_time_to');
+				$ins_data['start_date'] = $start_date[2].'-'.$start_date[0].'-'.$start_date[1];
+				$ins_data['fee'] = $this->input->post('fee');
+				$ins_data['status'] = $this->input->post('status');
+
+                $res = $this->Custom_model->insert_data($ins_data, COURSE_SCHEDULES);
+
+                if ($res != FALSE) {                    
+					$this->session->set_flashdata('success_message', 'Course Schedule added successfully.');
+					redirect(base_url() . 'admin/course/view_course/'.encode_url($this->input->post('hid_course_id')));
+                    
+                } else {
+                    $this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
+                    redirect(base_url() . 'admin/course/add_course_schedule/'.encode_url($this->input->post('hid_course_id')));
+                }
+            }
+        }
+        $partials = array('content' => 'courses/add_course_schedule', 'left_menu' => 'left_menu', 'header' => 'header');
+        $this->template->load('template', $partials, $data);
+    }
+
+	function edit_course_schedule($course_id = NULL, $course_schedule_id = NULL) {
+        $selected_lang = ($this->session->userdata('language')) ? $this->session->userdata('language') : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$data['course_id'] = decode_url($course_id);
+		$data['course_schedule_id'] = decode_url($course_schedule_id);
+
+		$data['course_level_list'] = $this->Custom_model->fetch_data(COURSE_LEVELS, array('id', 'course_level'), array('course_id' => $data['course_id']), array());
+		$data['center_list'] = $this->Custom_model->fetch_data(TRAINING_CENTERS, array('id', 'center'), array(), array());
+
+        $chk_course_schedule = $this->Custom_model->row_present_check(COURSE_SCHEDULES, array('id' => $data['course_schedule_id']));
+        if ($chk_course_schedule == false) {
+            redirect(base_url() . 'admin/course/view_course/'.encode_url($data['course_id']));
+        }
+
+        $course_schedule_details = $this->Custom_model->fetch_data(COURSE_SCHEDULES, array(COURSE_SCHEDULES . '.*'), array(COURSE_SCHEDULES . '.id' => $data['course_schedule_id']), array());
+        $data['course_schedule_details'] = $course_schedule_details[0];
+
+        if ($this->input->post('submit')) {
+            if ($this->input->post('level_id') == "") {
+                $this->session->set_flashdata('error_message', 'Please select course level');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else if ($this->input->post('center_id') == "") {
+                $this->session->set_flashdata('error_message', 'Please select training center');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else if ($this->input->post('class_code') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter class code');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else if ($this->input->post('weeks') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter weeks');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else if ($this->input->post('hours') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter hours');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else if ($this->input->post('days') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter days');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else if ($this->input->post('class_time_from') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter class time from');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else if ($this->input->post('class_time_to') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter class time to');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else if ($this->input->post('start_date') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter start date');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else if ($this->input->post('fee') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter fee');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else if ($this->input->post('status') == "") {
+                $this->session->set_flashdata('error_message', 'Please select status');
+                redirect(base_url() . 'admin/course/edit_course_schedule/'.encode_url($this->input->post('hid_course_id')).'/'.encode_url($this->input->post('hid_course_schedule_id')));
+            } else {
+
+				$start_date = explode('/', $this->input->post('start_date'));
+
+                $ins_type['course_id'] = $this->input->post('hid_course_id');
+				$ins_type['center_id'] = $this->input->post('center_id');
+				$ins_type['level_id'] = $this->input->post('level_id');
+				$ins_type['class_code'] = $this->input->post('class_code');
+				$ins_type['weeks'] = $this->input->post('weeks');
+				$ins_type['hours'] = $this->input->post('hours');
+				$ins_type['days'] = $this->input->post('days');
+				$ins_type['class_time_from'] = $this->input->post('class_time_from');
+				$ins_type['class_time_to'] = $this->input->post('class_time_to');
+				$ins_type['start_date'] = $start_date[2].'-'.$start_date[0].'-'.$start_date[1];
+				$ins_type['fee'] = $this->input->post('fee');
+				$ins_type['status'] = $this->input->post('status');
+
+                $this->Custom_model->edit_data($ins_type, array('id' => $this->input->post('hid_course_schedule_id')), COURSE_SCHEDULES);                
+
+                $this->session->set_flashdata('success_message', 'Course Schedule updated successfully.');
+                redirect(base_url() . 'admin/course/view_course/'.encode_url($this->input->post('hid_course_id')));
+            }
+        }
+        $partials = array('content' => 'courses/edit_course_schedule', 'left_menu' => 'left_menu', 'header' => 'header');
+        $this->template->load('template', $partials, $data);
+    }
+
+	//*********** end course schedule ************//
 
 }
