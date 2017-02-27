@@ -53,7 +53,7 @@ class Site extends MY_Controller {
         /* Pagination Code End */
 
         $data['event_list'] = $this->Custom_model->fetch_data(EVENTS,
-                array(EVENTS.'.*', EVENTS_LANG.'.title', EVENTS_LANG.'.event_id', EVENTS_LANG.'.title', EVENTS_LANG.'.short_desc', EVENTS_LANG.'.content', EVENTS_LANG.'.event_place', EVENTS_LANG.'.language_id'),
+                array(EVENTS.'.*', EVENTS_LANG.'.event_id', EVENTS_LANG.'.title', EVENTS_LANG.'.short_desc', EVENTS_LANG.'.content', EVENTS_LANG.'.event_place', EVENTS_LANG.'.language_id'),
                 array(),
                 array(EVENTS_LANG => EVENTS_LANG.'.event_id='.EVENTS.'.id AND '.EVENTS_LANG.'.language_id='.$selected_lang. '| inner'),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
@@ -281,7 +281,7 @@ class Site extends MY_Controller {
         /* Pagination Code End */
 
         $data['news_list'] = $this->Custom_model->fetch_data(NEWS,
-                array(NEWS.'.*', NEWS_LANG.'.title', NEWS_LANG.'.news_id', NEWS_LANG.'.title', NEWS_LANG.'.short_desc', NEWS_LANG.'.content', NEWS_LANG.'.language_id'),
+                array(NEWS.'.*', NEWS_LANG.'.news_id', NEWS_LANG.'.title', NEWS_LANG.'.short_desc', NEWS_LANG.'.content', NEWS_LANG.'.language_id'),
                 array(),
                 array(NEWS_LANG => NEWS_LANG.'.news_id='.NEWS.'.id AND '.NEWS_LANG.'.language_id='.$selected_lang. '| inner'),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
@@ -442,4 +442,183 @@ class Site extends MY_Controller {
     }
 
 	/* news ends */
+
+	/* vision, mission & core values starts */
+    
+    function list_core_values()
+    {        
+        $selected_lang = ($this->session->userdata('language'))?$this->session->userdata('language'):1;
+        $data['selected_lang'] = $selected_lang;
+
+        /* Pagination Code Start */
+        $this->load->library('pagination');
+        $config['base_url'] = base_url() . 'admin/site/list_core_values/';
+        /* Row Count Code */
+        $config['total_rows'] = $this->Custom_model->row_count(CORE_VALUES, array(CORE_VALUES . '.id'), array() );
+        $config['use_page_numbers'] = TRUE;
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '<li>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '<li>';
+        $config['per_page'] = 20;
+        $config['prev_link'] = '&lt;';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = '&gt;';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="disabled"><a href="javascript:void(0)">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        //print_r($config);die;
+        $this->pagination->initialize($config);
+        $data['page_link'] = $this->pagination->create_links();
+        $page_number = $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+        $page_number = ($page_number != 0) ? $page_number - 1 : $page_number;
+        /* Pagination Code End */
+
+        $data['core_values_list'] = $this->Custom_model->fetch_data(CORE_VALUES,
+                array(CORE_VALUES.'.*', CORE_VALUES_LANG.'.core_value_id', CORE_VALUES_LANG.'.title', CORE_VALUES_LANG.'.content', CORE_VALUES_LANG.'.language_id'),
+                array(),
+                array(CORE_VALUES_LANG => CORE_VALUES_LANG.'.core_value_id='.CORE_VALUES.'.id AND '.CORE_VALUES_LANG.'.language_id='.$selected_lang. '| inner'),
+                $search='',//CMS_LANG.'language_id'.$selected_lang,
+                $order = CORE_VALUES . '.id',
+                $by = 'desc',
+                $page_number,
+                $config['per_page'],
+                $group_by = '',
+                $having = '',
+                $start = $page_number,
+                $end = ''
+        );//echo '<pre>';print_r($data['cms_list']);
+
+        $partials = array('content' => 'sites/list_core_values', 'left_menu' => 'left_menu', 'header' => 'header');
+        $this->template->load('template', $partials, $data);
+    }
+
+    function add_core_values()
+    {
+        $selected_lang = ($this->session->userdata('language'))?$this->session->userdata('language'):1;
+        $data['selected_lang'] = $selected_lang;
+
+        //$this->load->helper('custom_helper');
+		//load_editor();//to load niceditor.
+        
+        if($this->input->post('submit')){
+            if ($this->input->post('core_value') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter title');
+                redirect(base_url() . 'admin/site/add_core_values');
+			} elseif ($this->input->post('title') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter title');
+                redirect(base_url() . 'admin/site/add_core_values');
+            } elseif ($this->input->post('content') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter content');
+                redirect(base_url() . 'admin/site/add_core_values');
+            } else {
+                $ins_data['core_value']   = $this->input->post('core_value');
+                $ins_data['media_id']   = $this->input->post('media_id');
+
+                // add data to cms table
+                $res = $this->Custom_model->insert_data($ins_data, CORE_VALUES);
+
+                if ($res != FALSE) {
+                    $ins_inner['core_value_id']  = $res;
+                    $ins_inner['title']   = $this->input->post('title');
+                    $ins_inner['content'] = $this->input->post('content');
+                    $ins_inner['language_id'] = $selected_lang;
+
+                    $inner = $this->Custom_model->insert_data($ins_inner, CORE_VALUES_LANG);
+
+                    if($inner!=FALSE){
+                        $this->session->set_flashdata('success_message', 'Core values added successfully.');
+                        redirect(base_url() . 'admin/site/list_core_values');
+                    }else{
+                        $this->Custom_model->delete_row(CORE_VALUES, array('id'=>$res));
+                        $this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
+                        redirect(base_url() . 'admin/site/add_core_values');
+                    }
+                } else {
+                    $this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
+                    redirect(base_url() . 'admin/site/add_core_values');
+                }
+            }
+        }
+        $partials = array('content' => 'sites/add_core_values', 'left_menu' => 'left_menu', 'header' => 'header');
+        $this->template->load('template', $partials, $data);
+    }
+
+    function edit_core_values($id)
+    {
+        $selected_lang = ($this->session->userdata('language'))?$this->session->userdata('language'):1;
+        $data['selected_lang'] = $selected_lang;        
+
+        //check page is exist or not.
+        $core_values_id = decode_url($id);
+        $chk_core_values_exist = $this->Custom_model->row_present_check(CORE_VALUES, array('id'=>$core_values_id));
+        if($chk_core_values_exist==false){
+            redirect(base_url() . 'admin/site/list_core_values');
+        }
+
+        $core_values_details = $this->Custom_model->fetch_data(CORE_VALUES, array(
+            CORE_VALUES . '.*',
+            CORE_VALUES_LANG . '.language_id',
+            CORE_VALUES_LANG . '.core_value_id',
+            CORE_VALUES_LANG . '.title',
+            CORE_VALUES_LANG . '.content'
+                ), array(CORE_VALUES . '.id' => $core_values_id), array(CORE_VALUES_LANG => CORE_VALUES . '.id=' . CORE_VALUES_LANG . '.core_value_id AND ' . CORE_VALUES_LANG . '.language_id=' . $selected_lang . '|left')
+        );
+
+        $data['core_values_details'] = $core_values_details[0];
+
+        //$this->load->helper('custom_helper');
+		//load_editor();//to load ckeditor.
+
+        if($this->input->post('submit')){
+            if ($this->input->post('core_value') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter title');
+                redirect(base_url() . 'admin/site/edit_core_values/'.encode_url($core_values_id));
+			} elseif ($this->input->post('title') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter title');
+                redirect(base_url() . 'admin/site/edit_core_values/'.encode_url($core_values_id));
+            } elseif ($this->input->post('content') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter content');
+                redirect(base_url() . 'admin/site/edit_core_values/'.encode_url($core_values_id));
+            } else {
+
+                $ins_data['core_value']   = $this->input->post('core_value');
+                $ins_data['media_id']   = $this->input->post('media_id');
+
+                $res = $this->Custom_model->edit_data($ins_data, array('id'=>$core_values_id), CORE_VALUES);
+
+                $chk_row = $this->Custom_model->row_present_check(CORE_VALUES_LANG, array('core_value_id' => $core_values_id, 'language_id' => $selected_lang));
+
+                if ($chk_row == FALSE) {
+                    $inner_data['core_value_id']  = $res;
+                    $inner_data['title']   = $this->input->post('title');
+                    $inner_data['content'] = $this->input->post('content');
+                    $inner_data['language_id'] = $selected_lang;
+
+                    //add new row for different lang.
+                    $res1 = $this->Custom_model->insert_data($inner_data, CORE_VALUES_LANG);
+
+                    $this->session->set_flashdata('success_message', 'Core values updated successfully.');
+                    redirect(base_url() . 'admin/site/list_core_values');
+                } else {
+                    $inner_data['title'] = $this->input->post('title');
+                    $inner_data['content'] = $this->input->post('content');
+
+                    //save modified data to details table.
+                    $res1 = $this->Custom_model->edit_data($inner_data, array('core_value_id' => $core_values_id, 'language_id' => $selected_lang), CORE_VALUES_LANG);
+
+                    $this->session->set_flashdata('success_message', 'Core values updated successfully.');
+                    redirect(base_url() . 'admin/site/list_core_values');
+                }
+            }
+        }
+        $partials = array('content' => 'sites/edit_core_values', 'left_menu' => 'left_menu', 'header' => 'header');
+        $this->template->load('template', $partials, $data);
+    }
+
+	/* vision, mission & core values ends */
 }

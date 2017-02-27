@@ -57,7 +57,14 @@
 				<li>
                     <a><i class="fa fa-tasks"></i> Site Pages <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-						<li><a href="<?php echo base_url(); ?>admin/etemp">Vision, Mission & Core Values </a></li>
+						<li><a>Vision, Mission & Core Values</a>
+                            <ul class="nav child_menu">
+                                <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_core_values">List Core Values</a>
+                                </li>
+                                <li><a href="<?php echo base_url(); ?>admin/site/add_core_values">Add Core Value</a>
+                                </li>
+                            </ul>
+                        </li>
 						<li><a href="<?php echo base_url(); ?>admin/etemp">Awards & Recognition </a></li>
 						<li><a href="<?php echo base_url(); ?>admin/etemp">ILA Stories </a></li>
 						<li><a href="<?php echo base_url(); ?>admin/etemp">Meet Our Teachers </a></li>
