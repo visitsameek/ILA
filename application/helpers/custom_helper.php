@@ -21,7 +21,7 @@ function get_admin_username($id)
     * @since : Nov 2016
     * @version : 4.6.0//ckeditor
     */
-    function load_editor()
+    /*function load_editor()
     {
 		$config['upload_path']   = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
@@ -31,7 +31,7 @@ function get_admin_username($id)
 		$CI->load->library('upload', $config);
 
         $CI->output->enable_profiler(FALSE);
-    }
+    }*/
 
     /* This function is used to grab video id from youtube embeded code
      * $embeded_code : embeded YouYube code

@@ -29,8 +29,8 @@ class Settings extends MY_Controller {
 
         $data['settings'] = $basic_settings[0];//echo '<pre>';print_r($data['settings']);die;
 
-        $this->load->helper('custom_helper');
-		load_editor();//load niceditor
+        //$this->load->helper('custom_helper');
+		//load_editor();//load niceditor
 
         //save data
         if($this->input->post('submit')){

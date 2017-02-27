@@ -72,14 +72,14 @@
                 </li>
 				<li><a><i class="fa fa-newspaper-o"></i> News <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/cms/list_centers">List News</a></li>
-                        <li><a href="<?php echo base_url(); ?>admin/cms/add_center">Add News</a></li>
+                        <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_news">List News</a></li>
+                        <li><a href="<?php echo base_url(); ?>admin/site/add_news">Add News</a></li>
                     </ul>
                 </li>
 				<li><a><i class="fa fa-calendar"></i> Events <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/cms/list_courses">List Events</a></li>
-                        <li><a href="<?php echo base_url(); ?>admin/cms/add_course">Add Event</a></li>
+                        <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_events">List Events</a></li>
+                        <li><a href="<?php echo base_url(); ?>admin/site/add_event">Add Event</a></li>
                     </ul>
                 </li>
 				<li>

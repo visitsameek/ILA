@@ -90,8 +90,8 @@ class Cms extends MY_Controller {
                 $by = 'desc'
         );
 
-        $this->load->helper('custom_helper');
-		load_editor();//to load niceditor.
+        //$this->load->helper('custom_helper');
+		//load_editor();//to load niceditor.
 
         //slug url settings
         $config = array(
@@ -175,8 +175,8 @@ class Cms extends MY_Controller {
                 $by = 'desc'
         );
 
-        $this->load->helper('custom_helper');
-		load_editor();//to load ckeditor.
+        //$this->load->helper('custom_helper');
+		//load_editor();//to load ckeditor.
 
         //check page is exist or not.
         $cms_id = decode_url($id);
