@@ -39,11 +39,7 @@
                                                                                 }else { echo '---'; }?></div>
 										<div class="col-md-3"><strong>Age:</strong></div><div class="col-md-3"><?php echo !empty($callback_user_details->age) ? $callback_user_details->age : '---'; ?></div>
 									</div>
-									<div class="row"><?php
-									if(!empty($callback_user_details->created)){
-									    $date = DateTime::createFromFormat('Y-m-d H:i:s', $callback_user_details->created);
-									    $callback_user_details->created = $date->format('d-m-Y');
-									}?>
+									<div class="row">
 										<div class="col-md-3"><strong>Enquiry Date:</strong></div><div class="col-md-3"><?php echo !empty($callback_user_details->created_on) ? $callback_user_details->created_on : '---'; ?></div>
 										<div class="col-md-3">&nbsp;</div>
 									</div>

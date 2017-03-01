@@ -131,6 +131,7 @@ defined('EVENTS_LANG') ? null : define('EVENTS_LANG', 'ila_events_lang');
 defined('NEWS') ? null : define('NEWS', 'ila_news');
 defined('NEWS_LANG') ? null : define('NEWS_LANG', 'ila_news_lang');
 
+defined('USERS') ? null : define('USERS', 'ila_users');
 defined('NEWSLETTER_USERS') ? null : define('NEWSLETTER_USERS', 'ila_newsletter_users');
 defined('CONTACT_USERS') ? null : define('CONTACT_USERS', 'ila_contact_users');
 defined('REQUEST_CALLBACK_USERS') ? null : define('REQUEST_CALLBACK_USERS', 'ila_request_callback_users');

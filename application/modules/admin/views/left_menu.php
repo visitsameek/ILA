@@ -48,7 +48,7 @@
 				<li>
                     <a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-						<li><a href="<?php echo base_url(); ?>admin/etemp">Registered Users </a></li>
+						<li><a href="<?php echo base_url(); ?>admin/user/list_registered_users">Registered Users </a></li>
 						<li><a href="<?php echo base_url(); ?>admin/user/list_request_callback_users">Request Callback Users </a></li>
 						<li><a href="<?php echo base_url(); ?>admin/user/list_contact_users">Contact Users </a></li>
 						<li><a href="<?php echo base_url(); ?>admin/user/list_newsletter_subscribers">Newsletter Subscribers </a></li>

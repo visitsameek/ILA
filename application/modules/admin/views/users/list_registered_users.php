@@ -9,7 +9,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Request Callback User List</h2>
+                    <h2>Registered User List</h2>
 
                     <div class="clearfix"></div>
                 </div>
@@ -29,26 +29,26 @@
                             <thead>
                                 <tr class="headings">
                                     <th>Sl.No.</th>
-									<th>Name</th>
+									<th>First Name</th>
+									<th>Last Name</th>
                                     <th>Phone</th>
 									<th>Email</th>									                                   
-									<th>Request Date</th>
-                                    <th>Callback Initiated</th> 
+									<th>Registered Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (!empty($callback_users)) { ?>
-                                    <?php foreach ($callback_users as $key => $data) { ?>
+                                <?php if (!empty($users)) { ?>
+                                    <?php foreach ($users as $key => $data) { ?>
                                         <tr>
                                             <td><?php echo ($key + 1) . '.' ?></td>
-											<td><a href="<?php echo base_url('admin/user/view_callback_users') . '/' . encode_url($data->id); ?>"><?php echo $data->name; ?></a></td>
+											<td><a href="<?php echo base_url('admin/user/view_users') . '/' . encode_url($data->id); ?>"><?php echo $data->first_name; ?></a></td>
+											<td><a href="<?php echo base_url('admin/user/view_users') . '/' . encode_url($data->id); ?>"><?php echo $data->last_name; ?></a></td>
 											<td><?php echo $data->phone; ?></td>
 											<td><?php echo $data->email_id; ?></td>
-                                            <td><?php echo $data->created_on; ?></td>                                            
-                                            <td><?php if($data->callback_intiated == 'Y') echo 'Yes'; else echo 'No'; ?></td>
+                                            <td><?php echo $data->created_on; ?></td>
                                             <td>
-												<a href="<?php echo base_url('admin/user/view_callback_users') . '/' . encode_url($data->id); ?>" class="btn btn-primary btn-xs">
+												<a href="<?php echo base_url('admin/user/view_users') . '/' . encode_url($data->id); ?>" class="btn btn-primary btn-xs">
                                                     <i class="fa fa-folder"></i> View
                                                 </a>
                                             </td>
