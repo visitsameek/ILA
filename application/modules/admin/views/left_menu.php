@@ -65,10 +65,38 @@
                                 </li>
                             </ul>
                         </li>
-						<li><a href="<?php echo base_url(); ?>admin/etemp">Awards & Recognition </a></li>
-						<li><a href="<?php echo base_url(); ?>admin/etemp">ILA Stories </a></li>
-						<li><a href="<?php echo base_url(); ?>admin/etemp">Meet Our Teachers </a></li>
-						<li><a href="<?php echo base_url(); ?>admin/etemp">ILA Community Network </a></li>
+						<li><a>Awards & Recognition</a>
+                            <ul class="nav child_menu">
+                                <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_awards">List Awards</a>
+                                </li>
+                                <li><a href="<?php echo base_url(); ?>admin/site/add_award">Add Award</a>
+                                </li>
+                            </ul>
+                        </li>
+						<li><a>ILA Stories</a>
+                            <ul class="nav child_menu">
+                                <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_stories">List Stories</a>
+                                </li>
+                                <li><a href="<?php echo base_url(); ?>admin/site/add_story">Add Story</a>
+                                </li>
+                            </ul>
+                        </li>
+						<li><a>Meet Our Teachers</a>
+                            <ul class="nav child_menu">
+                                <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_teachers">List Teachers</a>
+                                </li>
+                                <li><a href="<?php echo base_url(); ?>admin/site/add_teacher">Add Teacher</a>
+                                </li>
+                            </ul>
+                        </li>
+						<li><a>ILA Community Network</a>
+                            <ul class="nav child_menu">
+                                <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_networks">List Networks</a>
+                                </li>
+                                <li><a href="<?php echo base_url(); ?>admin/site/add_network">Add Network</a>
+                                </li>
+                            </ul>
+                        </li>
 					</ul>
                 </li>
 				<li><a><i class="fa fa-clone"></i> CMS Management <span class="fa fa-chevron-down"></span></a>
