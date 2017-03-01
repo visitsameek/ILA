@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2017 at 12:42 PM
+-- Generation Time: Mar 01, 2017 at 07:05 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `ila_admin` (
 --
 
 INSERT INTO `ila_admin` (`id`, `name`, `user_name`, `user_pass`, `contact_email`, `last_login_time`, `last_login_ip`) VALUES
-(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-02-27 10:17:08', '::1');
+(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-01 06:11:19', '::1');
 
 -- --------------------------------------------------------
 
@@ -333,7 +333,14 @@ CREATE TABLE IF NOT EXISTS `ila_awards` (
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT ' 0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ila_awards`
+--
+
+INSERT INTO `ila_awards` (`id`, `award`, `media_id`, `isblocked`, `isdeleted`) VALUES
+(1, 'Golden Dragon', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -348,7 +355,14 @@ CREATE TABLE IF NOT EXISTS `ila_awards_lang` (
   `content` text CHARACTER SET utf16 NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ila_awards_lang`
+--
+
+INSERT INTO `ila_awards_lang` (`id`, `award_id`, `title`, `content`, `language_id`) VALUES
+(1, 1, 'Golden Dragon', 'content', 1);
 
 -- --------------------------------------------------------
 
@@ -532,7 +546,14 @@ CREATE TABLE IF NOT EXISTS `ila_community_networks` (
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ila_community_networks`
+--
+
+INSERT INTO `ila_community_networks` (`id`, `community`, `isblocked`, `isdeleted`) VALUES
+(1, 'How We Do', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -542,11 +563,19 @@ CREATE TABLE IF NOT EXISTS `ila_community_networks` (
 
 CREATE TABLE IF NOT EXISTS `ila_community_networks_lang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `community_network_id` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf16 NOT NULL,
   `content` text CHARACTER SET utf16 NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ila_community_networks_lang`
+--
+
+INSERT INTO `ila_community_networks_lang` (`id`, `community_network_id`, `title`, `content`, `language_id`) VALUES
+(1, 1, 'How We Do', 'We work closely to each non-profit organization TO:<div><ul><li>FIND OUT WHAT THEY NEED<br></li><li>DESIGN EDUCATIONAL PROGRAMS BASED ON THEIR CIRRICULUMN<br></li><li>IMPLEMENT PROGRAMS WITH THE SUPPORT OF VOLUNTEERS FROM ILA<br></li></ul></div>', 1);
 
 -- --------------------------------------------------------
 
@@ -561,7 +590,16 @@ CREATE TABLE IF NOT EXISTS `ila_core_values` (
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT ' 0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `ila_core_values`
+--
+
+INSERT INTO `ila_core_values` (`id`, `core_value`, `media_id`, `isblocked`, `isdeleted`) VALUES
+(1, 'Vision', 2, 0, 0),
+(2, 'Mission', 1, 0, 0),
+(3, 'Core Values', 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -576,7 +614,16 @@ CREATE TABLE IF NOT EXISTS `ila_core_values_lang` (
   `content` text CHARACTER SET utf16 NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `ila_core_values_lang`
+--
+
+INSERT INTO `ila_core_values_lang` (`id`, `core_value_id`, `title`, `content`, `language_id`) VALUES
+(1, 1, 'Vision', 'content', 1),
+(2, 2, 'Mission', 'content', 1),
+(3, 3, 'Core Values', 'content', 1);
 
 -- --------------------------------------------------------
 
@@ -973,10 +1020,19 @@ CREATE TABLE IF NOT EXISTS `ila_stories` (
   `story` varchar(255) NOT NULL,
   `media_id` int(11) NOT NULL,
   `video_link` text NOT NULL,
+  `created_on` date NOT NULL,
+  `modified_on` date NOT NULL,
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ila_stories`
+--
+
+INSERT INTO `ila_stories` (`id`, `story`, `media_id`, `video_link`, `created_on`, `modified_on`, `isblocked`, `isdeleted`) VALUES
+(1, 'SECRET MEETING ONLY AFTER 3 IELTS 7.0 ENGLISH COURSES', 2, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '2017-02-28', '2017-02-28', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -992,7 +1048,14 @@ CREATE TABLE IF NOT EXISTS `ila_stories_lang` (
   `long_desc` blob NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ila_stories_lang`
+--
+
+INSERT INTO `ila_stories_lang` (`id`, `story_id`, `title`, `short_desc`, `long_desc`, `language_id`) VALUES
+(1, 1, 'SECRET MEETING ONLY AFTER 3 IELTS 7.0 ENGLISH COURSES', 'Learning from her friends’ past experiences, when Nhi aimed to take IELTS courses she only targeted credible centers. She chose ILA because when looking at the learning methods there, she felt they were diverse, practical and suitable for anyone preparing to take the IELTS test. They methods were not just textbook theories.', 0x3c623e43686f6f73696e672061206372656469626c6520456e676c6973682063656e7465723c2f623e3c6469763e4c6561726e696e672066726f6d2068657220667269656e6473e28099207061737420657870657269656e6365732c207768656e204e68692061696d656420746f2074616b652049454c545320636f757273657320736865206f6e6c79207461726765746564206372656469626c652063656e746572732e205368652063686f736520494c412062656361757365207768656e206c6f6f6b696e6720617420746865206c6561726e696e67206d6574686f64732074686572652c207368652066656c742074686579207765726520646976657273652c2070726163746963616c20616e64207375697461626c6520666f7220616e796f6e6520707265706172696e6720746f2074616b65207468652049454c545320746573742e2054686579206d6574686f64732077657265206e6f74206a7573742074657874626f6f6b207468656f726965732e3c6469763e3c62723e3c2f6469763e3c6469763e3c623e486176696e6720666f726569676e2074656163686572733c2f623e3c2f6469763e3c6469763e4e6869206578706c61696e732c20e2809c4265636175736520776520617265207374756479696e6720456e676c69736820616e6420747279696e67206f7572206265737420746f2067657420686967682073636f72657320696e207468652049454c54532c2077652063616e6e6f742073747564792077697468206e617469766520456e676c6973682074656163686572732068616c66206f66207468652074696d6520616e6420566965746e616d65736520746561636865727320746865206f746865722068616c662e204f6e6c79207768656e20616c6c20666f75722052656164696e672c204c697374656e696e672c20537065616b696e6720616e642057726974696e6720736b696c6c73206172652074617567687420616e642070726163746963656420696e20456e676c6973682c20746865206c6561726e65722063616e20717569636b6c7920696d70726f766520616e6420666978207468656972207765616b6e65737365732e0d0a200d0a546f2070726f766520746869732c204e68692074616c6b732061626f7574206865722049454c545320636c61737320617420494c412e205468652074656163686572732061726520616c6c20666f726569676e65727320616e6420616c6c206f66207468652064697363757373696f6e732061726520696e20456e676c6973682e205370656369666963616c6c792c207768656e2074656163686572732061726520676976696e67207468656972206c6563747572657320616e64206578706c61696e696e67207468656972206c6573736f6e7320696e20456e676c6973682c206c6561726e6572732063616e207261697365207468656972207175657374696f6e73206f722064697363757373207769746820746865697220667269656e6473206275742074686579206861766520746f2074616c6b207573696e6720456e676c6973682e20497420736f756e6473206c696b65206120626974206f6620707265737375726520666f7220746865206c6561726e6572732c2062757420726571756972696e67207468656d20746f2075736520456e676c69736820617320746865207072696d617279206c616e677561676520647572696e6720612074776f2d686f757220636c6173732068656c707320746f20717569636b6c7920696d70726f7665207468656972206c697374656e696e6720616e6420737065616b696e6720736b696c6c732e205468657265666f72652c206166746572206f6e65206d6f6e7468206f66207374756479696e67207468652049454c545320636f7572736520617420494c412c204e6869207265616c697a656420746861742068657220456e676c6973682068616420696d70726f766564207369676e69666963616e746c792e204e686920636f6e666964656e746c7920746f6f6b207468652049454c545320616e6420656173696c79206163686965766564206120372e302073636f72652e3c2f6469763e3c2f6469763e, 1);
 
 -- --------------------------------------------------------
 
@@ -1008,7 +1071,14 @@ CREATE TABLE IF NOT EXISTS `ila_teachers` (
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ila_teachers`
+--
+
+INSERT INTO `ila_teachers` (`id`, `teacher_name`, `country_id`, `media_id`, `isblocked`, `isdeleted`) VALUES
+(1, 'Alex Martin', 13, 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1025,7 +1095,14 @@ CREATE TABLE IF NOT EXISTS `ila_teachers_lang` (
   `content` blob NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `ila_teachers_lang`
+--
+
+INSERT INTO `ila_teachers_lang` (`id`, `teacher_id`, `first_name`, `last_name`, `certificate_details`, `content`, `language_id`) VALUES
+(1, 1, 'Alex', 'Martin', 'certificate', 0x6465736372697074696f6e, 1);
 
 -- --------------------------------------------------------
 
