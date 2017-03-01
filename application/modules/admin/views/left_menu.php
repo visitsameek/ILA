@@ -49,9 +49,9 @@
                     <a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 						<li><a href="<?php echo base_url(); ?>admin/etemp">Registered Users </a></li>
-						<li><a href="<?php echo base_url(); ?>admin/etemp">Request Callback Users </a></li>
-						<li><a href="<?php echo base_url(); ?>admin/etemp">Contact Users </a></li>
-						<li><a href="<?php echo base_url(); ?>admin/etemp">Newsletter Subscribers </a></li>
+						<li><a href="<?php echo base_url(); ?>admin/user/list_request_callback_users">Request Callback Users </a></li>
+						<li><a href="<?php echo base_url(); ?>admin/user/list_contact_users">Contact Users </a></li>
+						<li><a href="<?php echo base_url(); ?>admin/user/list_newsletter_subscribers">Newsletter Subscribers </a></li>
 					</ul>
                 </li>
 				<li>
@@ -146,7 +146,18 @@
 
 <!-- /menu footer buttons -->
 <div class="sidebar-footer hidden-small">
-
+  <a href="<?php echo base_url(); ?>admin/settings/general_settings" data-toggle="tooltip" data-placement="top" title="Settings">
+	<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+  </a>
+  <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+	<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+  </a>
+  <a data-toggle="tooltip" data-placement="top" title="Lock">
+	<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+  </a>
+  <a href="<?php echo base_url(); ?>admin/logout" data-toggle="tooltip" data-placement="top" title="Logout">
+	<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+  </a>
 </div>
 <!-- /menu footer buttons -->
 </div>
