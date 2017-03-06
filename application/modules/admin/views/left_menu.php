@@ -49,10 +49,25 @@
                     <a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 						<li><a href="<?php echo base_url(); ?>admin/user/list_registered_users">Registered Users </a></li>
-						<li><a href="<?php echo base_url(); ?>admin/user/list_request_callback_users">Request Callback Users </a></li>
-						<li><a href="<?php echo base_url(); ?>admin/user/list_contact_users">Contact Users </a></li>
+						<!-- <li><a href="<?php //echo base_url(); ?>admin/user/list_request_callback_users">Request Callback Users </a></li>
+						<li><a href="<?php //echo base_url(); ?>admin/user/list_contact_users">Contact Users </a></li> -->
 						<li><a href="<?php echo base_url(); ?>admin/user/list_newsletter_subscribers">Newsletter Subscribers </a></li>
 					</ul>
+                </li>
+				<li>
+                    <a href="<?php echo base_url(); ?>admin/etemp"><i class="fa fa-graduation-cap"></i>Members </a>
+                </li>
+				<li><a><i class="fa fa-user"></i> Teachers <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_teachers">List Teachers</a></li>
+                        <li><a href="<?php echo base_url(); ?>admin/site/add_teacher">Add Teacher</a></li>
+                    </ul>
+                </li>
+				<li><a><i class="fa fa-bullhorn"></i> Stories <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_stories">List Stories</a></li>
+                        <li><a href="<?php echo base_url(); ?>admin/site/add_story">Add Story</a></li>
+                    </ul>
                 </li>
 				<li>
                     <a><i class="fa fa-tasks"></i> Site Pages <span class="fa fa-chevron-down"></span></a>
@@ -70,22 +85,6 @@
                                 <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_awards">List Awards</a>
                                 </li>
                                 <li><a href="<?php echo base_url(); ?>admin/site/add_award">Add Award</a>
-                                </li>
-                            </ul>
-                        </li>
-						<li><a>ILA Stories</a>
-                            <ul class="nav child_menu">
-                                <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_stories">List Stories</a>
-                                </li>
-                                <li><a href="<?php echo base_url(); ?>admin/site/add_story">Add Story</a>
-                                </li>
-                            </ul>
-                        </li>
-						<li><a>Meet Our Teachers</a>
-                            <ul class="nav child_menu">
-                                <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_teachers">List Teachers</a>
-                                </li>
-                                <li><a href="<?php echo base_url(); ?>admin/site/add_teacher">Add Teacher</a>
                                 </li>
                             </ul>
                         </li>

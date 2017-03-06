@@ -65,8 +65,8 @@ class Etemp extends MY_Controller {
             }
         }
 
-        $this->load->helper('custom_helper');
-        load_editor(); //to load ckeditor.
+        //$this->load->helper('custom_helper');
+        //load_editor(); //to load ckeditor.
 
         $partials = array('content' => 'template-manage/add-template', 'left_menu' => 'left_menu', 'header' => 'header');
         $this->template->load('template', $partials, $data);

@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/ckeditor/ckeditor.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/nicEdit.js" type="text/javascript"></script>
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -55,7 +55,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Content">Content<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <?php echo $this->ckeditor->editor("template[content]", isset($template->content) ? $template->content : ""); ?>
+								<textarea rows="10" name="content" id="content" class="form-control col-md-7 col-xs-12"><?php echo isset($template->content) ? $template->content : ""; ?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -79,6 +79,12 @@
             </div>
         </div>
     </div>
-
-
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+		bkLib.onDomLoaded(function() {
+			new nicEditor({uploadURI : '<?php echo base_url(); ?>nicupload/do_upload', fullPanel : true, iconsPath:'<?php echo base_url(); ?>assets/js/nicEditorIcons.gif'}).panelInstance('content');
+			//nicEditors.allTextAreas({uploadURI : '<?php echo base_url(); ?>nicupload/do_upload', fullPanel : true, iconsPath:'<?php echo base_url(); ?>assets/js/nicEditorIcons.gif'});
+		});
+    });
+</script>
