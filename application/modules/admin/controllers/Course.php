@@ -153,16 +153,23 @@ class Course extends MY_Controller {
 
 		$data['course_details'] = $course_details[0];
 
+		//fetch programs
+		$data['programs'] =  $this->Custom_model->fetch_data(PROGRAMS,
+                array(PROGRAMS.'.*', PROGRAMS_LANG.'.program_name', PROGRAMS_LANG.'.language_id'),
+                array(PROGRAMS.'.course_id'=>$course_id),
+                array(PROGRAMS_LANG=>PROGRAMS_LANG.'.program_id='.PROGRAMS.'.id AND '.PROGRAMS_LANG.'.language_id='.$selected_lang)
+                );
+
 		//fetch levels
 		$data['levels'] =  $this->Custom_model->fetch_data(COURSE_LEVELS,
-                array(COURSE_LEVELS.'.*',COURSE_LEVEL_LANG.'.title', COURSE_LEVEL_LANG.'.language_id'),
+                array(COURSE_LEVELS.'.*', COURSE_LEVEL_LANG.'.title', COURSE_LEVEL_LANG.'.language_id'),
                 array(COURSE_LEVELS.'.course_id'=>$course_id),
                 array(COURSE_LEVEL_LANG=>COURSE_LEVEL_LANG.'.course_level_id='.COURSE_LEVELS.'.id AND '.COURSE_LEVEL_LANG.'.language_id='.$selected_lang)
                 );
 
 		//fetch schedules
 		$data['schedules'] =  $this->Custom_model->fetch_data(COURSE_SCHEDULES,
-                array(COURSE_SCHEDULES.'.*',COURSE_LEVEL_LANG.'.title AS course_level_title', COURSE_LEVEL_LANG.'.language_id', TRAINING_CENTERS_LANG.'.title AS center_title'),
+                array(COURSE_SCHEDULES.'.*', COURSE_LEVEL_LANG.'.title AS course_level_title', COURSE_LEVEL_LANG.'.language_id', TRAINING_CENTERS_LANG.'.title AS center_title'),
                 array(COURSE_SCHEDULES.'.course_id'=>$course_id),
                 array(COURSE_LEVEL_LANG=>COURSE_LEVEL_LANG.'.course_level_id='.COURSE_SCHEDULES.'.level_id AND '.COURSE_LEVEL_LANG.'.language_id='.$selected_lang, TRAINING_CENTERS_LANG=>TRAINING_CENTERS_LANG.'.center_id='.COURSE_SCHEDULES.'.center_id AND '.TRAINING_CENTERS_LANG.'.language_id='.$selected_lang)
                 );
@@ -173,6 +180,120 @@ class Course extends MY_Controller {
 
     //*********** end course ************//
 
+	//*********** course program ************//
+	
+	function add_course_program($course_id = NULL) {
+        $data = array();
+        $selected_lang = ($this->session->userdata('language')) ? $this->session->userdata('language') : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$data['course_id'] = decode_url($course_id);
+
+        if ($this->input->post('submit')) {
+
+            if ($this->input->post('program') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter course program');
+                redirect(base_url() . 'admin/course/add_course_program/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('program_name') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter course level');
+                redirect(base_url() . 'admin/course/add_course_program/'.encode_url($this->input->post('hid_course_id')));
+            } else {
+
+                $ins_data['course_id'] = $this->input->post('hid_course_id');
+				$ins_data['program'] = $this->input->post('program');
+
+                $res = $this->Custom_model->insert_data($ins_data, PROGRAMS);
+
+                if ($res != FALSE) {
+                    $ins_inner['language_id'] = $selected_lang;
+                    $ins_inner['program_id'] = $res;
+                    $ins_inner['program_name'] = $this->input->post('program_name');
+
+                    $inner = $this->Custom_model->insert_data($ins_inner, PROGRAMS_LANG);
+
+                    if ($inner != FALSE) {
+                        $this->session->set_flashdata('success_message', 'Course program added successfully.');
+                        redirect(base_url() . 'admin/course/view_course/'.encode_url($this->input->post('hid_course_id')));
+                    } else {
+                        $this->Custom_model->delete_row(PROGRAMS, array('id' => $res));
+                        $this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
+                        redirect(base_url() . 'admin/course/add_course_program/'.encode_url($this->input->post('hid_course_id')));
+                    }
+                } else {
+                    $this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
+                    redirect(base_url() . 'admin/course/add_course_program/'.encode_url($this->input->post('hid_course_id')));
+                }
+            }
+        }
+        $partials = array('content' => 'courses/add_course_program', 'left_menu' => 'left_menu', 'header' => 'header');
+        $this->template->load('template', $partials, $data);
+    }
+
+	function edit_course_program($course_id = NULL, $course_program_id = NULL) {
+        $selected_lang = ($this->session->userdata('language')) ? $this->session->userdata('language') : 1;
+        $data['selected_lang'] = $selected_lang;
+
+        $course_id = decode_url($course_id);
+		$course_program_id = decode_url($course_program_id);
+
+        $chk_course_level = $this->Custom_model->row_present_check(PROGRAMS, array('id' => $course_program_id));
+        if ($chk_course_level == false) {
+            redirect(base_url() . 'admin/course/view_course/'.encode_url($course_id));
+        }
+
+        $course_program_details = $this->Custom_model->fetch_data(PROGRAMS, array(
+            PROGRAMS . '.*',
+            PROGRAMS_LANG . '.language_id',
+            PROGRAMS_LANG . '.program_id',
+            PROGRAMS_LANG . '.program_name'
+                ), array(PROGRAMS . '.id' => $course_program_id), array(PROGRAMS_LANG => PROGRAMS . '.id=' . PROGRAMS_LANG . '.program_id AND ' . PROGRAMS_LANG . '.language_id=' . $selected_lang . '|left')
+        );
+
+        $data['course_program_details'] = $course_program_details[0];
+		$data['course_id'] = $course_id;
+		$data['course_program_id'] = $course_program_id;
+
+        if ($this->input->post('submit')) {
+            if ($this->input->post('program') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter course program');
+                redirect(base_url() . 'admin/course/edit_course_program/'.encode_url($course_id).'/'.encode_url($course_program_id));
+            } else if ($this->input->post('program_name') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter course program');
+                redirect(base_url() . 'admin/course/edit_course_program/'.encode_url($course_id).'/'.encode_url($course_program_id));
+            } else {
+
+                $ins_type['course_id'] = $this->input->post('hid_course_id');
+				$ins_type['program'] = $this->input->post('program');
+
+                $this->Custom_model->edit_data($ins_type, array('id' => $course_program_id), PROGRAMS);
+
+                $chk_row = $this->Custom_model->row_present_check(PROGRAMS_LANG, array('program_id' => $course_program_id, 'language_id' => $selected_lang));
+
+                if ($chk_row == FALSE) {
+                    $ins_inner['language_id'] = $selected_lang;
+                    $ins_inner['program_id'] = $course_program_id;
+                    $ins_inner['program_name'] = $this->input->post('program_name');
+
+                    $inner = $this->Custom_model->insert_data($ins_inner, PROGRAMS_LANG);
+
+                    $this->session->set_flashdata('success_message', 'Course program updated successfully.');
+                    redirect(base_url() . 'admin/course/view_course/'.encode_url($course_id));
+                } else {
+                    $ins_data['program_name'] = $this->input->post('program_name');
+
+                    $res = $this->Custom_model->edit_data($ins_data, array('program_id' => $course_program_id, 'language_id' => $selected_lang), PROGRAMS_LANG);
+
+                    $this->session->set_flashdata('success_message', 'Course program updated successfully.');
+                    redirect(base_url() . 'admin/course/view_course/'.encode_url($course_id));
+                }
+            }
+        }
+        $partials = array('content' => 'courses/edit_course_program', 'left_menu' => 'left_menu', 'header' => 'header');
+        $this->template->load('template', $partials, $data);
+    }
+
+	//*********** end course program ************//
+
 	//*********** course level ************//
 	
 	function add_course_level($course_id = NULL) {
@@ -181,6 +302,7 @@ class Course extends MY_Controller {
         $data['selected_lang'] = $selected_lang;
 
 		$data['course_id'] = decode_url($course_id);
+		$data['program_list'] = $this->Custom_model->fetch_data(PROGRAMS, array('id', 'program'), array('course_id' => $data['course_id']), array());
 
         if ($this->input->post('submit')) {
 
@@ -200,7 +322,7 @@ class Course extends MY_Controller {
 
                 $ins_data['course_id'] = $this->input->post('hid_course_id');
 				$ins_data['course_level'] = $this->input->post('course_level');
-				$ins_data['level_name'] = $this->input->post('level_name');
+				$ins_data['program_id'] = $this->input->post('program_id');
 				$ins_data['duration_hours'] = $this->input->post('duration_hours');
 				$ins_data['duration_months'] = $this->input->post('duration_months');
 				$ins_data['age_from'] = $this->input->post('age_from');
@@ -252,6 +374,8 @@ class Course extends MY_Controller {
             redirect(base_url() . 'admin/course/view_course/'.encode_url($course_id));
         }
 
+		$data['program_list'] = $this->Custom_model->fetch_data(PROGRAMS, array('id', 'program'), array('course_id' => $course_id), array());
+
         $course_level_details = $this->Custom_model->fetch_data(COURSE_LEVELS, array(
             COURSE_LEVELS . '.*',
             COURSE_LEVEL_LANG . '.language_id',
@@ -281,7 +405,7 @@ class Course extends MY_Controller {
 
                 $ins_type['course_id'] = $this->input->post('hid_course_id');
 				$ins_type['course_level'] = $this->input->post('course_level');
-				$ins_type['level_name'] = $this->input->post('level_name');
+				$ins_type['program_id'] = $this->input->post('program_id');
 				$ins_type['duration_hours'] = $this->input->post('duration_hours');
 				$ins_type['duration_months'] = $this->input->post('duration_months');
 				$ins_type['age_from'] = $this->input->post('age_from');

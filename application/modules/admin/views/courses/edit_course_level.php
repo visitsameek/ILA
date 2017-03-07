@@ -47,10 +47,19 @@
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Level Name
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="course_category_id">Course Program 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="level_name" name="level_name" value="<?php echo isset($course_level_details->level_name) ? $course_level_details->level_name : ""; ?>" class="form-control col-md-7 col-xs-12">
+                                <select id="program_id" name="program_id" class="form-control col-md-7 col-xs-12" >
+                                    <option value="">Select</option>
+                                    <?php 
+                                    if(!empty($program_list)){
+                                        foreach ($program_list as $con){ ?>
+                                            <option value="<?php echo $con->id; ?>" <?php echo ($course_level_details->program_id==$con->id) ? "selected" : ""; ?>><?php echo $con->program; ?></option>
+                                       <?php  }
+                                    }
+                                    ?>
+                                </select>                               
                             </div>
                         </div>
 						<div class="form-group">

@@ -33,9 +33,11 @@
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#tab_content1" id="general-tab" role="tab" data-toggle="tab" aria-expanded="true">General</a>
                         </li>
-                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="level-tab" data-toggle="tab" aria-expanded="false">Levels</a>
+						<li role="presentation" class=""><a href="#tab_content2" role="tab" id="program-tab" data-toggle="tab" aria-expanded="false">Programs</a>
                         </li>
-                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="schedule-tab" data-toggle="tab" aria-expanded="false">Schedules</a>
+                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="level-tab" data-toggle="tab" aria-expanded="false">Levels</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content4" role="tab" id="schedule-tab" data-toggle="tab" aria-expanded="false">Schedules</a>
                         </li>
                       </ul>
                       <div id="myTabContent" class="tab-content">
@@ -60,10 +62,49 @@
 							</div>
                         </div>
 						<!-- general ends -->
-						<!-- level starts -->
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="level-tab">
+						<!-- program starts -->
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="program-tab">
                             <div class="x_title">
-								<h2>Course Level List</h2>
+								<h2><?php echo !empty($course_details->title) ? $course_details->title : '---'; ?> Course Program List</h2>
+								<a href="<?php echo base_url();?>admin/course/add_course_program/<?php echo encode_url($course_details->id);?>" class="btn btn-info pull-right">Add Course Program</a>
+								<div class="clearfix"></div>
+							</div>
+							<div class="table-responsive">							
+							<table id="table_id" class="table table-striped jambo_table bulk_action">
+								<thead>
+									<tr class="headings">
+										<th>Sl.No.</th>
+										<th>Course Program Name</th>
+										<th>Action</th>              
+									</tr>
+								</thead>
+								<tbody>
+									<?php if (!empty($programs)) { ?>
+										<?php foreach ($programs as $key => $con) { ?>
+											<tr>
+												<td><?php echo ($key + 1) . '.' ?></td>  
+												<td><?php echo isset($con->program_name) ? $con->program_name : "---"; ?></td>
+												<td>
+													<a href="<?php echo base_url('admin/course/edit_course_program') . '/' . encode_url($course_details->id) . '/' . encode_url($con->id); ?>" class="btn btn-info btn-xs">
+														<i class="fa fa-pencil"></i> Edit
+													</a>
+												</td>
+											</tr>
+											<?php
+										}
+									} else {
+										echo '<tr><td colspan="4">No Data Found</td></tr>';
+									}
+									?>                   
+								</tbody>
+							</table>
+							</div>
+                        </div>
+						<!-- program ends -->
+						<!-- level starts -->
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="level-tab">
+                            <div class="x_title">
+								<h2><?php echo !empty($course_details->title) ? $course_details->title : '---'; ?> Course Level List</h2>
 								<a href="<?php echo base_url();?>admin/course/add_course_level/<?php echo encode_url($course_details->id);?>" class="btn btn-info pull-right">Add Course Level</a>
 								<div class="clearfix"></div>
 							</div>
@@ -104,9 +145,9 @@
                         </div>
 						<!-- level ends -->
 						<!-- schedule starts -->
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="schedule-tab">
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="schedule-tab">
                           <div class="x_title">
-								<h2>Course Schedule List</h2>
+								<h2><?php echo !empty($course_details->title) ? $course_details->title : '---'; ?> Course Schedule List</h2>
 								<a href="<?php echo base_url();?>admin/course/add_course_schedule/<?php echo encode_url($course_details->id);?>" class="btn btn-info pull-right">Add Course Schedule</a>
 								<div class="clearfix"></div>
 							</div>
