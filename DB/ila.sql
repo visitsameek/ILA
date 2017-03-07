@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2017 at 05:59 PM
+-- Generation Time: Mar 07, 2017 at 11:22 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `ila_admin` (
 --
 
 INSERT INTO `ila_admin` (`id`, `name`, `user_name`, `user_pass`, `contact_email`, `last_login_time`, `last_login_ip`) VALUES
-(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-01 16:45:28', '::1');
+(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-07 10:44:41', '::1');
 
 -- --------------------------------------------------------
 
@@ -734,7 +734,7 @@ CREATE TABLE IF NOT EXISTS `ila_course_levels` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `course_id` int(11) NOT NULL,
   `course_level` varchar(100) NOT NULL,
-  `level_name` varchar(100) NOT NULL,
+  `program_id` int(11) NOT NULL,
   `duration_hours` double(10,2) NOT NULL,
   `duration_months` double(10,2) NOT NULL,
   `age_from` int(11) NOT NULL,
@@ -753,9 +753,9 @@ CREATE TABLE IF NOT EXISTS `ila_course_levels` (
 -- Dumping data for table `ila_course_levels`
 --
 
-INSERT INTO `ila_course_levels` (`id`, `course_id`, `course_level`, `level_name`, `duration_hours`, `duration_months`, `age_from`, `age_to`, `video_link`, `cefr`, `cambridge_exam`, `ielts`, `toefl_ibt`, `toeic_reading`, `toeic_writing`) VALUES
-(1, 1, 'Level 1', 'Level 1', 74.00, 4.60, 3, 4, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '', '', '', '', '', ''),
-(2, 1, 'Level 2', 'Level 2', 74.00, 4.60, 3, 4, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '', '', '', '', '', '');
+INSERT INTO `ila_course_levels` (`id`, `course_id`, `course_level`, `program_id`, `duration_hours`, `duration_months`, `age_from`, `age_to`, `video_link`, `cefr`, `cambridge_exam`, `ielts`, `toefl_ibt`, `toeic_reading`, `toeic_writing`) VALUES
+(1, 1, 'Level 3', 1, 74.00, 4.60, 3, 4, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '', '', '', '', '', ''),
+(2, 1, 'Level 4', 1, 74.00, 4.60, 3, 4, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -776,8 +776,8 @@ CREATE TABLE IF NOT EXISTS `ila_course_level_lang` (
 --
 
 INSERT INTO `ila_course_level_lang` (`id`, `course_level_id`, `title`, `language_id`) VALUES
-(1, 1, 'Level 1', 1),
-(2, 2, 'Level 2', 1);
+(1, 1, 'Level 3', 1),
+(2, 2, 'Level 4', 1);
 
 -- --------------------------------------------------------
 
@@ -1060,6 +1060,51 @@ INSERT INTO `ila_news_lang` (`id`, `news_id`, `title`, `short_desc`, `content`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ila_programs`
+--
+
+CREATE TABLE IF NOT EXISTS `ila_programs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `program` varchar(100) NOT NULL,
+  `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
+  `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `ila_programs`
+--
+
+INSERT INTO `ila_programs` (`id`, `course_id`, `program`, `isblocked`, `isdeleted`) VALUES
+(1, 1, 'For kids from 3 to 4 years old', 0, 0),
+(2, 1, 'For kids from 4 to 6 years old', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ila_programs_lang`
+--
+
+CREATE TABLE IF NOT EXISTS `ila_programs_lang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `program_id` int(11) NOT NULL,
+  `program_name` varchar(100) CHARACTER SET utf16 NOT NULL,
+  `language_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `ila_programs_lang`
+--
+
+INSERT INTO `ila_programs_lang` (`id`, `program_id`, `program_name`, `language_id`) VALUES
+(1, 1, 'For kids from 3 to 4 years old', 1),
+(2, 2, 'For kids from 4 to 6 years old', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ila_request_callback_users`
 --
 
@@ -1243,25 +1288,36 @@ INSERT INTO `ila_training_centers_lang` (`id`, `center_id`, `title`, `address`, 
 
 CREATE TABLE IF NOT EXISTS `ila_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `email_id` varchar(255) NOT NULL,
+  `first_name` varchar(100) CHARACTER SET utf16 NOT NULL,
+  `last_name` varchar(100) CHARACTER SET utf16 NOT NULL,
+  `email_id` varchar(255) CHARACTER SET utf16 NOT NULL,
+  `country_code` int(11) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `city_id` int(11) NOT NULL,
   `center_id` int(11) NOT NULL,
   `current_student` smallint(1) NOT NULL COMMENT '0=>not current student, 1=>current student',
+  `country_id` int(11) NOT NULL,
+  `preffered_call_date` date NOT NULL,
+  `preffered_call_time` time NOT NULL,
+  `sex` char(1) NOT NULL COMMENT 'f=>female, m=>male, o=>other',
+  `age` int(11) NOT NULL,
+  `action_taken` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not taken, 1=>taken',
+  `message` text CHARACTER SET utf16 NOT NULL,
+  `user_type` smallint(1) NOT NULL COMMENT '1=>registered user, 2=>callback user, 3=>contact user, 4=>event user',
   `created_on` date NOT NULL,
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `ila_users`
 --
 
-INSERT INTO `ila_users` (`id`, `first_name`, `last_name`, `email_id`, `phone`, `city_id`, `center_id`, `current_student`, `created_on`, `isblocked`, `isdeleted`) VALUES
-(1, 'Ben', 'Affleck', 'ben.affleck@gmail.com', '9832320431', 1, 2, 0, '2017-03-01', 0, 0);
+INSERT INTO `ila_users` (`id`, `first_name`, `last_name`, `email_id`, `country_code`, `phone`, `city_id`, `center_id`, `current_student`, `country_id`, `preffered_call_date`, `preffered_call_time`, `sex`, `age`, `action_taken`, `message`, `user_type`, `created_on`, `isblocked`, `isdeleted`) VALUES
+(1, 'Ben', 'Affleck', 'ben.affleck@gmail.com', 0, '9832320431', 1, 2, 0, 0, '0000-00-00', '00:00:00', 'm', 35, 0, '', 1, '2017-03-01', 0, 0),
+(2, 'Meg', 'Ryan', 'meg.ryan@gmail.com', 0, '9875235051', 2, 1, 1, 0, '2017-03-24', '09:00:00', 'f', 27, 0, '', 2, '2017-03-06', 0, 0),
+(3, 'Marlon', 'Brando', 'marlon@gmail.com', 0, '8087256330', 1, 2, 1, 0, '0000-00-00', '00:00:00', 'm', 30, 1, 'Hi, Pls call me', 3, '2017-03-02', 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
