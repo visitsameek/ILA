@@ -57,7 +57,7 @@ class Center extends MY_Controller {
             TRAINING_CENTERS_LANG . '.title',
 			TRAINING_CENTERS_LANG . '.address',
             TRAINING_CENTERS_LANG . '.language_id'
-                ), array(), array(TRAINING_CENTERS_LANG => TRAINING_CENTERS_LANG . '.center_id=' . TRAINING_CENTERS . '.id AND ' . TRAINING_CENTERS_LANG . '.language_id=' . $selected_lang), $search = '', $order = TRAINING_CENTERS . '.id', $by = 'desc', $page_number, $config['per_page'], $group_by = '', $having = '', $start = $page_number, $end = ''
+                ), array(), array(TRAINING_CENTERS_LANG => TRAINING_CENTERS_LANG . '.center_id=' . TRAINING_CENTERS . '.id AND ' . TRAINING_CENTERS_LANG . '.language_id=' . $selected_lang), $search = '', $order = TRAINING_CENTERS . '.id', $by = 'desc'
         );
 
         $partials = array('content' => 'centers/list_centers', 'left_menu' => 'left_menu', 'header' => 'header');

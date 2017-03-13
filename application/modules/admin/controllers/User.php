@@ -53,7 +53,7 @@ class User extends MY_Controller {
 
         $data['users'] = $this->Custom_model->fetch_data(USERS, array(USERS . '.*'),
                                                                     array(USERS . '.isdeleted' => 0), array(), $search = array(), $order = USERS . '.id',
-                                                                    $by = 'desc', $page_number, $config['per_page'], $group_by = '', $having = '', $start = $page_number, $end = ''
+                                                                    $by = 'desc'
         );
 
         $partials = array('content' => 'users/list_registered_users', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -126,7 +126,7 @@ class User extends MY_Controller {
 
         $data['callback_users'] = $this->Custom_model->fetch_data(REQUEST_CALLBACK_USERS, array(REQUEST_CALLBACK_USERS . '.*'),
                                                                     array(), array(), $search = array(), $order = REQUEST_CALLBACK_USERS . '.id',
-                                                                    $by = 'desc', $page_number, $config['per_page'], $group_by = '', $having = '', $start = $page_number, $end = ''
+                                                                    $by = 'desc'
         );
 
         $partials = array('content' => 'users/list_request_callback_users', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -196,7 +196,7 @@ class User extends MY_Controller {
         /* Pagination Code End */
 
 
-        $data['contact_users'] = $this->Custom_model->fetch_data(CONTACT_USERS, array(CONTACT_USERS . '.*'), array(CONTACT_USERS . '.isdeleted' => 0), array(), $search = '', $order = CONTACT_USERS . '.id', $by = 'desc', $page_number, $config['per_page'], $group_by = '', $having = '', $start = $page_number, $end = '');
+        $data['contact_users'] = $this->Custom_model->fetch_data(CONTACT_USERS, array(CONTACT_USERS . '.*'), array(CONTACT_USERS . '.isdeleted' => 0), array(), $search = '', $order = CONTACT_USERS . '.id', $by = 'desc');
 
         $partials = array('content' => 'users/list_contact_users', 'left_menu' => 'left_menu', 'header' => 'header');
         $this->template->load('template', $partials, $data);
@@ -240,7 +240,7 @@ class User extends MY_Controller {
         /* Pagination Code End */
 
 
-        $data['newsletter_users'] = $this->Custom_model->fetch_data(NEWSLETTER_USERS, array(NEWSLETTER_USERS . '.*'), array(NEWSLETTER_USERS . '.isdeleted' => 0), array(), $search = '', $order = NEWSLETTER_USERS . '.id', $by = 'desc', $page_number, $config['per_page'], $group_by = '', $having = '', $start = $page_number, $end = '');
+        $data['newsletter_users'] = $this->Custom_model->fetch_data(NEWSLETTER_USERS, array(NEWSLETTER_USERS . '.*'), array(NEWSLETTER_USERS . '.isdeleted' => 0), array(), $search = '', $order = NEWSLETTER_USERS . '.id', $by = 'desc');
 
         $partials = array('content' => 'users/list_newsletter_subscribers', 'left_menu' => 'left_menu', 'header' => 'header');
         $this->template->load('template', $partials, $data);

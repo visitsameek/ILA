@@ -53,7 +53,7 @@ class Course extends MY_Controller {
 
         $data['courses'] = $this->Custom_model->fetch_data(COURSES, array(
             COURSES . '.*'
-                ), array(), array(), $search = '', $order = COURSES . '.id', $by = 'desc', $page_number, $config['per_page'], $group_by = '', $having = '', $start = $page_number, $end = ''
+                ), array(), array(), $search = '', $order = COURSES . '.id', $by = 'desc'
         );
 
         $partials = array('content' => 'courses/list_courses', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -84,13 +84,24 @@ class Course extends MY_Controller {
 
                 $res = $this->Custom_model->insert_data($ins_data, COURSES);
 
-                if ($res != FALSE) {                    
-					$this->session->set_flashdata('success_message', 'Course added successfully.');
-					redirect(base_url() . 'admin/course/list_courses');
-                    
+                if ($res != FALSE) {    
+					$ins_inner['language_id'] = $selected_lang;
+                    $ins_inner['course_id'] = $res;
+                    $ins_inner['course_title'] = $this->input->post('course_title');
+
+                    $inner = $this->Custom_model->insert_data($ins_inner, COURSES_LANG);
+
+                    if ($inner != FALSE) {
+						$this->session->set_flashdata('success_message', 'Course added successfully.');
+						redirect(base_url() . 'admin/course/list_courses');                    
+					} else {
+						$this->Custom_model->delete_row(COURSES, array('id' => $res));
+						$this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
+						redirect(base_url() . 'admin/course/add_course');
+					}
                 } else {
                     $this->session->set_flashdata('error_message', 'Error occurred! Please try again.');
-                    redirect(base_url() . 'admin/course/add_course');
+					redirect(base_url() . 'admin/course/add_course');
                 }
             }
         }
@@ -110,7 +121,13 @@ class Course extends MY_Controller {
             redirect(base_url() . 'admin/course/list_courses');
         }
 
-        $course_details = $this->Custom_model->fetch_data(COURSES, array(COURSES . '.*'), array(COURSES . '.id' => $course_id), array());
+        $course_details = $this->Custom_model->fetch_data(COURSES, array(
+            COURSES . '.*',
+            COURSES_LANG . '.language_id',
+            COURSES_LANG . '.course_id',
+            COURSES_LANG . '.course_title'
+                ), array(COURSES . '.id' => $course_id), array(COURSES_LANG => COURSES . '.id=' . COURSES_LANG . '.course_id AND ' . COURSES_LANG . '.language_id=' . $selected_lang . '|left')
+        );
         $data['course_details'] = $course_details[0];
 
         if ($this->input->post('submit')) {
@@ -121,16 +138,32 @@ class Course extends MY_Controller {
                 $this->session->set_flashdata('error_message', 'Please select course category');
                 redirect(base_url() . 'admin/course/edit_course');
             } else {
-
 				$ins_type['title'] = $this->input->post('title');
 				$ins_type['course_category_id'] = $this->input->post('course_category_id');
 				$ins_type['age_from'] = $this->input->post('age_from');
 				$ins_type['age_to'] = $this->input->post('age_to');
 
-                $this->Custom_model->edit_data($ins_type, array('id' => $course_id), COURSES);                
+                $this->Custom_model->edit_data($ins_type, array('id' => $course_id), COURSES);
 
-                $this->session->set_flashdata('success_message', 'Course updated successfully.');
-                redirect(base_url() . 'admin/course/list_courses');
+				$chk_row = $this->Custom_model->row_present_check(COURSES_LANG, array('course_id' => $course_id, 'language_id' => $selected_lang));
+
+                if ($chk_row == FALSE) {
+                    $ins_inner['language_id'] = $selected_lang;
+                    $ins_inner['course_id'] = $course_id;
+                    $ins_inner['course_title'] = $this->input->post('course_title');
+
+                    $inner = $this->Custom_model->insert_data($ins_inner, COURSES_LANG);
+
+                    $this->session->set_flashdata('success_message', 'Course updated successfully.');
+                    redirect(base_url() . 'admin/course/list_courses');
+                } else {
+                    $ins_data['course_title'] = $this->input->post('course_title');
+
+                    $res = $this->Custom_model->edit_data($ins_data, array('course_id' => $course_id, 'language_id' => $selected_lang), COURSES_LANG);
+
+                    $this->session->set_flashdata('success_message', 'Course updated successfully.');
+                    redirect(base_url() . 'admin/course/list_courses');
+                }
             }
         }
         $partials = array('content' => 'courses/edit_course', 'left_menu' => 'left_menu', 'header' => 'header');

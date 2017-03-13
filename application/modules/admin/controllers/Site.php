@@ -58,13 +58,7 @@ class Site extends MY_Controller {
                 array(EVENTS_LANG => EVENTS_LANG.'.event_id='.EVENTS.'.id AND '.EVENTS_LANG.'.language_id='.$selected_lang. '| inner'),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
                 $order = EVENTS . '.id',
-                $by = 'desc',
-                $page_number,
-                $config['per_page'],
-                $group_by = '',
-                $having = '',
-                $start = $page_number,
-                $end = ''
+                $by = 'desc'
         );//echo '<pre>';print_r($data['cms_list']);
 
         $partials = array('content' => 'sites/list_events', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -286,13 +280,7 @@ class Site extends MY_Controller {
                 array(NEWS_LANG => NEWS_LANG.'.news_id='.NEWS.'.id AND '.NEWS_LANG.'.language_id='.$selected_lang. '| inner'),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
                 $order = NEWS . '.id',
-                $by = 'desc',
-                $page_number,
-                $config['per_page'],
-                $group_by = '',
-                $having = '',
-                $start = $page_number,
-                $end = ''
+                $by = 'desc'
         );//echo '<pre>';print_r($data['cms_list']);
 
         $partials = array('content' => 'sites/list_news', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -484,13 +472,7 @@ class Site extends MY_Controller {
                 array(CORE_VALUES_LANG => CORE_VALUES_LANG.'.core_value_id='.CORE_VALUES.'.id AND '.CORE_VALUES_LANG.'.language_id='.$selected_lang. '| inner'),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
                 $order = CORE_VALUES . '.id',
-                $by = 'desc',
-                $page_number,
-                $config['per_page'],
-                $group_by = '',
-                $having = '',
-                $start = $page_number,
-                $end = ''
+                $by = 'desc'
         );//echo '<pre>';print_r($data['cms_list']);
 
         $partials = array('content' => 'sites/list_core_values', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -663,13 +645,7 @@ class Site extends MY_Controller {
                 array(AWARDS_LANG => AWARDS_LANG.'.award_id='.AWARDS.'.id AND '.AWARDS_LANG.'.language_id='.$selected_lang. '| inner'),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
                 $order = AWARDS . '.id',
-                $by = 'desc',
-                $page_number,
-                $config['per_page'],
-                $group_by = '',
-                $having = '',
-                $start = $page_number,
-                $end = ''
+                $by = 'desc'
         );//echo '<pre>';print_r($data['cms_list']);
 
         $partials = array('content' => 'sites/list_awards', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -836,13 +812,7 @@ class Site extends MY_Controller {
                 array(STORIES_LANG => STORIES_LANG.'.story_id='.STORIES.'.id AND '.STORIES_LANG.'.language_id='.$selected_lang. '| inner'),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
                 $order = STORIES . '.id',
-                $by = 'desc',
-                $page_number,
-                $config['per_page'],
-                $group_by = '',
-                $having = '',
-                $start = $page_number,
-                $end = ''
+                $by = 'desc'
         );//echo '<pre>';print_r($data['cms_list']);
 
         $partials = array('content' => 'sites/list_stories', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -1022,13 +992,7 @@ class Site extends MY_Controller {
                 array(TEACHERS_LANG => TEACHERS_LANG.'.teacher_id='.TEACHERS.'.id AND '.TEACHERS_LANG.'.language_id='.$selected_lang. '| inner'),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
                 $order = TEACHERS . '.id',
-                $by = 'desc',
-                $page_number,
-                $config['per_page'],
-                $group_by = '',
-                $having = '',
-                $start = $page_number,
-                $end = ''
+                $by = 'desc'
         );//echo '<pre>';print_r($data['cms_list']);
 
         $partials = array('content' => 'sites/list_teachers', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -1226,13 +1190,7 @@ class Site extends MY_Controller {
                 array(COMMUNITY_NETWORKS_LANG => COMMUNITY_NETWORKS_LANG.'.community_network_id='.COMMUNITY_NETWORKS.'.id AND '.COMMUNITY_NETWORKS_LANG.'.language_id='.$selected_lang. '| inner'),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
                 $order = COMMUNITY_NETWORKS . '.id',
-                $by = 'desc',
-                $page_number,
-                $config['per_page'],
-                $group_by = '',
-                $having = '',
-                $start = $page_number,
-                $end = ''
+                $by = 'desc'
         );//echo '<pre>';print_r($data['cms_list']);
 
         $partials = array('content' => 'sites/list_networks', 'left_menu' => 'left_menu', 'header' => 'header');

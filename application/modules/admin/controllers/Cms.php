@@ -59,13 +59,7 @@ class Cms extends MY_Controller {
                 array(CMS_LANG => CMS_LANG.'.cms_page_id='.CMS_PAGE.'.id AND '.CMS_LANG.'.language_id='.$selected_lang. '| inner'),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
                 $order = CMS_PAGE . '.id',
-                $by = 'desc',
-                $page_number,
-                $config['per_page'],
-                $group_by = '',
-                $having = '',
-                $start = $page_number,
-                $end = ''
+                $by = 'desc'
         );//echo '<pre>';print_r($data['cms_list']);
 
         $partials = array('content' => 'cms/list_cms', 'left_menu' => 'left_menu', 'header' => 'header');

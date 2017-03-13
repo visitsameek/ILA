@@ -56,7 +56,7 @@ class Master extends MY_Controller {
             CITIES_LANG . '.city_id',
             CITIES_LANG . '.city_name',
             CITIES_LANG . '.language_id'
-                ), array(), array(CITIES_LANG => CITIES_LANG . '.city_id=' . CITIES . '.id AND ' . CITIES_LANG . '.language_id=' . $selected_lang), $search = '', $order = CITIES . '.id', $by = 'desc', $page_number, $config['per_page'], $group_by = '', $having = '', $start = $page_number, $end = ''
+                ), array(), array(CITIES_LANG => CITIES_LANG . '.city_id=' . CITIES . '.id AND ' . CITIES_LANG . '.language_id=' . $selected_lang), $search = '', $order = CITIES . '.id', $by = 'desc'
         );
 
         $partials = array('content' => 'master/list_cities', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -207,7 +207,7 @@ class Master extends MY_Controller {
             DISTRICTS_LANG . '.district_id',
             DISTRICTS_LANG . '.district_name',
             DISTRICTS_LANG . '.language_id'
-                ), array(), array(DISTRICTS_LANG => DISTRICTS_LANG . '.district_id=' . DISTRICTS . '.id AND ' . DISTRICTS_LANG . '.language_id=' . $selected_lang), $search = '', $order = DISTRICTS . '.id', $by = 'desc', $page_number, $config['per_page'], $group_by = '', $having = '', $start = $page_number, $end = ''
+                ), array(), array(DISTRICTS_LANG => DISTRICTS_LANG . '.district_id=' . DISTRICTS . '.id AND ' . DISTRICTS_LANG . '.language_id=' . $selected_lang), $search = '', $order = DISTRICTS . '.id', $by = 'desc'
         );
 
         $partials = array('content' => 'master/list_districts', 'left_menu' => 'left_menu', 'header' => 'header');
@@ -370,7 +370,7 @@ class Master extends MY_Controller {
             COURSE_CATEGORIES_LANG . '.course_category_id',
             COURSE_CATEGORIES_LANG . '.category_name',
             COURSE_CATEGORIES_LANG . '.language_id'
-                ), array(), array(COURSE_CATEGORIES_LANG => COURSE_CATEGORIES_LANG . '.course_category_id=' . COURSE_CATEGORIES . '.id AND ' . COURSE_CATEGORIES_LANG . '.language_id=' . $selected_lang), $search = '', $order = COURSE_CATEGORIES . '.id', $by = 'desc', $page_number, $config['per_page'], $group_by = '', $having = '', $start = $page_number, $end = ''
+                ), array(), array(COURSE_CATEGORIES_LANG => COURSE_CATEGORIES_LANG . '.course_category_id=' . COURSE_CATEGORIES . '.id AND ' . COURSE_CATEGORIES_LANG . '.language_id=' . $selected_lang), $search = '', $order = COURSE_CATEGORIES . '.id', $by = 'desc'
         );
 
         $partials = array('content' => 'master/list_course_categories', 'left_menu' => 'left_menu', 'header' => 'header');

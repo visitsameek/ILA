@@ -111,6 +111,7 @@ defined('TRAINING_CENTERS_LANG') ? null : define('TRAINING_CENTERS_LANG', 'ila_t
 defined('COURSE_CATEGORIES') ? null : define('COURSE_CATEGORIES', 'ila_course_categories');
 defined('COURSE_CATEGORIES_LANG') ? null : define('COURSE_CATEGORIES_LANG', 'ila_course_categories_lang');
 defined('COURSES') ? null : define('COURSES', 'ila_courses');
+defined('COURSES_LANG') ? null : define('COURSES_LANG', 'ila_courses_lang');
 defined('COURSE_LEVELS') ? null : define('COURSE_LEVELS', 'ila_course_levels');
 defined('COURSE_LEVEL_LANG') ? null : define('COURSE_LEVEL_LANG', 'ila_course_level_lang');
 defined('PROGRAMS') ? null : define('PROGRAMS', 'ila_programs');
