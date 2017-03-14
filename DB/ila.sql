@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2017 at 05:49 AM
+-- Generation Time: Mar 14, 2017 at 06:04 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `ila_admin` (
 --
 
 INSERT INTO `ila_admin` (`id`, `name`, `user_name`, `user_pass`, `contact_email`, `last_login_time`, `last_login_ip`) VALUES
-(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-14 05:47:26', '::1');
+(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-14 17:18:48', '::1');
 
 -- --------------------------------------------------------
 
@@ -793,7 +793,7 @@ CREATE TABLE IF NOT EXISTS `ila_course_levels` (
   `toeic_reading` varchar(50) NOT NULL,
   `toeic_writing` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `ila_course_levels`
@@ -815,12 +815,26 @@ INSERT INTO `ila_course_levels` (`id`, `course_id`, `course_level`, `program_id`
 (13, 4, 'Intermediate', 6, 184.00, 10.00, 0, 0, '', '', '', '', '', '', ''),
 (14, 4, 'Upper-Intermediate', 7, 184.00, 10.00, 0, 0, '', '', '', '', '', '', ''),
 (15, 4, 'Advanced', 8, 184.00, 10.00, 0, 0, '', '', '', '', '', '', ''),
-(16, 2, 'Level  1A', 14, 296.00, 18.40, 0, 0, '', '', '', '', '', '', ''),
-(17, 2, 'Level 1B', 14, 296.00, 18.40, 0, 0, '', '', '', '', '', '', ''),
-(18, 2, 'Level 2A', 14, 296.00, 18.40, 0, 0, '', '', '', '', '', '', ''),
-(19, 2, 'Level 2B', 14, 296.00, 18.40, 0, 0, '', '', '', '', '', '', ''),
-(20, 2, 'Level 3A', 15, 296.00, 18.40, 0, 0, '', '', '', '', '', '', ''),
-(21, 2, 'Level 3B', 15, 296.00, 18.40, 0, 0, '', '', '', '', '', '', '');
+(16, 2, 'Level  1A', 14, 74.00, 4.60, 0, 0, '', '-A1', 'Starters', '', '', '', ''),
+(17, 2, 'Level 1B', 14, 74.00, 4.60, 0, 0, '', '-A1', 'Starters', '', '', '', ''),
+(18, 2, 'Level 2A', 14, 74.00, 4.60, 0, 0, '', '-A1', 'Starters', '', '', '', ''),
+(19, 2, 'Level 2B', 14, 74.00, 4.60, 0, 0, '', '-A1', 'Starters', '', '', '', ''),
+(20, 2, 'Level 3A', 15, 74.00, 4.60, 0, 0, '', 'A1', 'Movers', '', '', '', ''),
+(21, 2, 'Level 3B', 15, 74.00, 4.60, 0, 0, '', 'A1', 'Movers', '', '', '', ''),
+(22, 2, 'Level 4A', 15, 74.00, 4.60, 0, 0, '', 'A1', 'Movers', '', '', '', ''),
+(23, 2, 'Level 4B', 15, 74.00, 4.60, 0, 0, '', 'A1', 'Movers', '', '', '', ''),
+(24, 2, 'Level  5A', 16, 74.00, 4.60, 0, 0, '', 'A2', 'Flyers', '', '', '', ''),
+(25, 2, 'Level 5B', 16, 74.00, 4.60, 0, 0, '', 'A2', 'Flyers', '', '', '', ''),
+(26, 2, 'Level  6A', 16, 74.00, 4.60, 0, 0, '', 'A2', 'KET', '', '', '', ''),
+(27, 2, 'Level 6B', 16, 74.00, 4.60, 0, 0, '', 'A2', 'KET', '', '', '', ''),
+(28, 2, 'Level 7A', 17, 74.00, 4.60, 0, 0, '', 'B1', 'PET', '', '', '', ''),
+(29, 2, 'Level 7B', 17, 74.00, 4.60, 0, 0, '', 'B1', 'PET', '', '', '', ''),
+(30, 2, 'Level 8A', 17, 74.00, 4.60, 0, 0, '', 'B1', 'PET', '', '', '', ''),
+(31, 2, 'Level 8B', 17, 74.00, 4.60, 0, 0, '', 'B1', 'PET', '', '', '', ''),
+(32, 2, 'Level 9A', 18, 74.00, 4.60, 0, 0, '', 'B2', 'FCE', '', '', '', ''),
+(33, 2, 'Level 9B', 18, 74.00, 4.60, 0, 0, '', 'B2', 'FCE', '', '', '', ''),
+(34, 2, 'Level 10A', 18, 74.00, 4.60, 0, 0, '', 'B2', 'FCE', '', '', '', ''),
+(35, 2, 'Level 10B', 18, 74.00, 4.60, 0, 0, '', 'B2', 'FCE', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -834,7 +848,7 @@ CREATE TABLE IF NOT EXISTS `ila_course_level_lang` (
   `title` varchar(100) CHARACTER SET utf16 NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data for table `ila_course_level_lang`
@@ -861,7 +875,36 @@ INSERT INTO `ila_course_level_lang` (`id`, `course_level_id`, `title`, `language
 (18, 18, 'Level 2A', 1),
 (19, 19, 'Level 2B', 1),
 (20, 20, 'Level 3A', 1),
-(21, 21, 'Level 3B', 1);
+(21, 21, 'Level 3B', 1),
+(22, 22, 'Level 4A', 1),
+(23, 23, 'Level 4B', 1),
+(24, 24, 'Level  5A', 1),
+(25, 25, 'Level 5B', 1),
+(26, 26, 'Level  6A', 1),
+(27, 27, 'Level 6B', 1),
+(28, 28, 'Level 7A', 1),
+(29, 29, 'Level 7B', 1),
+(30, 30, 'Level 8A', 1),
+(31, 31, 'Level 8B', 1),
+(32, 32, 'Level 9A', 1),
+(33, 33, 'Level 9B', 1),
+(34, 34, 'Level 10A', 1),
+(35, 35, 'Level 10B', 1),
+(36, 1, 'Cấp độ 3', 2),
+(37, 2, 'Cấp độ 4', 2),
+(38, 3, 'Cấp độ 5', 2),
+(39, 4, 'Cấp độ 6', 2),
+(40, 5, 'Cấp độ 7', 2),
+(41, 6, 'Cấp độ 8', 2),
+(42, 7, 'Cấp độ 9', 2),
+(43, 8, 'Cấp độ 10', 2),
+(44, 9, 'Cấp độ 11', 2),
+(45, 15, 'Cao cấp', 2),
+(46, 10, 'Vỡ lòng', 2),
+(47, 11, 'Sơ cấp', 2),
+(48, 12, 'Sơ Trung cấp', 2),
+(49, 13, 'Trung cấp', 2),
+(50, 14, 'Cao Trung cấp', 2);
 
 -- --------------------------------------------------------
 
@@ -1266,7 +1309,7 @@ CREATE TABLE IF NOT EXISTS `ila_programs_lang` (
   `program_name` varchar(100) CHARACTER SET utf16 NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `ila_programs_lang`
@@ -1291,8 +1334,24 @@ INSERT INTO `ila_programs_lang` (`id`, `program_id`, `program_name`, `language_i
 (16, 16, 'Pre-Intermediate (Levels 5 - 6)', 1),
 (17, 17, 'Intermediate (Levels 7 - 8)', 1),
 (18, 18, 'Upper-Intermediate (Levels 9 - 10)', 1),
-(19, 1, 'Dành cho trẻ em từ 3-4 tuổi', 2),
-(20, 2, 'Dành cho trẻ em từ 4-6 tuổi', 2);
+(19, 1, 'Dành cho trẻ em từ 3 đến 4 tuổi', 2),
+(20, 2, 'Dành cho trẻ em từ 4 đến 6 tuổi', 2),
+(21, 14, 'Vỡ lòng (Levels 1 - 2)', 2),
+(22, 15, 'Sơ cấp (Levels 3 - 4)', 2),
+(23, 16, 'Sơ Trung cấp (Levels 5 - 6)', 2),
+(24, 17, 'Trung cấp (Levels 7 - 8)', 2),
+(25, 18, 'Cao Trung cấp (Levels 9 - 10)		', 2),
+(26, 3, 'Vỡ lòng', 2),
+(27, 4, 'Sơ cấp', 2),
+(28, 5, 'Sơ Trung cấp', 2),
+(29, 6, 'Trung cấp', 2),
+(30, 7, 'Cao Trung cấp', 2),
+(31, 8, 'Cao cấp', 2),
+(32, 9, 'Vỡ Lòng', 2),
+(33, 10, 'Sơ cấp đến Sơ Trung Cấp', 2),
+(34, 11, 'Trung cấp', 2),
+(35, 12, 'Trung Cao cấp', 2),
+(36, 13, 'Cao cấp', 2);
 
 -- --------------------------------------------------------
 

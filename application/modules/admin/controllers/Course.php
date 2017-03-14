@@ -50,10 +50,12 @@ class Course extends MY_Controller {
         $page_number = ($page_number != 0) ? $page_number - 1 : $page_number;
         /* Pagination Code End */
 
-
-        $data['courses'] = $this->Custom_model->fetch_data(COURSES, array(
-            COURSES . '.*'
-                ), array(), array(), $search = '', $order = COURSES . '.id', $by = 'desc'
+		$data['courses'] = $this->Custom_model->fetch_data(COURSES, array(
+            COURSES . '.*',
+            COURSES_LANG . '.course_id',
+            COURSES_LANG . '.course_title',
+            COURSES_LANG . '.language_id'
+                ), array(), array(COURSES_LANG => COURSES_LANG . '.course_id=' . COURSES . '.id AND ' . COURSES_LANG . '.language_id=' . $selected_lang), $search = '', $order = COURSES . '.id', $by = 'desc'
         );
 
         $partials = array('content' => 'courses/list_courses', 'left_menu' => 'left_menu', 'header' => 'header');

@@ -36,7 +36,7 @@
                                     <?php foreach ($courses as $key => $con) { ?>
                                         <tr>
                                             <td><?php echo ($key + 1) . '.' ?></td>  
-                                            <td><?php echo isset($con->title) ? $con->title : "---"; ?></td>   
+                                            <td><?php echo isset($con->course_title) ? $con->course_title : "---"; ?></td>   
                                             <td>
                                                 <a href="<?php echo base_url('admin/course/edit_course') . '/' . encode_url($con->id); ?>" class="btn btn-info btn-xs">
                                                     <i class="fa fa-pencil"></i> Edit
