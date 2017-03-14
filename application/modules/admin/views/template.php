@@ -199,6 +199,7 @@
                 $(document).ready(function () {					
 					$(function () {
 						$("#table_id").DataTable();
+						$("#table_id_1").DataTable();
 						$("#table_id_2").DataTable();
 					});
 

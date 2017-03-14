@@ -109,7 +109,7 @@
 								<div class="clearfix"></div>
 							</div>
 							<div class="table-responsive">							
-							<table id="table_id" class="table table-striped jambo_table bulk_action">
+							<table id="table_id_1" class="table table-striped jambo_table bulk_action">
 								<thead>
 									<tr class="headings">
 										<th>Sl.No.</th>

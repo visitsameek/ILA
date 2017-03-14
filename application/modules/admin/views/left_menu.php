@@ -54,9 +54,9 @@
 						<li><a href="<?php echo base_url(); ?>admin/user/list_newsletter_subscribers">Newsletter Subscribers </a></li>
 					</ul>
                 </li>
-				<li>
-                    <a href="<?php echo base_url(); ?>admin/etemp"><i class="fa fa-graduation-cap"></i>Members </a>
-                </li>
+				<!-- <li>
+                    <a href="<?php //echo base_url(); ?>admin/etemp"><i class="fa fa-graduation-cap"></i>Members </a>
+                </li> -->
 				<li><a><i class="fa fa-user"></i> Teachers <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/site/list_teachers">List Teachers</a></li>

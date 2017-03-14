@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2017 at 11:22 AM
+-- Generation Time: Mar 14, 2017 at 05:49 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `ila_admin` (
 --
 
 INSERT INTO `ila_admin` (`id`, `name`, `user_name`, `user_pass`, `contact_email`, `last_login_time`, `last_login_ip`) VALUES
-(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-07 10:44:41', '::1');
+(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-14 05:47:26', '::1');
 
 -- --------------------------------------------------------
 
@@ -422,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `ila_cities` (
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `ila_cities`
@@ -430,7 +430,12 @@ CREATE TABLE IF NOT EXISTS `ila_cities` (
 
 INSERT INTO `ila_cities` (`id`, `city`, `isblocked`, `isdeleted`) VALUES
 (1, 'Ho Chi Minh City', 0, 0),
-(2, 'Ha Noi', 0, 0);
+(2, 'Ha Noi', 0, 0),
+(3, 'Da Nang', 0, 0),
+(4, 'Hai Phong', 0, 0),
+(5, 'Vung Tau', 0, 0),
+(6, 'Binh Duong', 0, 0),
+(7, 'Bien Hoa', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -444,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `ila_cities_lang` (
   `city_name` varchar(100) CHARACTER SET utf16 NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `ila_cities_lang`
@@ -452,8 +457,19 @@ CREATE TABLE IF NOT EXISTS `ila_cities_lang` (
 
 INSERT INTO `ila_cities_lang` (`id`, `city_id`, `city_name`, `language_id`) VALUES
 (1, 1, 'Ho Chi Minh City', 1),
-(2, 1, 'aaaaaa', 2),
-(3, 2, 'Ha Noi', 1);
+(2, 1, 'Hồ Chí Minh', 2),
+(3, 2, 'Ha Noi', 1),
+(4, 3, 'Da Nang', 1),
+(5, 4, 'Hai Phong', 1),
+(6, 5, 'Vung Tau', 1),
+(7, 6, 'Binh Duong', 1),
+(8, 7, 'Bien Hoa', 1),
+(9, 2, 'Hà Nội', 2),
+(10, 3, 'Đà Nẵng', 2),
+(11, 4, 'Hải Phòng', 2),
+(12, 5, 'Vũng Tàu', 2),
+(13, 6, 'Bình Dương', 2),
+(14, 7, 'Biên Hòa', 2);
 
 -- --------------------------------------------------------
 
@@ -674,9 +690,39 @@ CREATE TABLE IF NOT EXISTS `ila_courses` (
 INSERT INTO `ila_courses` (`id`, `title`, `course_category_id`, `age_from`, `age_to`, `isblocked`, `isdeleted`) VALUES
 (1, 'Jumpstart', 1, 3, 6, 0, 0),
 (2, 'Super Juniors', 1, 6, 11, 0, 0),
-(3, 'Global English', 2, 0, 0, 0, 0),
-(4, 'Smart Teens', 1, 11, 16, 0, 0),
+(3, 'Smart Teens', 1, 0, 0, 0, 0),
+(4, 'Global English', 2, 11, 16, 0, 0),
 (5, 'Exam English', 2, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ila_courses_lang`
+--
+
+CREATE TABLE IF NOT EXISTS `ila_courses_lang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `course_title` varchar(100) CHARACTER SET utf16 NOT NULL,
+  `language_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `ila_courses_lang`
+--
+
+INSERT INTO `ila_courses_lang` (`id`, `course_id`, `course_title`, `language_id`) VALUES
+(1, 1, 'Jumpstart', 1),
+(2, 2, 'Super Juniors', 1),
+(3, 3, 'Smart Teens', 1),
+(4, 4, 'Global English', 1),
+(5, 5, 'Exam English', 1),
+(7, 1, 'TIẾNG ANH TRẺ EM', 2),
+(8, 2, 'TIẾNG ANH THIẾU NHI', 2),
+(9, 3, 'TIẾNG ANH THIẾU NIÊN', 2),
+(10, 4, 'TIẾNG ANH GIAO TIẾP QUỐC TẾ', 2),
+(11, 5, 'CHƯƠNG TRÌNH ANH NGỮ LUYỆN THI', 2);
 
 -- --------------------------------------------------------
 
@@ -697,8 +743,8 @@ CREATE TABLE IF NOT EXISTS `ila_course_categories` (
 --
 
 INSERT INTO `ila_course_categories` (`id`, `category`, `isblocked`, `isdeleted`) VALUES
-(1, 'EY', 0, 0),
-(2, 'EA', 0, 0);
+(1, 'English For Young Learners', 0, 0),
+(2, 'English For Adults', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -719,10 +765,10 @@ CREATE TABLE IF NOT EXISTS `ila_course_categories_lang` (
 --
 
 INSERT INTO `ila_course_categories_lang` (`id`, `course_category_id`, `category_name`, `language_id`) VALUES
-(1, 1, 'EY', 1),
-(2, 2, 'wwwww', 2),
-(3, 1, 'bbbbb', 2),
-(4, 2, 'EA', 1);
+(1, 1, 'English For Young Learners', 1),
+(2, 2, 'Tiếng Anh người lớn', 2),
+(3, 1, 'Tiếng Anh Trẻ em & Thanh Thiẽu Niên', 2),
+(4, 2, 'English For Adults', 1);
 
 -- --------------------------------------------------------
 
@@ -747,7 +793,7 @@ CREATE TABLE IF NOT EXISTS `ila_course_levels` (
   `toeic_reading` varchar(50) NOT NULL,
   `toeic_writing` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `ila_course_levels`
@@ -755,7 +801,26 @@ CREATE TABLE IF NOT EXISTS `ila_course_levels` (
 
 INSERT INTO `ila_course_levels` (`id`, `course_id`, `course_level`, `program_id`, `duration_hours`, `duration_months`, `age_from`, `age_to`, `video_link`, `cefr`, `cambridge_exam`, `ielts`, `toefl_ibt`, `toeic_reading`, `toeic_writing`) VALUES
 (1, 1, 'Level 3', 1, 74.00, 4.60, 3, 4, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '', '', '', '', '', ''),
-(2, 1, 'Level 4', 1, 74.00, 4.60, 3, 4, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '', '', '', '', '', '');
+(2, 1, 'Level 4', 1, 74.00, 4.60, 3, 4, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '', '', '', '', '', ''),
+(3, 1, 'Level 5', 1, 74.00, 4.60, 0, 0, '', '', '', '', '', '', ''),
+(4, 1, 'Level 6', 2, 74.00, 4.60, 0, 0, '', '', '', '', '', '', ''),
+(5, 1, 'Level 7', 2, 74.00, 4.60, 0, 0, '', '', '', '', '', '', ''),
+(6, 1, 'Level 8', 2, 74.00, 4.60, 0, 0, '', '', '', '', '', '', ''),
+(7, 1, 'Level 9', 2, 74.00, 4.60, 0, 0, '', '', '', '', '', '', ''),
+(8, 1, 'Level 10', 2, 74.00, 4.60, 0, 0, '', '', '', '', '', '', ''),
+(9, 1, 'Level 11', 2, 74.00, 4.60, 0, 0, '', '', '', '', '', '', ''),
+(10, 4, 'Beginner', 3, 138.00, 8.00, 0, 0, '', '', '', '', '', '', ''),
+(11, 4, 'Elementary', 4, 184.00, 10.00, 0, 0, '', '', '', '', '', '', ''),
+(12, 4, 'Pre-Intermediate', 5, 184.00, 10.00, 0, 0, '', '', '', '', '', '', ''),
+(13, 4, 'Intermediate', 6, 184.00, 10.00, 0, 0, '', '', '', '', '', '', ''),
+(14, 4, 'Upper-Intermediate', 7, 184.00, 10.00, 0, 0, '', '', '', '', '', '', ''),
+(15, 4, 'Advanced', 8, 184.00, 10.00, 0, 0, '', '', '', '', '', '', ''),
+(16, 2, 'Level  1A', 14, 296.00, 18.40, 0, 0, '', '', '', '', '', '', ''),
+(17, 2, 'Level 1B', 14, 296.00, 18.40, 0, 0, '', '', '', '', '', '', ''),
+(18, 2, 'Level 2A', 14, 296.00, 18.40, 0, 0, '', '', '', '', '', '', ''),
+(19, 2, 'Level 2B', 14, 296.00, 18.40, 0, 0, '', '', '', '', '', '', ''),
+(20, 2, 'Level 3A', 15, 296.00, 18.40, 0, 0, '', '', '', '', '', '', ''),
+(21, 2, 'Level 3B', 15, 296.00, 18.40, 0, 0, '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -769,7 +834,7 @@ CREATE TABLE IF NOT EXISTS `ila_course_level_lang` (
   `title` varchar(100) CHARACTER SET utf16 NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `ila_course_level_lang`
@@ -777,7 +842,26 @@ CREATE TABLE IF NOT EXISTS `ila_course_level_lang` (
 
 INSERT INTO `ila_course_level_lang` (`id`, `course_level_id`, `title`, `language_id`) VALUES
 (1, 1, 'Level 3', 1),
-(2, 2, 'Level 4', 1);
+(2, 2, 'Level 4', 1),
+(3, 3, 'Level 5', 1),
+(4, 4, 'Level 6', 1),
+(5, 5, 'Level 7', 1),
+(6, 6, 'Level 8', 1),
+(7, 7, 'Level 9', 1),
+(8, 8, 'Level 10', 1),
+(9, 9, 'Level 11', 1),
+(10, 10, 'Beginner', 1),
+(11, 11, 'Elementary', 1),
+(12, 12, 'Pre-Intermediate', 1),
+(13, 13, 'Intermediate', 1),
+(14, 14, 'Upper-Intermediate', 1),
+(15, 15, 'Advanced', 1),
+(16, 16, 'Level  1A', 1),
+(17, 17, 'Level 1B', 1),
+(18, 18, 'Level 2A', 1),
+(19, 19, 'Level 2B', 1),
+(20, 20, 'Level 3A', 1),
+(21, 21, 'Level 3B', 1);
 
 -- --------------------------------------------------------
 
@@ -822,16 +906,40 @@ CREATE TABLE IF NOT EXISTS `ila_districts` (
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `ila_districts`
 --
 
 INSERT INTO `ila_districts` (`id`, `district`, `city_id`, `isblocked`, `isdeleted`) VALUES
-(1, 'Hai Ba Trung', 2, 0, 0),
-(2, 'District 1', 1, 0, 0),
-(3, 'District 2', 1, 0, 0);
+(1, 'District 1', 1, 0, 0),
+(2, 'District 2', 1, 0, 0),
+(3, 'District 3', 1, 0, 0),
+(4, 'District 5', 1, 0, 0),
+(5, 'District 6', 1, 0, 0),
+(6, 'District 7', 1, 0, 0),
+(7, 'District 8', 1, 0, 0),
+(8, 'Tan Phu', 1, 0, 0),
+(9, 'Thu Duc', 1, 0, 0),
+(10, 'Tan Binh', 1, 0, 0),
+(11, 'Phu Nhuan', 1, 0, 0),
+(12, 'Go Vap', 1, 0, 0),
+(13, 'Binh Thanh', 1, 0, 0),
+(14, 'Hai Ba Trung', 2, 0, 0),
+(15, 'Hoan Kiem', 2, 0, 0),
+(16, 'Long Bien', 2, 0, 0),
+(17, 'Nam Tu Liem', 2, 0, 0),
+(18, 'Dong Da', 2, 0, 0),
+(19, 'Cau Giay', 2, 0, 0),
+(20, 'Ba Dinh', 2, 0, 0),
+(21, 'Thanh Xuan', 2, 0, 0),
+(22, 'Thanh Khe', 3, 0, 0),
+(23, 'Thuan An', 6, 0, 0),
+(24, 'Phu Cuong', 6, 0, 0),
+(25, 'ILA Bien Hoa', 7, 0, 0),
+(26, 'ILA Vung Tau', 5, 0, 0),
+(27, 'NGO Quyen', 4, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -845,17 +953,67 @@ CREATE TABLE IF NOT EXISTS `ila_districts_lang` (
   `district_name` varchar(100) CHARACTER SET utf16 NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
 
 --
 -- Dumping data for table `ila_districts_lang`
 --
 
 INSERT INTO `ila_districts_lang` (`id`, `district_id`, `district_name`, `language_id`) VALUES
-(1, 1, 'Hai Ba Trung', 1),
-(2, 1, 'efgh', 2),
-(3, 2, 'District 1', 1),
-(4, 3, 'District 2', 1);
+(1, 1, 'District 1', 1),
+(2, 1, 'Quận 1', 2),
+(3, 2, 'District 2', 1),
+(4, 3, 'District 3', 1),
+(5, 4, 'District 5', 1),
+(6, 5, 'District 6', 1),
+(7, 6, 'District 7', 1),
+(8, 7, 'District 8', 1),
+(9, 8, 'Tan Phu', 1),
+(10, 9, 'Thu Duc', 1),
+(11, 10, 'Tan Binh', 1),
+(12, 11, 'Phu Nhuan', 1),
+(13, 12, 'Go Vap', 1),
+(14, 13, 'Binh Thanh', 1),
+(15, 14, 'Hai Ba Trung', 1),
+(16, 15, 'Hoan Kiem', 1),
+(17, 16, 'Long Bien', 1),
+(18, 17, 'Nam Tu Liem', 1),
+(19, 18, 'Dong Da', 1),
+(20, 19, 'Cau Giay', 1),
+(21, 20, 'Ba Dinh', 1),
+(22, 21, 'Thanh Xuan', 1),
+(23, 22, 'Thanh Khe', 1),
+(24, 23, 'Thuan An', 1),
+(25, 24, 'Phu Cuong', 1),
+(26, 25, 'ILA Bien Hoa', 1),
+(27, 26, 'ILA Vung Tau', 1),
+(28, 27, 'NGO Quyen', 1),
+(29, 2, 'Quận 2', 2),
+(30, 3, 'Quận 3', 2),
+(31, 4, 'Quận 5', 2),
+(32, 5, 'Quận 6', 2),
+(33, 6, 'Quận 7', 2),
+(34, 7, 'Quận 8', 2),
+(35, 8, 'Tân Phú', 2),
+(36, 9, 'Thủ Đức', 2),
+(37, 10, 'Tân Bình', 2),
+(38, 11, 'Phú Nhuận', 2),
+(39, 12, 'Gò Vấp', 2),
+(40, 13, 'Bình Thạnh', 2),
+(41, 14, 'Hai Bà Trưng', 2),
+(42, 15, 'Hoàn Kiếm', 2),
+(43, 16, 'Long Biên', 2),
+(44, 17, 'Nam Từ Liêm', 2),
+(45, 18, 'Đống Đa', 2),
+(46, 19, 'Cầu Giấy', 2),
+(47, 20, 'Ba Đình', 2),
+(48, 21, 'Thanh Xuân', 2),
+(49, 22, 'Thanh Khê', 2),
+(50, 23, 'Thuận An', 2),
+(51, 24, 'Phú cường', 2),
+(52, 27, 'Ngô Quyền', 2),
+(53, 26, 'ILA Vũng Tàu', 2),
+(54, 25, 'ILA Biên Hòa', 2);
 
 -- --------------------------------------------------------
 
@@ -1070,7 +1228,7 @@ CREATE TABLE IF NOT EXISTS `ila_programs` (
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `ila_programs`
@@ -1078,7 +1236,23 @@ CREATE TABLE IF NOT EXISTS `ila_programs` (
 
 INSERT INTO `ila_programs` (`id`, `course_id`, `program`, `isblocked`, `isdeleted`) VALUES
 (1, 1, 'For kids from 3 to 4 years old', 0, 0),
-(2, 1, 'For kids from 4 to 6 years old', 0, 0);
+(2, 1, 'For kids from 4 to 6 years old', 0, 0),
+(3, 4, 'Beginner', 0, 0),
+(4, 4, 'Elementary', 0, 0),
+(5, 4, 'Pre-Intermediate', 0, 0),
+(6, 4, 'Intermediate', 0, 0),
+(7, 4, 'Upper-Intermediate', 0, 0),
+(8, 4, 'Advanced', 0, 0),
+(9, 3, 'Beginner', 0, 0),
+(10, 3, 'Elementary to Pre-Intermediate', 0, 0),
+(11, 3, 'Intermediate', 0, 0),
+(12, 3, 'Upper-Intermediate', 0, 0),
+(13, 3, 'Advanced', 0, 0),
+(14, 2, 'Beginner (Levels 1 - 2)', 0, 0),
+(15, 2, 'Elementary (Levels 3 - 4)', 0, 0),
+(16, 2, 'Pre-Intermediate (Levels 5 - 6)', 0, 0),
+(17, 2, 'Intermediate (Levels 7 - 8)', 0, 0),
+(18, 2, 'Upper-Intermediate (Levels 9 - 10)', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1092,7 +1266,7 @@ CREATE TABLE IF NOT EXISTS `ila_programs_lang` (
   `program_name` varchar(100) CHARACTER SET utf16 NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `ila_programs_lang`
@@ -1100,7 +1274,25 @@ CREATE TABLE IF NOT EXISTS `ila_programs_lang` (
 
 INSERT INTO `ila_programs_lang` (`id`, `program_id`, `program_name`, `language_id`) VALUES
 (1, 1, 'For kids from 3 to 4 years old', 1),
-(2, 2, 'For kids from 4 to 6 years old', 1);
+(2, 2, 'For kids from 4 to 6 years old', 1),
+(3, 3, 'Beginner', 1),
+(4, 4, 'Elementary', 1),
+(5, 5, 'Pre-Intermediate', 1),
+(6, 6, 'Intermediate', 1),
+(7, 7, 'Upper-Intermediate', 1),
+(8, 8, 'Advanced', 1),
+(9, 9, 'Beginner', 1),
+(10, 10, 'Elementary to Pre-Intermediate', 1),
+(11, 11, 'Intermediate', 1),
+(12, 12, 'Upper-Intermediate', 1),
+(13, 13, 'Advanced', 1),
+(14, 14, 'Beginner (Levels 1 - 2)', 1),
+(15, 15, 'Elementary (Levels 3 - 4)', 1),
+(16, 16, 'Pre-Intermediate (Levels 5 - 6)', 1),
+(17, 17, 'Intermediate (Levels 7 - 8)', 1),
+(18, 18, 'Upper-Intermediate (Levels 9 - 10)', 1),
+(19, 1, 'Dành cho trẻ em từ 3-4 tuổi', 2),
+(20, 2, 'Dành cho trẻ em từ 4-6 tuổi', 2);
 
 -- --------------------------------------------------------
 
@@ -1245,16 +1437,43 @@ CREATE TABLE IF NOT EXISTS `ila_training_centers` (
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `ila_training_centers`
 --
 
 INSERT INTO `ila_training_centers` (`id`, `center`, `city_id`, `district_id`, `phone`, `email_id`, `media_id`, `isblocked`, `isdeleted`) VALUES
-(1, 'ILA An Phu', 1, 3, '(08) 6287 0768', 'info@ilavietnam.edu.vn', 1, 0, 0),
-(2, 'ILA Nguyen Cu Trinh', 1, 2, '(08) 3838 6788', 'info@ilavietnam.edu.vn', 2, 0, 0),
-(3, 'ILA Times City', 2, 1, '(04) 3975 9666', 'info@ilavietnam.edu.vn', 1, 0, 0);
+(1, 'ILA NGUYEN CU TRINH', 1, 1, '08 - 3838 6788', 'info@ilavietnam.edu.vn', 1, 0, 0),
+(2, 'ILA AN PHU', 1, 2, '08 - 6287 0768', 'info@ilavietnam.edu.vn', 2, 0, 0),
+(3, 'ILA NGUYEN DINH CHIEU', 1, 3, '08 - 3521 8788', 'info@ilavietnam.edu.vn', 1, 0, 0),
+(4, 'ILA HUNG VUONG', 1, 4, '08 - 2222 0201', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(5, 'ILA PHU LAM', 1, 5, '08 - 3877 9100', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(6, 'ILA PHU MY HUNG', 1, 6, '08 - 5417 1766', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(7, 'ILA PHAM HUNG', 1, 7, '08 - 3758 0066', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(8, 'ILA TAN PHU', 1, 8, '08 - 6269 2133', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(9, 'ILA HOA BINH', 1, 8, '08 - 3973 1188', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(10, 'ILA VINCOM THU DUC', 1, 9, '08 - 3722 0009', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(11, 'ILA CONG HOA', 1, 10, '08 - 3810 8955', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(12, 'ILA HOANG VAN THU', 1, 10, '08 - 3869 1188', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(13, 'ILA PHAN XICH LONG', 1, 11, '08 - 3990 3470', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(14, 'ILA PHAN VAN TRI', 1, 12, '08 - 3985 0368', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(15, 'ILA NGUYEN HUU CANH', 1, 13, '08 - 6258 6220', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(16, 'ILA NGUYEN XI', 1, 13, '08 - 6283 8855', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(17, 'ILA TIMES CITY', 2, 14, '04 - 3975 9666', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(18, 'ILA PHO HUE', 2, 15, '04 - 3943 3555', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(19, 'ILA LONG BIEN', 2, 16, '04 - 3678 7888', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(20, 'ILA MY DINH', 2, 17, '04 - 3207 7878', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(21, 'ILA TAY SON', 2, 18, '04 - 3564 3165', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(22, 'ILA CAU GIAY', 2, 19, '04 - 2220 1666', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(23, 'ILA KIM MA', 2, 20, '04 - 3843 6888', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(24, 'ILA TRUNG HOA NHAN CHINH', 2, 21, '04 - 6666 3388', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(25, 'ILA DA NANG', 3, 22, '0236 - 3647 444', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(26, 'ILA AEON BINH DUONG', 6, 23, '0650 - 386 8088', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(27, 'ILA THU DAU MOT', 6, 24, '065 - 0730 4466', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(28, 'ILA BIEN HOA', 7, 25, '061 - 394 6466', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(29, 'ILA VUNG TAU', 5, 26, '064 - 3572 347', 'info@ilavietnam.edu.vn', 0, 0, 0),
+(30, 'ILA HAI PHONG', 4, 27, '031 - 2299 036', 'info@ilavietnam.edu.vn', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1269,16 +1488,73 @@ CREATE TABLE IF NOT EXISTS `ila_training_centers_lang` (
   `address` text CHARACTER SET utf16 NOT NULL,
   `language_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
 
 --
 -- Dumping data for table `ila_training_centers_lang`
 --
 
 INSERT INTO `ila_training_centers_lang` (`id`, `center_id`, `title`, `address`, `language_id`) VALUES
-(1, 1, 'ILA An Phu', '2nd Floor, The Vista Building, Ha Noi Highway, An Phu Ward, Dist. 2, Ho Chi Minh City, Vietnam', 1),
-(2, 2, 'ILA Nguyen Cu Trinh', '51 Nguyen Cu Trinh Street, District 1, Ho Chi Minh City, Vietnam', 1),
-(3, 3, 'ILA Times City', 'Times City, Tower 1-L2-02, 2nd Fl., 458 Minh Khai St., Hai Ba Trung Dist., Hanoi, Vietnam', 1);
+(1, 1, 'ILA NGUYEN CU TRINH', '51 Nguyen Cu Trinh, Dist. 1, Ho Chi Minh City, Vietnam', 1),
+(2, 2, 'ILA AN PHU', '2nd Fl. The Vista Building, Ha Noi Highway, An Phu Ward, Dist. 2, Ho Chi Minh City, Vietnam', 1),
+(3, 3, 'ILA NGUYEN DINH CHIEU', '146 Nguyen Dinh Chieu, Dist. 3, Ho Chi Minh City, Vietnam', 1),
+(4, 4, 'ILA HUNG VUONG', '5th Fl. Hung Vuong Plaza, 126 Hung Vuong, Dist. 5, Ho Chi Minh City, Vietnam', 1),
+(5, 5, 'ILA PHU LAM', '1039 Hong Bang, Ward 12, Dist. 6, Ho Chi Minh City, Vietnam', 1),
+(6, 6, 'ILA PHU MY HUNG', 'RiverPark Residence, 17-19 Pham Van Nghi, Dist. 7, Ho Chi Minh City, Vietnam', 1),
+(7, 7, 'ILA PHAM HUNG', '2nd Fl. Centre Mall (Satra Pham Hung), C6/27 Pham Hung, Binh Chanh, Ho Chi Minh City, Vietnam', 1),
+(8, 8, 'ILA TAN PHU', '3rd Fl. AEON Mall, 30 Bo Bao Tan Thang, Tan Phu Dist., Ho Chi Minh City, Vietnam', 1),
+(9, 9, 'ILA HOA BINH', '174 Hoa Binh, Tan Phu, HCMC, Ho Chi Minh City, Vietnam', 1),
+(10, 10, 'ILA VINCOM THU DUC', '5th Fl., Vincom Building, 216 Vo Van Ngan St., Binh Tho Ward, Thu Duc Dist., Ho Chi Minh City, Vietnam', 1),
+(11, 11, 'ILA CONG HOA', 'G Fl. Etown EW Building, 364 Cong Hoa, Ward 13, Tan Binh Dist., Ho Chi Minh City, Vietnam', 1),
+(12, 12, 'ILA HOANG VAN THU', '435D - 435E Hoang Van Thu, Ward 4, Tan Binh, Ho Chi Minh City, Vietnam', 1),
+(13, 13, 'ILA PHAN XICH LONG', '456 Phan Xich Long, Phu Nhuan District, Ho Chi Minh City, Vietnam', 1),
+(14, 14, 'ILA PHAN VAN TRI', '757 - 759 - 761 Phan Van Tri, Ward 7, Go Vap Dist., Ho Chi Minh City, Vietnam', 1),
+(15, 15, 'ILA NGUYEN HUU CANH', '1st Fl. The Manor Officetel, 91 Nguyen Huu Canh, Binh Thanh Dist., Ho Chi Minh City, Vietnam', 1),
+(16, 16, 'ILA NGUYEN XI', '205 Nguyen Xi, Ward 26, Binh Thanh Dist., Ho Chi Minh City, Vietnam', 1),
+(17, 17, 'ILA TIMES CITY', 'Fl. 2, Tower 1, Times City, 458 Minh Khai, Hai Ba Trung, Hanoi, Vietnam', 1),
+(18, 18, 'ILA PHO HUE', '6-8B Pho Hue, Hoan Kiem, Hanoi, Vietnam', 1),
+(19, 19, 'ILA LONG BIEN', '85 Nguyen Van Cu, Ngoc Lam, Long Bien, Ha Noi, Vietnam', 1),
+(20, 20, 'ILA MY DINH', 'Golden Palace, K1, Me Tri, Tu Liem, Ha Noi, Vietnam', 1),
+(21, 21, 'ILA TAY SON', '6th Fl. Oriental Tower, 324 Tay Son, Dong Da Dist. Hanoi, Vietnam', 1),
+(22, 22, 'ILA CAU GIAY', '3rd Fl., Indochina Mall, 241 Xuan Thuy, Cau Giay, Hanoi, Vietnam', 1),
+(23, 23, 'ILA KIM MA', '6th Fl., Toserco Building, 273 Kim Ma, Ba Dinh, Hanoi, Vietnam', 1),
+(24, 24, 'ILA TRUNG HOA NHAN CHINH', 'Golden Palace, C3 Le Van Luong, Trung Hoa Nhan Chinh, Thanh Xuan, Ha Noi, Vietnam', 1),
+(25, 25, 'ILA DA NANG', '66 Vo Van Tan, Thanh Khe Dist., Da Nang, Vietnam', 1),
+(26, 26, 'ILA AEON BINH DUONG', 'F16, Fl.1, Aeon Mall Canary, Thuan An, Binh Duong, Vietnam', 1),
+(27, 27, 'ILA THU DAU MOT', '657 CMT8, Phu Cuong, Thu Dau Mot, Binh Duong, Vietnam', 1),
+(28, 28, 'ILA BIEN HOA', 'The Pegasus Plaza Building, 55 Vo Thi Sau, Bien Hoa, Dong Nai, Vietnam', 1),
+(29, 29, 'ILA VUNG TAU', '4th Fl. 155 Nguyen Thai Hoc, Ward 7, Vung Tau, Vietnam', 1),
+(30, 30, 'ILA HAI PHONG', 'Vincom, 4 Le Thanh Tong, Ngo Quyen District, Hai Phong, Vietnam', 1),
+(31, 1, 'ILA Nguyễn Cư Trinh', '51 Nguyễn Cư Trinh, Quận 1, Tp. Hồ Chí Minh, Việt Nam', 2),
+(32, 2, 'ILA An Phú', 'Tầng 2, tòa nhà Vista, Xa lộ Hà Nội, Phường An Phú, Quận 2, Tp. Hồ Chí Minh, Việt Nam', 2),
+(33, 3, 'ILA Nguyễn Đình Chiểu', '146 Nguyễn Đình Chiểu, Quận 3, Tp. Hồ Chí Minh, Việt Nam', 2),
+(34, 4, 'ILA Hùng Vương', 'Tầng 5, Hùng Vương Plaza, 126 Hùng Vương, Quận 5, Thành Phố Hồ Chí Minh', 2),
+(35, 5, 'ILA Phú Lâm', '1039 Hồng Bàng, Phường 12, Quận. 6, Tp. Hồ Chí Minh, Việt Nam', 2),
+(36, 6, 'ILA Phú Mỹ Hưng', 'SG-10, The Riverpark Residence-Phú Mỹ Hưng, 17-19 Phạm Văn Nghi, Tp. Hồ Chí Minh, Việt Nam', 2),
+(37, 7, 'ILA Phạm Hùng', 'Lầu 2, Centre Mall (Satra Pham Hung), C6/27 Phạm Hùng, Quận Bình Chánh, TP. Hồ Chí Minh, Việt Nam', 2),
+(38, 8, 'ILA Tân Phú', 'AEON Mall, Tân Kỳ Tân Quý, phường Sơn Kỳ, Q. Tân Phú, Tp. Hồ Chí Minh, Việt Nam', 2),
+(39, 9, 'ILA Hòa Bình', '174 Hòa Bình, Quận Tân Phú, TP. Hồ Chí Minh, Việt Nam', 2),
+(40, 10, 'ILA Vincom Thủ Đức', 'Lầu 5 Tòa nhà Vincom, số 216 Võ Văn Ngân, Phường Bình Thọ, Thủ Đức', 2),
+(41, 11, 'ILA Cộng Hòa', 'Tầng Trệt, E.town, 364 Cộng Hòa, Quận Tân Bình, Tp. Hồ Chí Minh, Việt Nam', 2),
+(42, 30, 'ILA Vincom Hải Phòng', 'Vincom, 4 Lê Thánh Tông, Quận Ngô Quyền , Hải Phòng', 2),
+(43, 29, 'ILA Vũng Tàu', 'Tầng 4, 155 Nguyễn Thái Học, Vũng Tàu, Việt Nam', 2),
+(44, 28, 'ILA Biên Hòa', 'Tòa nhà Pegasus Plaza ,55 Võ Thị Sáu, Biên Hòa, Đồng Nai, Việt Nam', 2),
+(45, 27, 'ILA Bình Dương 2', '657 Cách Mạng Tháng 8, quận Phú Cường, Thủ Dầu Một, Bình Dương, Việt Nam', 2),
+(46, 26, 'ILA Bình Dương', 'F16, lầu 1, Aeon Mall Canary, Thuận An, Tỉnh Bình Dương', 2),
+(47, 25, 'ILA Đà Nẵng', '169 - 171 Nguyễn Văn Linh, Đà Nẵng', 2),
+(48, 24, 'ILA Trung Hoà Nhan Chinh', 'Lầu 4, Golden Palace Lê Văn Lương, C3 Lê Văn Lương, Trung Hòa Nhân Chính, Thanh Xuân, Hà Nội, Việt Nam', 2),
+(49, 23, 'ILA Kim Mã', 'Tầng 6, Tòa nhà Toserco, 273 Kim Mã, Quận Ba Đình, Hà Nội, Việt Nam', 2),
+(50, 22, 'ILA Cầu Giấy', 'Tầng 3, Trung tâm thương mại Indochina, 241 Xuân Thủy, Cầu Giấy', 2),
+(51, 21, 'ILA Tây Sơn', '324 Tây Sơn, Ngã Tư Sở, Đống Đa, Hà Nội, Việt Nam', 2),
+(52, 20, 'ILA Mỹ Đình', 'Golden Palace, K1, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam', 2),
+(53, 19, 'ILA Long Biên', '85 Nguyễn Văn Cừ, Ngọc Lâm, Long Biên, Hà Nội, Việt Nam', 2),
+(54, 18, 'ILA Phố Huế', '6-8B Phố Huế, Quận Hoàn Kiếm , Hà Nội, Việt Nam', 2),
+(55, 17, 'ILA Times City', 'Tầng 2, Tower 1, Times City, 458 Minh Khai, Hai Bà Trưng, Hà Nội, Việt Nam', 2),
+(56, 16, 'ILA Nguyễn Xí', '205 Nguyễn Xí, Phường 26, Q.Bình Thạnh, Tp. HCM, Vietnam', 2),
+(57, 15, 'ILA Nguyễn Hữu Cảnh', 'Lầu 1, The Manor II, 91 Nguyễn Hữu Cảnh, Quận Bình Thạnh, Tp. Hồ Chí Minh, Việt Nam', 2),
+(58, 14, 'ILA Phan Văn Trị', '757 - 759 - 761 Phan Văn Trị, phường 7, quận Gò Vấp, Tp. Hồ Chí Minh, Việt Nam', 2),
+(59, 13, 'ILA Phan Xích Long', '456 Phan Xích Long, Quận Phú Nhuận, Tp. Hồ Chí Minh, Việt Nam', 2),
+(60, 12, 'Hoang Van Thu', '435D - 435E Hoàng Văn Thụ, P:4, Q: Tân Bình', 2);
 
 -- --------------------------------------------------------
 
