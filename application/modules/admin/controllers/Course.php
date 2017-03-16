@@ -232,10 +232,27 @@ class Course extends MY_Controller {
             } else if ($this->input->post('program_name') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter course level');
                 redirect(base_url() . 'admin/course/add_course_program/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('duration_hours') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter duration in hours');
+                redirect(base_url() . 'admin/course/add_course_program/'.encode_url($this->input->post('hid_course_id')));
+            } else if ($this->input->post('duration_months') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter duration in months');
+                redirect(base_url() . 'admin/course/add_course_program/'.encode_url($this->input->post('hid_course_id')));
             } else {
 
                 $ins_data['course_id'] = $this->input->post('hid_course_id');
 				$ins_data['program'] = $this->input->post('program');
+				$ins_data['duration_hours'] = $this->input->post('duration_hours');
+				$ins_data['duration_months'] = $this->input->post('duration_months');
+				$ins_data['age_from'] = $this->input->post('age_from');
+				$ins_data['age_to'] = $this->input->post('age_to');
+				$ins_data['video_link'] = $this->input->post('video_link');
+				$ins_data['cefr'] = $this->input->post('cefr');
+				$ins_data['cambridge_exam'] = $this->input->post('cambridge_exam');
+				$ins_data['ielts'] = $this->input->post('ielts');
+				$ins_data['toefl_ibt'] = $this->input->post('toefl_ibt');
+				$ins_data['toeic_reading'] = $this->input->post('toeic_reading');
+				$ins_data['toeic_writing'] = $this->input->post('toeic_writing');
 
                 $res = $this->Custom_model->insert_data($ins_data, PROGRAMS);
 
@@ -295,10 +312,27 @@ class Course extends MY_Controller {
             } else if ($this->input->post('program_name') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter course program');
                 redirect(base_url() . 'admin/course/edit_course_program/'.encode_url($course_id).'/'.encode_url($course_program_id));
+            } else if ($this->input->post('duration_hours') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter duration in hours');
+                redirect(base_url() . 'admin/course/edit_course_program/'.encode_url($course_id).'/'.encode_url($course_program_id));
+            } else if ($this->input->post('duration_months') == "") {
+                $this->session->set_flashdata('error_message', 'Please enter duration in months');
+                redirect(base_url() . 'admin/course/edit_course_program/'.encode_url($course_id).'/'.encode_url($course_program_id));
             } else {
 
                 $ins_type['course_id'] = $this->input->post('hid_course_id');
 				$ins_type['program'] = $this->input->post('program');
+				$ins_type['duration_hours'] = $this->input->post('duration_hours');
+				$ins_type['duration_months'] = $this->input->post('duration_months');
+				$ins_type['age_from'] = $this->input->post('age_from');
+				$ins_type['age_to'] = $this->input->post('age_to');
+				$ins_type['video_link'] = $this->input->post('video_link');
+				$ins_type['cefr'] = $this->input->post('cefr');
+				$ins_type['cambridge_exam'] = $this->input->post('cambridge_exam');
+				$ins_type['ielts'] = $this->input->post('ielts');
+				$ins_type['toefl_ibt'] = $this->input->post('toefl_ibt');
+				$ins_type['toeic_reading'] = $this->input->post('toeic_reading');
+				$ins_type['toeic_writing'] = $this->input->post('toeic_writing');
 
                 $this->Custom_model->edit_data($ins_type, array('id' => $course_program_id), PROGRAMS);
 

@@ -45,6 +45,17 @@
                             </div>
                         </div> 
 						<div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city_id">Story Type <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="story_type" name="story_type" class="form-control col-md-7 col-xs-12">
+                                    <option value="">Select Type</option>
+                                    <option value="1" <?php echo $story_details->story_type == '1' ? 'selected' : '';?>>Parent</option>
+									<option value="2" <?php echo $story_details->story_type == '2' ? 'selected' : '';?>>Student</option>
+                                </select>                               
+                            </div>
+                        </div>
+						<div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Content">Short Description in <?php echo ($selected_lang==1)?"English":"Vietnamese"; ?> <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -144,6 +155,9 @@
                 return false;
            }else if($('#title').val()==""){         
                $("#title").parent().append("<div class='validation'>Please enter story title </div>");
+                return false;
+           }else if($('#story_type').val()==""){         
+               $("#story_type").parent().append("<div class='validation'>Please select story type </div>");
                 return false;
            }else if($('#short_desc').val()==""){         
                $("#short_desc").parent().append("<div class='validation'>Please enter short description </div>");

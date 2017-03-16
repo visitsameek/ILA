@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2017 at 06:04 PM
+-- Generation Time: Mar 16, 2017 at 07:14 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `ila_admin` (
 --
 
 INSERT INTO `ila_admin` (`id`, `name`, `user_name`, `user_pass`, `contact_email`, `last_login_time`, `last_login_ip`) VALUES
-(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-14 17:18:48', '::1');
+(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-16 06:01:19', '::1');
 
 -- --------------------------------------------------------
 
@@ -1268,6 +1268,17 @@ CREATE TABLE IF NOT EXISTS `ila_programs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `course_id` int(11) NOT NULL,
   `program` varchar(100) NOT NULL,
+  `duration_hours` double(10,2) NOT NULL,
+  `duration_months` double(10,2) NOT NULL,
+  `age_from` int(11) NOT NULL,
+  `age_to` int(11) NOT NULL,
+  `video_link` text NOT NULL,
+  `cefr` varchar(50) NOT NULL,
+  `cambridge_exam` varchar(50) NOT NULL,
+  `ielts` varchar(50) NOT NULL,
+  `toefl_ibt` varchar(50) NOT NULL,
+  `toeic_reading` varchar(50) NOT NULL,
+  `toeic_writing` varchar(50) NOT NULL,
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
@@ -1277,25 +1288,25 @@ CREATE TABLE IF NOT EXISTS `ila_programs` (
 -- Dumping data for table `ila_programs`
 --
 
-INSERT INTO `ila_programs` (`id`, `course_id`, `program`, `isblocked`, `isdeleted`) VALUES
-(1, 1, 'For kids from 3 to 4 years old', 0, 0),
-(2, 1, 'For kids from 4 to 6 years old', 0, 0),
-(3, 4, 'Beginner', 0, 0),
-(4, 4, 'Elementary', 0, 0),
-(5, 4, 'Pre-Intermediate', 0, 0),
-(6, 4, 'Intermediate', 0, 0),
-(7, 4, 'Upper-Intermediate', 0, 0),
-(8, 4, 'Advanced', 0, 0),
-(9, 3, 'Beginner', 0, 0),
-(10, 3, 'Elementary to Pre-Intermediate', 0, 0),
-(11, 3, 'Intermediate', 0, 0),
-(12, 3, 'Upper-Intermediate', 0, 0),
-(13, 3, 'Advanced', 0, 0),
-(14, 2, 'Beginner (Levels 1 - 2)', 0, 0),
-(15, 2, 'Elementary (Levels 3 - 4)', 0, 0),
-(16, 2, 'Pre-Intermediate (Levels 5 - 6)', 0, 0),
-(17, 2, 'Intermediate (Levels 7 - 8)', 0, 0),
-(18, 2, 'Upper-Intermediate (Levels 9 - 10)', 0, 0);
+INSERT INTO `ila_programs` (`id`, `course_id`, `program`, `duration_hours`, `duration_months`, `age_from`, `age_to`, `video_link`, `cefr`, `cambridge_exam`, `ielts`, `toefl_ibt`, `toeic_reading`, `toeic_writing`, `isblocked`, `isdeleted`) VALUES
+(1, 1, 'For kids from 3 to 4 years old', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(2, 1, 'For kids from 4 to 6 years old', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(3, 4, 'Beginner', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(4, 4, 'Elementary', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(5, 4, 'Pre-Intermediate', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(6, 4, 'Intermediate', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(7, 4, 'Upper-Intermediate', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(8, 4, 'Advanced', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(9, 3, 'Beginner', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(10, 3, 'Elementary to Pre-Intermediate', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(11, 3, 'Intermediate', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(12, 3, 'Upper-Intermediate', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(13, 3, 'Advanced', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(14, 2, 'Beginner (Levels 1 - 2)', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(15, 2, 'Elementary (Levels 3 - 4)', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(16, 2, 'Pre-Intermediate (Levels 5 - 6)', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(17, 2, 'Intermediate (Levels 7 - 8)', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0),
+(18, 2, 'Upper-Intermediate (Levels 9 - 10)', 0.00, 0.00, 0, 0, '', '', '', '', '', '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1393,6 +1404,7 @@ INSERT INTO `ila_request_callback_users` (`id`, `name`, `country_id`, `preffered
 CREATE TABLE IF NOT EXISTS `ila_stories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `story` varchar(255) NOT NULL,
+  `story_type` smallint(1) NOT NULL COMMENT '1=>parent, 2=>student',
   `media_id` int(11) NOT NULL,
   `video_link` text NOT NULL,
   `created_on` date NOT NULL,
@@ -1406,8 +1418,8 @@ CREATE TABLE IF NOT EXISTS `ila_stories` (
 -- Dumping data for table `ila_stories`
 --
 
-INSERT INTO `ila_stories` (`id`, `story`, `media_id`, `video_link`, `created_on`, `modified_on`, `isblocked`, `isdeleted`) VALUES
-(1, 'SECRET MEETING ONLY AFTER 3 IELTS 7.0 ENGLISH COURSES', 2, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '2017-02-28', '2017-02-28', 0, 0);
+INSERT INTO `ila_stories` (`id`, `story`, `story_type`, `media_id`, `video_link`, `created_on`, `modified_on`, `isblocked`, `isdeleted`) VALUES
+(1, 'SECRET MEETING ONLY AFTER 3 IELTS 7.0 ENGLISH COURSES', 1, 2, '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jis04VOZyEU" frameborder="0" allowfullscreen></iframe>', '2017-02-28', '2017-03-16', 0, 0);
 
 -- --------------------------------------------------------
 

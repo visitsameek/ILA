@@ -834,11 +834,15 @@ class Site extends MY_Controller {
 			} elseif ($this->input->post('title') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter story title');
                 redirect(base_url() . 'admin/site/add_story');
+            } elseif ($this->input->post('story_type') == "") {
+                $this->session->set_flashdata('error_message', 'Please select story type');
+                redirect(base_url() . 'admin/site/add_story');
             } elseif ($this->input->post('short_desc') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter short description');
                 redirect(base_url() . 'admin/site/add_story');
             } else {
                 $ins_data['story']   = $this->input->post('story');
+				$ins_data['story_type']   = $this->input->post('story_type');
 				$ins_data['video_link'] = $this->input->post('video_link');
                 $ins_data['media_id']   = $this->input->post('media_id');
 				$ins_data['created_on'] = date('Y-m-d');
@@ -907,11 +911,15 @@ class Site extends MY_Controller {
 			} elseif ($this->input->post('title') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter story title');
                 redirect(base_url() . 'admin/site/edit_story/'.encode_url($story_id));
+            } elseif ($this->input->post('story_type') == "") {
+                $this->session->set_flashdata('error_message', 'Please select story type');
+                redirect(base_url() . 'admin/site/edit_story/'.encode_url($story_id));
             } elseif ($this->input->post('short_desc') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter short description');
                 redirect(base_url() . 'admin/site/edit_story/'.encode_url($story_id));
             } else {
                 $ins_data['story']   = $this->input->post('story');
+				$ins_data['story_type']   = $this->input->post('story_type');
 				$ins_data['video_link'] = $this->input->post('video_link');
                 $ins_data['media_id']   = $this->input->post('media_id');
 				$ins_data['modified_on'] = date('Y-m-d');
