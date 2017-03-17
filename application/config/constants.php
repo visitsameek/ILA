@@ -88,6 +88,7 @@ defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatic
 define('UPLOAD_PATH', 'uploads');
 
 define('SITE_TITLE', 'ILA');
+define('FRONT_TITLE', 'ILA');
 
 //******** database table *********//
 defined('ADMIN') ? null : define('ADMIN', 'ila_admin');

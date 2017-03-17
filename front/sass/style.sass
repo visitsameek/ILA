@@ -1,0 +1,1649 @@
+/* Common CSS */
+/*Variables */
+$white: #fff
+$brown: #3c3c3c
+$gray-color: #666
+$light-blue: #4cc1f6
+$light-black: #343434
+$black: #333
+$light-gray: #e5e5e5
+$anchor-hover: #3b9fcc
+$bg-light-blue: #d2e9f9
+/* Mixins */
+@mixin border-radius($radius)
+	border-radius: $radius
+	-webkit-border-radius: $radius
+	-moz-border-radius: $radius
+	-ms-border-radius: $radius
+	-o-border-radius: $radius
+
+@mixin transition($transition)
+	-moz-transition: $transition
+	-o-transition: $transition
+	-webkit-transition: $transition
+	-ms-transition: $transition
+	transition: $transition
+
+@mixin transition-property($property)
+	-moz-transition-property: $property
+	-o-transition-property: $property
+	-webkit-transition-property: $property
+	-ms-transition-property: $property
+	transition-property: $property
+
+@mixin transition-duration($duration) 
+	-moz-transition-property: $duration
+	-o-transition-property: $duration
+	-webkit-transition-property: $duration
+	-ms-transition-property: $duration
+	transition-property: $duration
+
+@mixin transition-timing-function($timing)
+	-moz-transition-timing-function: $timing
+	-o-transition-timing-function: $timing
+	-webkit-transition-timing-function: $timing
+	-ms-transition-timing-function: $timing
+	transition-timing-function: $timing
+
+
+@mixin transition-delay($delay)
+	-moz-transition-delay: $delay
+	-o-transition-delay: $delay
+	-webkit-transition-delay: $delay
+	transition-delay: $delay
+
+@mixin box-sizing( $type: border-box ) 
+	-webkit-box-sizing: $type
+	-moz-box-sizing: $type
+	-o-box-sizing: $type
+	-ms-box-sizing: $type
+	box-sizing: $type
+// Max breakpoint
+$max-breakpoint: 1080
+
+$wide-screen: "(min-width: #{$max-breakpoint}px)"
+
+@function get-vw($target)
+	$vw-context: ($max-breakpoint * .01) * 1px
+	@return ($target/$vw-context) * 0.8vw
+
+// Mixin
+@mixin vw($size)
+	font-size: get-vw($size)
+	@media #{$wide-screen}
+		font-size: $size
+@mixin line-height($size)
+	line-height: get-vw($size * 1.2)
+	@media #{$wide-screen}
+		line-height: $size * 1.2
+@mixin width($size)
+	width: get-vw($size)
+	@media #{$wide-screen}
+		width: $size
+@mixin height($size)
+	height: get-vw($size)
+	@media #{$wide-screen}
+		height: $size
+@mixin min-height($size)
+	min-height: get-vw($size)
+	@media #{$wide-screen}
+		min-height: $size
+@mixin padding($top, $right, $bottom, $left)
+	padding: get-vw($top) get-vw($right) get-vw($bottom) get-vw($left)
+	@media #{$wide-screen}
+		padding: get-vw($top) get-vw($right) get-vw($bottom) get-vw($left)
+@mixin margin($top, $right, $bottom, $left)
+	margin: get-vw($top) get-vw($right) get-vw($bottom) get-vw($left)
+	@media #{$wide-screen}
+		margin: get-vw($top) get-vw($right) get-vw($bottom) get-vw($left)
+p
+	@include line-height(70px)
+img
+	vertical-align: middle
+	height: auto
+	max-width: 100%
+	border: 0 none
+a
+	outline: 0
+	text-decoration: none
+	@include transition(all 0.5s)
+	color: $light-blue
+	font-weight: 600
+	&:hover
+		color: $anchor-hover
+ul
+	margin: 0
+	padding: 0
+	list-style-type: none
+h1
+	@include vw(150px)
+	@include line-height(160px)
+h2
+	@include vw(101px)
+	@include line-height(110px)
+	font-family: 'Raleway', sans-serif
+	font-weight: 700
+h3
+	@include vw(94px)
+	@include line-height(100px)
+	margin: 0
+h4
+	@include vw(87px)
+	@include line-height(100px)
+	margin: 0
+	font-family: 'Raleway', sans-serif
+	font-weight: 700
+	text-align: center
+h5
+	@include vw(60px)
+	@include line-height(70px)
+	@include margin(0px, 0px, 85px, 0px)
+	font-family: 'Raleway', sans-serif
+	font-weight: 700
+h2 span, h3 span, h5 span
+	display: block
+.align-left
+	text-align: left
+.align-center
+	text-align: center
+::-webkit-input-placeholder
+	color: $white
+::-moz-placeholder
+	color: $white
+::-ms-input-placeholder
+	color: $white
+::-moz-placeholder
+	color: $white
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select
+	border: 0 none
+	border-bottom: 1px solid #dddddd
+	width: 100%
+	@include padding(0px, 10px, 10px, 0px)
+	@include height(78px)
+	background-color: transparent
+	z-index: 99
+	position: relative
+	font-family: 'Open Sans', sans-serif
+.ui-timepicker-container
+	z-index: 999!important
+.bar
+	position: relative
+	display: block
+	width: 100%
+	&:before, &:after
+		content: ''
+		height: 1px
+		width: 0
+		bottom: 0
+		position: absolute
+		background: #237733
+		@include transition(all 0.5s ease)
+	&:before
+		left: 50%
+	&:after
+		right: 50%
+.dropdown-wrapper
+	position: relative
+	cursor: pointer
+	outline: none
+	border-bottom: 1px solid #ddd
+	&:after
+		content: ''
+		display: inline-block
+		position: absolute
+		right: 0
+		top: 1em
+		@include width(40px)
+		@include height(17px)
+		background: transparent url(../images/bg-select-arrow.png) right center no-repeat
+		background-size: contain
+	.select-input
+		border: 0 none
+		cursor: pointer
+		width: 100%
+		@include box-sizing()
+	.dropdown
+		position: absolute
+		top: 101%
+		left: -5px
+		right: 0px
+		background: $white
+		list-style: none
+		display: none
+		pointer-events: none
+		z-index: 99999
+		max-height: 200px
+		overflow-y: auto
+		@include padding(68px, 68px, 68px, 68px)
+		-webkit-box-shadow: 0 0 10px #ccc
+		-moz-box-shadow: 0 0 10px #ccc
+		-o-box-shadow: 0 0 10px #ccc
+		-ms-box-shadow: 0 0 10px #ccc
+		box-shadow: 0 0 10px #ccc
+		li
+			@include margin(120px, 0px, 0px, 0px)
+			&:first-child
+				margin: 0
+			a
+				display: block
+				text-decoration: none
+				color: $black
+				@include vw(47px)
+.inp-field
+	position: relative
+	@include margin(0px, 0px, 135px, 0px)
+	&:last-child
+		margin: 0
+label
+	@include vw(47px)
+	font-weight: 600
+	position: absolute
+	top: 0
+	left: 0
+	transition: all 0.1s linear
+	&.active-label
+		opacity: 1
+		top: -3em
+		@include vw(35px)
+		@include line-height(101px)
+		color: #666
+.inp-field.active 
+	.dropdown
+		display: block
+		pointer-events: auto
+	.bar:before, .bar:after 
+		width: 50%
+
+table
+	text-align: center
+	font-weight: 600
+	width: 100%
+	td
+		@include padding(60px, 20px, 58px, 20px)
+		border-bottom: 1px solid #cacaca
+		border-right: 1px solid #cacaca
+		&:last-child
+			border-right: 0 none
+body
+	margin: 0
+	padding: 0
+	background-color: $white
+	font-family: 'Open Sans', sans-serif
+	@include vw(48px)
+	color: $black
+.clearfix:after,  .clearfix:before
+	visibility: hidden
+	display: block
+	font-size: 0
+	content: " "
+	clear: both
+	height: 0
+.clearfix  
+	display: block
+.btn-blue
+	background-color: $light-blue
+	color: #fff 
+	display: block
+	text-align: center
+	display: block
+	width: 100%
+	@include vw(47px)
+	@include padding(56px, 24px, 56px, 24px)
+	@include border-radius(100px)
+	@include box-sizing()
+	&:hover
+		color: #fff
+		background-color: $anchor-hover
+.container
+	@include padding(0px, 32px, 0px, 32px)
+.sprite-icon, .sprite-icon-before:before
+	background-image: url(../images/sprite.png)
+	background-color: transparent
+	background-repeat: no-repeat
+.fancybox-slide--iframe .fancybox-content
+	width  : 800px
+	height : 600px
+	max-width  : 80%
+	max-height : 40%
+	margin: 0
+.ila-wrapper
+	max-width: 1080px
+	margin: 0 auto
+.see-more
+	display: inline-block
+	@include margin(64px, 0px, 0px, 0px)
+	color: $light-blue
+	font-weight: 600
+	text-decoration: underline
+	&:hover
+		color: $anchor-hover
+.overlay
+	background-color: rgba(0,0,0,0.9)
+	position: fixed
+	top: 0
+	left: 0
+	height: 100%
+	width: 100%
+	z-index: 9999
+	display: none
+	overflow-y: auto
+.bg-light-blue
+	background-color: $bg-light-blue
+.inner-sections
+	border-top: 1px solid #e3e3de
+.list-with-bullets
+	@include padding(0px, 0px, 0px, 60px)
+	li
+		position: relative
+		@include margin(62px, 0px, 0px, 36px)
+		@include line-height(81px)
+		&:before
+			content: "\2022"
+			display: inline-block
+			color: #4dbbdb
+			width: 1em
+			margin-left: -1em
+			@include vw(80px)
+			@include vw(90px)
+			vertical-align: top
+
+.navigation > li > a
+	border-bottom: 1px solid #2f2f2f
+	@include vw(57px)
+.navigation .sub-menu-wrapper > a
+	position: relative
+	&:after
+		content: ""
+		display: block
+		@include width(48px)
+		@include height(27px)
+		background: transparent url(../images/accordian-arrow.png) 0 0 no-repeat
+		background-size: contain
+		position: absolute
+		right: 20px
+		top: 50%
+		margin-top: -4px
+		@include transition(all 0.5s)
+.navigation .sub-menu-wrapper > .active-submenu
+	&:after
+		transform: rotate(180deg)
+.navigation a
+	@include padding(62px, 62px, 62px, 62px)
+	display: block
+	color: $white
+.sub-menu
+	background-color: #2f2f2f
+	@include padding(0px, 0px, 0px, 102px)
+	display: none
+	a
+		border-bottom: 1px solid #444
+		@include padding(66px, 0px, 66px, 0px)
+		position: relative
+
+/* Header CSS */
+.ila-header
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	background-color: $white
+	@include padding(38px, 0px, 38px, 0px)
+	z-index: 9999
+	-webkit-box-shadow: 0 4px 6px -4px rgba(0,0,0,0.3)
+	-moz-box-shadow: 0 4px 6px -4px rgba(0,0,0,0.3)
+	box-shadow: 0 4px 6px -4px rgba(0,0,0,0.3)
+	.logo
+		float: left
+		display: block
+		img
+			@include width(100px)
+	.menu-list li
+		.icon-contact
+			@include width(70px)
+			@include height(70px)
+			@include border-radius(50%)
+			border: 3px solid #0f0e9f
+			display: block
+			text-align: center
+
+	.menu-list > li > a
+		color: #0f0e9f
+		@include vw(50px)
+		@include line-height(60px)
+		&:hover
+			opacity: 0.7
+	.menu-list > li > a.icon-menu
+		@include vw(60px)
+		@include line-height(70px)
+.menu-list
+	float: right
+.menu-list > li
+	float: left
+	@include margin(0px, 0px, 0px, 66px)
+.navigation-header
+	background-color: transparent
+	.logo
+		img
+			@include width(100px)
+	.popup-menu-list
+		float: right
+		@include margin(18px, 0px, 0px, 0px)
+	.popup-menu-list > li
+		float: left
+		@include margin(0px, 0px, 0px, 73px)
+	.navigation-inner
+		@include padding(58px, 68px, 58px, 68px)
+	.icon-cancel
+		text-indent: -9999px
+		display: block
+		@include width(55px) 
+		@include height(55px)
+		background: transparent url(../images/close-icon.png) 0 0 no-repeat
+		background-size: cover
+.header-menu > li > a
+	@include margin(0px, 0px, 0px, 99px)
+	padding-left: 0
+	border-color: #313131
+	color: #ccc
+	@include vw(48px)
+	font-weight: 600
+.header-menu .sub-menu
+	@include padding(0px, 0px, 0px, 168px)
+	background-color: rgba(255,255,255,0.08)
+	z-index: 9
+	position: relative
+	margin-top: -1px
+	a
+		@include vw(42px)
+	li:last-child a
+		border: 0 none
+.login-btn-wrap
+	@include margin(106px, 98px, 126px, 98px)
+.language-list
+	a
+		@include padding(0px, 13px, 0px, 13px)
+		border-left: 1px solid rgba(255,255,255,0.5)
+		margin-left: -5px
+		@include width(126px)
+		@include height(65px)
+		display: inline-block
+		overflow: hidden
+		img
+			vertical-align: top
+		&:first-child
+			border-left: 0 none
+.getintouch-menu
+	margin: 84px 20px 0 0
+	text-align: right
+	li
+		@include margin(0px, 0px, 65px, 0px)
+		display: block
+	a
+		color: $white
+		font-weight: 600
+		@include vw(40px)
+		display: inline-block
+		width: auto
+		height: auto
+		&:after
+			content: ''
+			display: inline-block
+			@include width(170px)
+			@include height(170px)
+			vertical-align: middle
+			@include margin(0px, 0px, 0px, 66px)
+	.chat-with-team
+		&:after
+			background: transparent url(../images/icon-chat.png) 0 0 no-repeat
+			background-size: cover
+	.request-callback
+		&:after
+			background: transparent url(../images/icon-request.png) 0 0 no-repeat
+			background-size: cover
+	.skype
+		&:after
+			background: transparent url(../images/icon-skype.png) 0 0 no-repeat
+			background-size: cover
+	.cancel
+		&:after
+			background: transparent url(../images/icon-close.png) 0 0 no-repeat
+			background-size: cover
+
+/* Home */
+.banner-section
+	background: transparent url(../images/home-banner.jpg) center 0 no-repeat
+	background-size: cover
+	position: relative
+	.container
+		position: relative
+		height: 100%
+		.banner-title
+			position: absolute
+			top: 0
+			left: 0
+			background-color: rgba(0,0,0,0.6)
+			width: 100%
+			height: 100%
+	h1
+		border-left: 2px solid #1294f7
+		padding-left: 16px
+		color: #fff
+		position: absolute
+		top: 50%
+		left: 30px
+		margin: 0
+		font-family: 'Raleway', sans-serif
+		font-weight: 600
+		-webkit-transform: translateY(-50%)
+		-moz-transform: translateY(-50%)
+		-o-transform: translateY(-50%)
+		-ms-transform: translateY(-50%)
+		transform: translateY(-50%)
+		word-break: break-word
+		span
+			display: block
+	.next-section-arrow
+		position: absolute
+		bottom: 30px
+		left: 50%
+		@include width(79px)
+		@include height(43px)
+		margin-left: -14px
+		text-indent: -9999px
+		background: transparent url(../images/down-arrow.png) 0 0 no-repeat
+		background-size: contain
+		&:hover
+			opacity: 0.7
+
+/* Be Prepare Section */
+.video-wrapper
+	background: transparent url(../images/bg-be-prepare.png) center 0 no-repeat
+	background-size: cover
+	color: $white
+	text-align: center
+	@include padding(132px, 32px, 68px, 32px)
+	h5
+		@include margin(0px, 0px, 68px, 0px)
+	p
+		text-align: left
+		margin-bottom: 0
+.video-blcok
+	position: relative
+	img
+		width: 100%
+	.play-btn
+		position: absolute
+		top: 50%
+		left: 50%
+		@include width(228px)
+		@include height(228px)
+		text-indent: -9999px
+		-webkit-transform: translate(-50%, -50%)
+		-moz-transform: translate(-50%, -50%)
+		-o-transform: translate(-50%, -50%)
+		-ms-transform: translate(-50%, -50%)
+		transform: translate(-50%,-50%)
+		display: block
+		background: transparent url(../images/play-btn.png) 0 0 no-repeat
+		background-size: cover
+		&:hover
+			opacity: 0.9
+/* We prepare */
+.ila-facility-img
+	display: table
+	width: 100%
+	padding: 20px 0
+	.facilitty-title
+		display: table-cell
+		vertical-align: middle
+		h3
+			font-weight: 700
+			color: $white
+			padding: 0 20px
+			display: block
+			float: left
+
+	&:nth-child(2n+1)
+		.facilitty-title
+			h3
+				float: right
+.why-ila-list
+	.facilitty-title
+		h3
+			max-width: 500px
+		
+.we-prepare-txt
+	padding: 30px 0
+	@include vw(57px)
+	p
+		margin: 0
+.we-prepare-img
+	.ila-facility-img
+		@include vw(318px)
+		@include min-height(280px)
+	.creativity-img
+		background: transparent url(../images/bg-creativity.jpg) center 0 no-repeat
+		background-size: 100% 100%
+	.critical-img
+		background: transparent url(../images/bg-critical-thinking.jpg) center 0 no-repeat
+		background-size: 100% 100%
+	.communication-img
+		background: transparent url(../images/bg-communication.jpg) center 0 no-repeat
+		background-size: 100% 100%
+	.collaboration-img
+		background: transparent url(../images/bg-collaboration.jpg) center 0 no-repeat
+		background-size: 100% 100%
+	.self-img
+		background: transparent url(../images/bg-self-reflection.jpg) center 0 no-repeat
+		background-size: 100% 100%
+	.digital-img
+		background: transparent url(../images/bg-digital-literacy.jpg) center 0 no-repeat
+		background-size: 100% 100%
+
+/* Our English */
+.our-english
+	@include padding(130px, 0px, 0px, 0px)
+	.our-english-head
+		text-align: center
+		@include padding(0px, 50px, 124px, 50px)
+		h4
+			span
+				display: block
+		p
+			@include margin(60px, 0px, 0px, 0px)
+.course-block
+	background-color: $light-black
+	color: $white
+	@include margin(0px, 0px, 216px, 0px)
+	&:last-child
+		margin: 0
+	.course-img
+		text-align: center
+		img
+			width: 100%
+	.course-content
+		background-color: $white
+		color: $gray-color
+		padding: 18px 22px
+		p
+			margin: 0
+	.course-option
+		@include padding(66px, 66px, 150px, 66px)
+		position: relative
+	.option-list
+		li
+			float: left
+			width: 46%
+			margin: 0 8% 10px 0
+			&:nth-child(2n)
+				margin-right: 0
+			a
+				color: $white
+				border: 1px solid $white
+				@include border-radius(80px)
+				@include padding(28px, 30px, 28px, 30px)
+				display: block
+				@include vw(33px)
+				font-weight: 600
+				clear: both
+				overflow: hidden
+				&:hover
+					background-color: rgba(255,255,255,0.3)
+				.option-text
+					float: left
+					width: 94%
+				i
+					width: 6%
+					float: right
+
+.course-header
+	@include padding(98px, 64px, 65px, 64px)
+	h2
+		margin: 0
+		span
+			display: block
+	a
+		display: block
+		color: $white
+	.course-logo-wrap
+		display: inline-block
+		width: 80%
+		padding-right: 3%
+		img
+			width: 50%
+	.course-title
+		/*text-decoration: underline*/		
+		display: inline-block
+		width: 90%
+		padding-right: 5%
+		@include box-sizing()
+	.course-info
+		color: $gray-color
+	.arrow-wrapper
+		width: 15%
+		display: inline-block
+		text-align: right
+	.arrow-right
+		display: inline-block
+		text-align: right
+		@include vw(101px)
+		color: #4cc1f7
+.course-links
+	.arrow-right
+		display: inline-block
+		vertical-align: middle
+.btn-wrapper
+	position: absolute
+	bottom: -1.5em
+	left: 0
+	width: 100%
+	.btn-common
+		width: 80%
+		margin: 0 auto
+		-webkit-box-shadow: -1px 2px 6px rgba(0,0,0,0.3)
+		-moz-box-shadow: -1px 2px 6px rgba(0,0,0,0.3)
+		-o-box-shadow: -1px 2px 6px rgba(0,0,0,0.3)
+		box-shadow: -1px 2px 6px rgba(0,0,0,0.3)
+
+/* English summer 2017 */
+.english-summer
+	@include margin(214px, 0px, 0px, 0px)
+.english-summer-title
+	background: #efbd52 url(../images/bg-english-summer.png) center 0 no-repeat
+	background-size:  100% auto
+	@include padding(84px, 76px, 332px, 76px)
+	color: #fff
+	font-family: 'Raleway', sans-serif
+	font-weight: 700
+	span
+		@include vw(155px)
+		display: block
+.english-summer-cont
+	background-color: $white
+	box-shadow: 0 0 14px rgba(0,0,0,0.5)
+	@include margin(-270px, 0px, 0px, 0px)
+	.english-summer-video
+		text-align: center
+		img
+			width: 100%
+	.english-summer-content
+		@include padding(62px, 60px, 100px, 60px)
+		p
+			margin: 0
+.btn-common-wrapper		
+	@include margin(64px, 0px, 0px, 0px)
+
+/* Overseas Summer 2017 */
+.overseas-summer
+	@include margin(80px, 0px, 216px, 0px)
+	color: $black
+	position: relative
+	.container
+		position: relative
+		z-index: 99
+	h4
+		@include padding(0px, 40px, 0px, 40px)
+		span
+			display: block
+			@include vw(155px)
+	.overseas-summer-cont
+		@include margin(78px, 0px, 0px, 0px)
+		padding: 0 15px
+		p
+			margin: 0
+	.overseas-img
+		@include margin(-100px, 0px, 0px, 0px)
+		position: relative
+		img
+			width: 100%
+		.btn-wrapper
+			bottom: -8%
+
+/* ILA stories */
+.ila-stories
+	background: transparent url(../images/bg-ila-stories.jpg) center 0 no-repeat
+	background-size: cover
+	color: $white
+	text-align: center
+	@include padding(104px, 0px, 92px, 0px)
+	p
+		@include margin(60px, 0px, 60px, 0px)
+	a
+		color: $white
+		text-decoration: underline
+		font-weight: 600
+		&:hover
+			opacity: 0.8
+
+/* Why Choose ILA */
+.why-ila
+	color: $black
+	@include padding(110px, 0px, 0px, 0px)
+	h2
+		@include margin(0px, 0px, 76px, 0px)
+		text-align: center
+.why-ila-list
+	.ila-facility-img
+		@include min-height(560px)
+		box-sizing: border-box
+
+/* Why Choose */
+.last-yr-student
+	background: transparent url(../images/why-choose-1.jpg) center 0 no-repeat
+	background-size: 100% 100%
+.training-center
+	background: transparent url(../images/why-choose-2.jpg) center 0 no-repeat
+	background-size: 100% 100%
+.expertise
+	background: transparent url(../images/why-choose-3.jpg) center 0 no-repeat
+	background-size: 100% 100%
+.foreign-teacher
+	background: transparent url(../images/why-choose-4.jpg) center 0 no-repeat
+	background-size: 100% 100%
+.foreign-student
+	background: transparent url(../images/why-choose-5.jpg) center 0 no-repeat
+	background-size: 100% 100%
+
+/* Exclusive offer */
+.exclusive-offer
+	background-color: $light-gray
+	@include padding(134px, 72px, 102px, 72px)
+	h4
+		color: #124890
+	.exclusive-content
+		@include padding(0px, 72px, 0px, 72px)
+		p
+			@include margin(72px, 0px, 0px, 0px)
+	.book-img
+		text-align: right
+	.btn-common-wrapper
+		@include padding(0px, 28px, 0px, 28px)
+
+/* Upcoming Events */
+.upcoming-events
+	background-color: #f4f8f9
+	@include padding(118px, 0px, 106px, 0px)
+	.event-update
+		background-color: $white
+	.event-block
+		@include margin(78px, 0px, 0px, 0px)
+	.event-img
+		text-align: center
+		img
+			width: 100%
+	.event-content
+		-webkit-box-shadow: -1px 2px 6px rgba(0,0,0,0.3)
+		-moz-box-shadow: -1px 2px 6px rgba(0,0,0,0.3)
+		-o-box-shadow: -1px 2px 6px rgba(0,0,0,0.3)
+		box-shadow: -1px 2px 6px rgba(0,0,0,0.3)
+		@include padding(64px, 66px, 102px, 66px)
+		h5
+			margin: 0
+	.ila-new
+		margin-top: 40px
+	.date-time
+		@include margin(34px, 0px, 0px, 0px)
+		li
+			float: left
+			margin-left: 22px
+			position: relative
+			&:first-child
+				margin: 0
+	.map
+		@include margin(34px, 0px, 0px, 0px)
+
+/* ILA english for young learner */
+.banner-young-learner, .banner-why-choose
+	background: transparent url(../images/young-learner-banner.jpg) 0 0 no-repeat
+	background-size: 100% 100%
+.course-categories
+	@include padding(100px, 0px, 223px, 0px)
+	.course-block .option-list a
+		color: $light-blue
+		border: 1px solid $light-blue
+		i
+			color: #666
+	.course-category
+		background-color: $white
+		position: relative
+	.course-info
+		@include margin(98px, 0px, 72px, 0px)
+		font-weight: 700
+		span	
+			display: block
+	.course-logo
+		img
+			width: 50%
+.meet-teacher
+	@include padding(133px, 0px, 133px, 0px)
+	h2
+		margin: 0
+	.team-member
+		@include margin(156px, 0px, 0px, 0px)
+		h5
+			@include margin(60px, 0px, 45px, 0px)
+	.member-img
+		@include width(325px)
+		@include height(325px)
+		overflow: hidden
+		margin: 0 auto
+		@include border-radius(50%)
+		img
+			width: 100%
+			height: 100%
+	.see-more
+		@include margin(113px, 0px, 0px, 0px)
+.training-and-facility
+	background-color: #eff3f4
+	@include padding(98px, 0px, 136px, 0px)
+	h2
+		margin: 0
+	.slideshow
+		@include margin(86px, 0px, 0px, 0px)
+	.slick-slide
+		img
+			width: 100%
+			display: block
+			height: auto
+	.slick-dots
+		position: absolute
+		bottom: 20px
+		left: 20px
+		li
+			float: left
+			@include margin(0px, 29px, 0px, 0px)
+			&.slick-active
+				button
+					border-color: $white
+					background-color: $white
+		button
+			width: 1.2em
+			height: 1.2em
+			@include border-radius(50%)
+			border: 2px solid #d8403e
+			text-indent: -9999px
+			display: block
+	.slideshow-content
+		@include margin(72px, 0px, 0px, 0px)
+
+/* About us */
+.banner-about
+	background: transparent url(../images/about-banner.jpg) 0 0 no-repeat
+	background-size: cover
+.content-wrapper
+	@include padding(120px, 0px, 121px, 0px)
+	@include vw(57px)
+	color: #666
+	p
+		@include margin(0px, 0px, 112px, 0px)
+		&:last-child
+			margin-bottom: 0
+.about-ila
+	@include padding(133px, 0px, 220px, 0px)
+	.about-block
+		position: relative
+		@include margin(0px, 0px, 175px, 0px)
+		&:last-child
+			margin-bottom: 0
+		img
+			width: 100%
+		.about-block-title
+			position: absolute
+			top: 50%
+			left: 0
+			width: 100%
+			transform: translateY(-50%)
+			text-align: center
+			h3
+				@include vw(74px)
+				color: $white
+/*Awards & Reconition*/
+.banner-awards
+	background: transparent url(../images/awards-banner.jpg) 0 0 no-repeat
+	background-size: cover
+.ila-honors
+	background-color: #f4f8f9
+	@include padding(104px, 0px, 135px, 0px)
+	.honors-block
+		background-color: $white
+		@include padding(135px, 48px, 135px, 48px)
+		margin-top: 32px
+		-webkit-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1)
+		-moz-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1)
+		-o-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1)
+		box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1)
+		.honors-content
+			@include margin(100px, 0px, 0px, 0px)
+			h5
+				margin: 0
+			p
+				color: #666
+				@include margin(55px, 0px, 0px, 0px)
+	.see-more
+		@include margin(103px, 0px, 0px, 0px)
+/* Vision Mission & Corevalue*/
+.banner-vision-mission
+	background: transparent url(../images/vision-mission-banner.jpg) 0 0 no-repeat
+	background-size: cover
+.ila-speciality
+	@include padding(100px, 0px, 144px, 0px)
+	color: #666
+	.ila-speciality-img
+		width: 80%
+		@include margin(0px, 0px, 0px, 33px)
+		img
+			width: 100%
+	.speciality-img-wrapper
+		position: relative
+		h2
+			position: absolute
+			top: 20px
+			right: 0
+			@include vw(121px)
+			color: $white
+			@include padding(60px, 90px, 60px, 90px)
+		.title-vision
+			background-color: #4dbbdb
+		.title-mission
+			background-color: #f1bf52
+		.title-values
+			background-color: #62b36b
+	.ila-speciality-block
+		margin-top: 42px
+		&:first-child
+			margin-top: 0
+		.ila-speciality-img
+			float: left
+		&:nth-child(2n+1)
+			.ila-speciality-img
+				float: right
+				@include margin(0px, 33px, 0px, 0px)
+			h2
+				right: auto
+				left: 0
+	.speciality-content
+		@include margin(55px, 33px, 0px, 0px)
+		@include padding(0px, 36px, 0px, 36px)
+		p
+			margin: 0
+.ila-values-list
+	counter-reset: step
+	color: $black
+	li
+		@include line-height(80px)
+		@include padding(130px, 55px, 0px, 36px)
+		position: relative
+		z-index: 99
+		&:first-child
+			margin-top: 0
+		&:after
+			content: counter(step)
+			counter-increment: step
+			line-height: 185px
+			display: block
+			@include vw(364px)
+			color: #e5f1f4
+			z-index: -1
+			position: absolute
+			top: -56px
+			left: 0
+		&:nth-child(2n)
+			&:after
+				left: auto
+				right: 20px
+
+/* ILA Teachers */
+.member-info-block
+	background-color: $white
+	@include border-radius(5px)
+	@include margin(180px, 0px, 0px, 0px)
+	@include padding(160px, 84px, 90px, 84px)
+	min-height: 87px
+	position: relative
+	@include box-sizing()
+	-webkit-box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1)
+	-moz-box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1)
+	-o-box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1)
+	box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1)
+	h5
+		margin: 0
+	p
+		@include margin(40px, 0px, 0px, 0px)
+.member-info-img
+	position: relative
+	position: absolute
+	left: 50%
+	top: 0
+	-webkit-transform: translate(-50%, -50%)
+	-moz-transform: translate(-50%, -50%)
+	-o-transform: translate(-50%, -50%)
+	-ms-transform: translate(-50%, -50%)
+	transform: translate(-50%, -50%)
+	img
+		@include width(150px)
+		@include height(150px)
+		border: 0.3em solid $white
+		@include border-radius(50%)
+		-webkit-box-shadow: 0 0 10px #ccc
+		-moz-box-shadow: 0 0 10px #ccc
+		-o-box-shadow: 0 0 10px #ccc
+		-ms-box-shadow: 0 0 10px #ccc
+		box-shadow: 0 0 10px #ccc
+		cursor: pointer
+		&:hover
+			-webkit-box-shadow: 0 0 10px #999
+			-moz-box-shadow: 0 0 10px #999
+			-o-box-shadow: 0 0 10px #999
+			-ms-box-shadow: 0 0 10px #999
+			box-shadow: 0 0 10px #999
+  		
+.banner-teachers
+	background: transparent url(../images/teachers-banner.jpg) 0 0 no-repeat
+	background-size: cover
+	img
+		width: 100%
+		height: 100%
+.slick-slide img
+	display: inline-block
+.teacher-info
+	h5
+		margin: 0
+	.teacher-experience
+		@include margin(0px, 0px, 7px, 0px)
+		display: block
+	span
+		@include vw(40px)
+.ila-teachers
+	background-color: #f4f8f9
+	@include padding(100px, 0px, 132px, 0px)
+	.container
+		@include padding(0px, 68px, 0px, 68px)
+
+.teacher-slideshow
+	@include padding(93px, 0px, 273px, 0px)
+	.teacher-slides .slick-track
+		@include padding(285px, 0px, 0px, 0px)
+	.teacher-slides .slick-list
+		@include padding(0px, 40px, 0px, 40px)
+		.slide-item
+			@include margin(0px, 15px, 0px, 15px)
+	.action
+		background-color: $white
+		@include padding(53px, 140px, 53px, 140px)
+		@include margin(0px, 30px, 0px, 30px)
+		position: relative
+		-webkit-box-shadow: 0 0 10px #ccc
+		-moz-box-shadow: 0 0 10px #ccc
+		-o-box-shadow: 0 0 10px #ccc
+		-ms-box-shadow: 0 0 10px #ccc
+		box-shadow: 0 0 10px #ccc
+		a
+			background-color: #dddddd
+			@include border-radius(50%)
+			@include width(60px)
+			@include height(60px)
+			@include line-height(50px)
+			@include vw(18px)
+			overflow: hidden
+			text-transform: uppercase
+			color: $white
+			text-align: center
+			display: inline-block
+			@include margin(0px, 0px, 0px, 50px)
+			-webkit-box-shadow: 0 0 2px #ccc
+			-moz-box-shadow: 0 0 2px #ccc
+			-o-box-shadow: 0 0 2px #ccc
+			-ms-box-shadow: 0 0 2px #ccc
+			box-shadow: 0 0 2px #ccc
+			&:first-child
+				margin: 0
+			&.active
+				background-color: #4dbbdb
+		.slick-arrow
+			text-indent: -9999px
+			display: block
+			position: relative
+			background-color: transparent
+			border: 0 none
+			padding: 0
+			position: absolute
+			top: 0
+			height: 100%
+			color: #1294f7
+			&:focus
+				border: 0 none
+				box-shadow: none
+				outline: none
+			&:after
+				content: "\02039"
+				display: block
+				text-indent: 0
+				@include vw(100px)
+				position: absolute
+				top: 50%
+				-webkit-transform: translateY(-50%)
+				-moz-transform: translateY(-50%)
+				-o-transform: translateY(-50%)
+				-mstransform: translateY(-50%)
+				transform: translateY(-50%)
+		.slick-next
+			right: 20px
+			&:after
+				content: "\0203A"
+		.slick-prev
+			left: 15px
+		.slick-disabled
+			color: #b8b8b8
+.teacher-block
+	-webkit-box-shadow: 0 0px 7px #ccc
+	-moz-box-shadow: 0 0px 7px #ccc
+	-o-box-shadow: 0 0px 7px #ccc
+	box-shadow: 0 0px 7px #ccc
+	background-color: $white
+	position: relative
+	@include border-radius(6px)
+	.teacher-img
+		position: absolute
+		top: -2em
+		left: 2em
+		@include width(296px)
+		@include height(296px)
+		overflow: hidden
+		@include border-radius(50%)
+		img
+			width: 100%
+			height: 100%
+.slide-item
+	@include padding(273px, 82px, 95px, 82px)
+	.teacher-img
+		left: 50%
+		top: -3em
+		-webkit-transform: translateX(-50%)
+		-moz-transform: translateX(-50%)
+		-o-transform: translateX(-50%)
+		-ms-transform: translateX(-50%)
+		transform: translateX(-50%)
+.teachers-list
+	.teacher-block
+		@include margin(168px, 0px, 0px, 0px)
+		@include padding(73px, 88px, 90px, 88px)
+		min-height: 80px
+		@include box-sizing()
+	.teacher-info
+		@include margin(0px, 0px, 0px, 400px)
+
+/* Why choose ILA page */
+.why-choose-block, .ila-areas-video
+	@include padding(100px, 0px, 90px, 0px)
+	h5
+		@include margin(0px, 0px, 50px, 0px)
+		p
+			@include margin(0px, 64px, 0px, 64px)
+.ila-areas-video p
+	@include margin(65px, 64px, 0px, 64px)
+.why-choose-text
+	@include margin(68px, 0px, 0px, 0px)
+	p
+		@include margin(94px, 0px, 0px, 0px)
+		&:first-child
+			margin: 0
+.why-choose-content, .ila-areas-content
+	h5
+		text-align: center
+.ila-areas-video
+	text-align: center
+	color: $white
+.video-bg-green
+	background: #62b36b none
+.video-bg-yellow
+	border-top: 1px solid $white
+	background: #f1bf52 none
+
+/* learning Guarantee page */
+.learning-guarantee-txt
+	h5
+		@include margin(80px, 0px, 0px, 0px)
+.learning-conditions
+	@include padding(75px, 0px, 75px, 0px)
+	p
+		margin: 0
+
+/* ILA Stories page */
+.banner-stories, .banner-super-junior
+	background: transparent url(../images/stories-banner.jpg) 0 0 no-repeat
+	background-size: cover
+.video-story
+	background-image: url(../images/bg-blue-quote.png)
+.learner-quote
+	@include margin(80px, 0px, 0px, 0px)
+	.learner-quote-img
+		@include width(208px)
+		@include height(208px)
+		@include border-radius(50%)
+		border: 3px solid $white
+		overflow: hidden
+		float: left
+		@include margin(0px, 0px, 0px, 30px)
+		img
+			width: 100%
+			height: 100%
+	.learner-quote-text
+		@include vw(45px)
+		@include margin(5px, 0px, 0px, 300px)
+		h5
+			margin: 0
+			@include vw(50px)
+			text-align: left
+		.quote-text
+			text-transform: uppercase
+			margin: 0
+			@include line-height(62px)
+.stories-list
+	@include padding(92px, 28px, 92px, 28px)
+/* Super Junior page */
+.content-link
+	@include margin(80px, 0px, 0px, 0px)
+	display: inline-block
+	color: $white
+	text-decoration: underline
+.age-cat-blcok, .childhood-block
+	@include padding(125px, 0px, 100px, 0px)
+	text-align: center
+	&:nth-child(2n+1)
+		background-color: #f4f4f4
+.age-categories-container
+	@include padding(65px, 68px, 0px, 68px)
+	p
+		margin: 0
+	.btn-common-wrapper
+		@include margin(35px, 0px, 0px, 0px)
+		a
+			@include margin(50px, 0px, 0px, 0px)
+			&:first-child
+				margin: 0
+.btn-black
+	background-color: $black
+
+/* jump start 3 to 4 years old */
+.study-plan
+	@include padding(97px, 0px, 180px, 0px)
+	.study-plan-header
+		p
+			@include margin(45px, 0px, 0px, 0px)
+	.study-plans-list
+		@include margin(140px, 0px, 0px, 0px)
+	.study-plan-item
+		background-color: $white
+		@include margin(128px, 0px, 0px, 0px)
+		-webkit-box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1)
+		-moz-box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1)
+		-o-box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1)
+		box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1)
+		&:first-child
+			margin: 0
+	.study-plan-content
+		@include padding(72px, 42px, 160px, 42px)
+		position: relative
+		p
+			margin: 0
+	.study-plan-datetime
+		@include margin(65px, 0px, 0px, 0px)
+		li
+			float: left
+			@include margin(0px, 0px, 0px, 72px)
+			&:first-child
+				margin: 0
+	.study-plan-img
+		position: relative
+		img
+			width: 100%
+	.level-tag
+		position: absolute
+		top: -2px
+		left: 0
+		background-color: #f1bf52
+		color: $white
+		@include padding(40px, 130px, 40px, 130px)
+		font-family: 'Raleway', sans-serif
+		font-weight: 600
+/* Course shedule page */
+.shedule-blocks
+	@include padding(47px, 0px, 178px, 0px)
+	.shedule-block
+		@include padding(0px, 0px, 143px, 0px)
+		background-color: $white
+		position: relative
+		@include margin(0px, 0px, 147px, 0px)
+		-webkit-box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2)
+		-moz-box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2)
+		-o-box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2)
+		box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2)
+		&:last-child
+			margin: 0
+.select-center
+	@include padding(80px, 0px, 98px, 0px)
+.select-center-fields
+	@include margin(184px, 32px, 0px, 32px)
+	.inp-field:last-child
+		margin: 0
+.schedule-info-field
+	background-color: #f2f2f2
+	@include padding(150px, 65px, 100px, 65px)
+.schedule-table
+	td
+		@include height(146px)
+	tr td:first-child
+		width: 40%
+		background-color: #fafafa
+	.table-subtext
+		display: block
+		color: #666
+	.startinweek-text
+		font-weight: 700
+
+/* Summer English Page */
+.summer-video
+	position: relative
+	p
+		@include margin(0px, 0px, 78px, 0px)
+.childhood-kingdom
+	@include padding(210px, 0px, 0px, 0px)
+	h2
+		@include vw(82px)
+		@include margin(0px, 0px, 85px, 0px)
+		text-transform: uppercase
+	.childhood-block
+		background-color: #f4f4f4
+		@include margin(0px, 0px, 60px, 0px)
+		&:last-child
+			margin: 0
+.summer-student-say
+	.member-info
+		h5
+			@include vw(50px)
+		span
+			@include vw(45px)
+.image-gallery
+	@include padding(76px, 0px, 0px, 0px)
+	.img-gallery
+		@include margin(24px, 0px, 0px, 0px)
+		&:first-child
+			margin: 0
+
+/* Contact us Page */
+.contact-list
+	@include padding(100px, 100px, 100px, 100px)
+	address
+		font-style: normal
+		@include margin(0px, 0px, 6px, 0px)
+		p
+			@include margin(45px, 0px, 0px, 0px)
+			&:first-child
+				margin: 0
+		i
+			float: left
+			width: 10%
+			@include line-height(80px)
+			color: #000
+		span
+			margin-left: 10%
+			display: block
+			@include line-height(70px)
+
+	.contact-block
+		@include margin(92px, 0px, 0px, 0px)
+		label
+			display: block
+			@include vw(40px)
+		a
+			@include vw(45px)
+			@include margin(22px, 0px, 0px, 0px)
+.select-location
+	@include padding(84px, 36px, 84px, 36px)
+	color: $black
+	-webkit-box-shadow: 0 4px 23px 0 #ccc
+	-moz-box-shadow: 0 4px 23px 0 #ccc
+	-o-box-shadow: 0 4px 23px 0 #ccc
+	-ms-box-shadow: 0 4px 23px 0 #ccc
+	box-shadow: 0 4px 23px 0 #ccc
+	z-index: 999
+	position: relative
+	h4
+		@include vw(60px)
+
+
+/* Footer CSS */
+footer
+	background-color: $brown
+	color: $white
+	font-weight: 600
+	.career-section
+		@include padding(66px, 70px, 138px, 70px)
+		display: block
+		padding-bottom: 40px
+	a
+		color: $white
+	.news-letter
+		@include margin(85px, 0px, 0px, 0px)
+	.form-news-letter
+		@include margin(34px, 0px, 0px, 0px)
+		background-color: #636363
+		@include border-radius(5px)
+		input
+			background-color: transparent
+			border: 0 none
+			display: inline-block
+		input[type="email"]
+			@include padding(48px, 52px, 48px, 52px)
+			width: 80%
+			@include box-sizing()
+			color: $white
+			float: left
+			@include vw(46px)
+		.email-submit
+			@include padding(48px, 58px, 48px, 52px)
+			text-indent: -9999px
+			display: inline-block
+			width: 20%
+			background: $light-blue url(../images/icon-email.png) center center no-repeat
+			background-size: auto 50%
+			@include border-radius(0 3px 3px 0)
+			cursor: pointer
+			&:hover
+				background-color: $anchor-hover
+
+.footer-copyright
+	@include padding(104px, 78px, 140px, 78px)
+	text-align: center
+	.footer-logo
+		img
+			@include width(150px)
+	.social-links
+		@include padding(110px, 0px, 100px, 0px)
+		li
+			display: inline-block
+			@include margin(0px, 23px, 100px, 2px)
+			a
+				display: block
+				@include width(130px)
+				@include height(130px)
+				@include vw(70px)
+				@include line-height(110px)
+				@include border-radius(50%)
+				border: 3px solid $white
+				&:hover
+					opacity: 0.7 
+	.copyright-txt
+		@include padding(95px, 0px, 0px, 0px)
+	.terms-and-policy
+		text-decoration: underline
+		color: $light-blue
+		&:hover
+			color: $anchor-hover
+
+/* Map CSS */
+.Contact-us
+	color: $gray-color
+	position: relative
+	h5
+		position: absolute
+		top: 20px
+		left: 20px
+		z-index: 9
+		color: $black
+#map
+	height: 100%
+	div.gmnoprint,div.gmnoscreen,.gm-style-cc
+		display: none    
+
+	.info_content
+		width: 236px !important
+		font-size: 12px
+		a
+			color: #000099!important
+		a.phone-num
+			color: $gray-color!important
+			padding-left: 18px
+			background: transparent url(../images/map-infobox-phone.png) 0 3px no-repeat
+	.address
+		h3
+			color: $black
+			padding: 12px 0 15px 0
+			text-transform: uppercase
+			font-size: 12px
+			line-height: 20px
+		.address-content
+			margin: 0
+			padding: 15px 0
+			border-top: 1px solid #e5e5e5
+			p
+				margin: 0 0 25px 0
+				padding-left: 18px
+				line-height: 20px
+				background: transparent url(../images/map-infobox-marker.png) 0 3px no-repeat
+#map-legend-wrap
+	position: absolute
+	bottom: 10%
+	left: 30px
+	text-transform: uppercase
+.map-legend
+	display: block
+	color: #000
+	margin-bottom: 15px
+#map-near, #map-all
+	display: inline-block
+	width: 12px
+	height: 12px
+	background-color: orange
+	margin-right: 10px
+	border-radius: 50%
+#map-near
+	background-color: #ff3300
+#map-all
+	background-color: #0065cd
+
+      
+
+  
+
