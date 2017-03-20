@@ -70,5 +70,27 @@ class Home extends MY_Controller {
         echo 1;
         exit;        
     }
+
+	function contact_us()
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$contact = $this->Custom_model->fetch_data(BASIC_SETTINGS,
+               array(
+                   BASIC_SETTINGS.'.site_email',
+				   BASIC_SETTINGS.'.site_contact_no',
+                   BASIC_SETTINGS_LANG.'.site_address'
+                   ),
+               array(BASIC_SETTINGS.'.id'=>1),
+               array(
+                   BASIC_SETTINGS_LANG=>BASIC_SETTINGS_LANG.'.settings_id='.BASIC_SETTINGS.'.id AND ' . BASIC_SETTINGS_LANG . '.language_id=' . $selected_lang)
+		);
+		$data['contact'] = $contact[0];
+
+        $partials = array('content' => 'site/contact_us_content', 'banner'=>'site/contact_us_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
     
 }

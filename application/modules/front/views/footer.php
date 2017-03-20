@@ -17,7 +17,7 @@
 									<li><a href="#"><?php echo $this->lang->line('home_learning');?></a></li>
 									<li><a href="learning-guarantee.html"><?php echo $this->lang->line('home_learning_guarantees');?></a></li>
 									<li><a href="#"><?php echo $this->lang->line('home_accreditation');?></a></li>
-									<li><a href="#"><?php echo $this->lang->line('home_teachers');?></a></li>
+									<li><a href="#"><?php echo $this->lang->line('home_prof_teachers');?></a></li>
 									<li><a href="#"><?php echo $this->lang->line('home_academic_management');?></a></li>
 									<li><a href="#"><?php echo $this->lang->line('home_welfare');?></a></li>
 									<li><a href="#"><?php echo $this->lang->line('home_customer_care');?></a></li>
@@ -32,9 +32,11 @@
 									<li><a href="#"><?php echo $this->lang->line('home_cafe');?></a></li>
 								</ul>
 							</li>
+							<li>
+								<a href="javascript:void(0);"><?php echo $this->lang->line('home_career');?></a>
+							</li>
 					</ul>
-					<div class="career-section">
-						<a href="javascript:void(0);"><?php echo $this->lang->line('home_career');?></a>
+					<div class="career-section">						
 						<div class="news-letter"><span><?php echo $this->lang->line('home_newsletter');?></span>
 							<form class="form-news-letter clearfix">
 								<input type="email" name="" placeholder="contact@mail.com" />

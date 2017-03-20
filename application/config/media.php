@@ -9,5 +9,8 @@
 $config['media_sizes'] = array(
     'small' => [250, 100],
     'large' => [800, 600],
-    'events_thumb' => [300, 183]
+    'events_thumb' => [300, 183],
+	'vision_thumb' => [242, 184],
+	'award_thumb' => [200, 100],
+	'why_choose' => [394, 274]
 );

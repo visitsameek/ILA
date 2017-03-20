@@ -2260,7 +2260,8 @@ footer {
   footer a {
     color: #fff; }
   footer .news-letter {
-    margin: 6.2963vw 0vw 0vw 0vw; }
+    /*margin: 6.2963vw 0vw 0vw 0vw;*/
+	margin: 0vw 0vw 0vw 0vw;}
     @media (min-width: 1080px) {
       footer .news-letter {
         margin: 6.2963vw 0vw 0vw 0vw; } }

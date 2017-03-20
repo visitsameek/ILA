@@ -4,9 +4,7 @@
 							<div class="container">
 								<h5><?php echo $this->lang->line('home_elite_gen_title');?></h5>
 			            <div class="video-play-wrap video-blcok">
-			            		<img src="<?php echo base_url(); ?>front/images/img-be-prepare.jpg" alt="Be Prepare"/>
-			                <a data-fancybox href="https://www.youtube.com/watch?v=_sI_Ps7JSEk">
-			                    <span class="play-btn sprite-icon">Play Button</span>
+			            		<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>
 			                </a>
 			            </div>
 							</div>
@@ -147,10 +145,7 @@
 							<div class="container">
 								<div class="english-summer-cont">
 									<div class="english-summer-video video-blcok">
-										<img src="<?php echo base_url(); ?>front/images/img-english-summer.jpg" alt="English Summer"/>
-										<a data-fancybox href="https://www.youtube.com/watch?v=_sI_Ps7JSEk">
-			                <span class="play-btn sprite-icon">Play Button</span>
-			               </a>
+										<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>
 									</div>
 									<div class="english-summer-content">
 										<p><?php echo $this->lang->line('home_english_summer_text');?></p>
@@ -180,46 +175,17 @@
 							<div class="container">
 								<h5><?php echo $this->lang->line('home_stories');?></h5>
 								<div class="ila-stories-video video-blcok">
-									<img src="<?php echo base_url(); ?>front/images/img-lia-stories.jpg" alt="English Summer"/>
-									<a data-fancybox href="https://www.youtube.com/watch?v=_sI_Ps7JSEk">
-			              <span class="play-btn sprite-icon">Play Button</span>
-			            </a>
+									<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>
 								</div>
 								<p><?php echo $this->lang->line('home_stories_text');?></p>
 								<a href="ila-stories.html"><?php echo $this->lang->line('home_see_more');?></a>
 							</div>
 						</div>
 						<!-- Why Choose ILA Section-->
-						<div class="why-ila clearfix">
-							<h2><?php echo $this->lang->line('home_why_choose_ila');?></h2>
-							<div class="why-ila-list ila-facility">
-									<div class="ila-facility-img last-yr-student">
-										<div class="facilitty-title">
-												<h3>35,000+ <span><?php echo $this->lang->line('home_students');?></span> <span><?php echo $this->lang->line('home_last_year');?></span></h3>
-										</div>
-									</div>
-									<div class="ila-facility-img training-center">
-										<div class="facilitty-title">
-											<h3>31 <?php echo $this->lang->line('home_training');?> <span><?php echo $this->lang->line('home_centres');?></span> <span><?php echo $this->lang->line('home_in_7_cities');?></span></h3>
-										</div>
-									</div>
-									<div class="ila-facility-img expertise">
-										<div class="facilitty-title">
-											<h3>15 <?php echo $this->lang->line('home_years');?> <span><?php echo $this->lang->line('home_expertise');?></span></h3>
-										</div>
-									</div>
-									<div class="ila-facility-img foreign-teacher">
-										<div class="facilitty-title">
-											<h3>400+ <span><?php echo $this->lang->line('home_foreign');?></span> <span><?php echo $this->lang->line('home_teachers');?></span></h3>
-										</div>
-									</div>
-									<div class="ila-facility-img foreign-student">
-										<div class="facilitty-title">
-											<h3>125,000+ <span><?php echo $this->lang->line('home_former');?></span> <span><?php echo $this->lang->line('home_students');?></span></h3>
-										</div>
-									</div>
-							</div>
-						</div>
+						<?php
+						  $this->load->view('why_choose_ila');
+						 ?>
+
 						<!-- Exclusive Offer Section-->
 						<div class="exclusive-offer clearfix">
 							<div class="exclusive-content">

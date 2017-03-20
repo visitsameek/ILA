@@ -50,5 +50,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'front/home';
+$route['about-us'] = "front/cms/about_us";
+$route['values'] = "front/cms/values";
+$route['awards'] = "front/cms/awards";
+$route['why-choose-us'] = "front/cms/why_choose_us";
+$route['learning-guarantees'] = "front/cms/learning_guarantees";
+$route['contact-us'] = "front/home/contact_us";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
