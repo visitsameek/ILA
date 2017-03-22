@@ -157,5 +157,177 @@ class Cms extends MY_Controller {
         $partials = array('content' => 'cms/learning_guarantees_content', 'banner'=>'cms/learning_guarantees_banner', 'menu'=>'menu', 'footer'=>'footer');
         $this->template->load('home_template', $partials, $data);
     }
+
+	function stories()
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$data['parent_story_list'] = $this->Custom_model->fetch_data(STORIES,
+               array(
+                   STORIES.'.id',
+				   STORIES_LANG.'.title',
+                   STORIES_LANG.'.short_desc'
+                   ),
+               array(STORIES.'.story_type'=>1, STORIES.'.course_id'=>0, STORIES.'.isblocked'=>0, STORIES.'.isdeleted'=>0),
+               array(
+                   STORIES_LANG=>STORIES_LANG.'.story_id='.STORIES.'.id AND ' . STORIES_LANG . '.language_id=' . $selected_lang)
+		);
+
+		$data['student_story_list'] = $this->Custom_model->fetch_data(STORIES,
+               array(
+                   STORIES.'.id',
+				   STORIES_LANG.'.title',
+                   STORIES_LANG.'.short_desc'
+                   ),
+               array(STORIES.'.story_type'=>2, STORIES.'.course_id'=>0, STORIES.'.isblocked'=>0, STORIES.'.isdeleted'=>0),
+               array(
+                   STORIES_LANG=>STORIES_LANG.'.story_id='.STORIES.'.id AND ' . STORIES_LANG . '.language_id=' . $selected_lang)
+		);
+
+        $partials = array('content' => 'cms/story_content', 'banner'=>'cms/story_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
+
+	function community_network()
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$data['network_list'] = $this->Custom_model->fetch_data(COMMUNITY_NETWORKS,
+               array(
+                   COMMUNITY_NETWORKS.'.id',
+				   COMMUNITY_NETWORKS_LANG.'.title',
+                   COMMUNITY_NETWORKS_LANG.'.content'
+                   ),
+               array(COMMUNITY_NETWORKS.'.isblocked'=>0, COMMUNITY_NETWORKS.'.isdeleted'=>0),
+               array(
+                   COMMUNITY_NETWORKS_LANG=>COMMUNITY_NETWORKS_LANG.'.community_network_id='.COMMUNITY_NETWORKS.'.id AND ' . COMMUNITY_NETWORKS_LANG . '.language_id=' . $selected_lang)
+		);
+
+        $partials = array('content' => 'cms/community_network_content', 'banner'=>'cms/community_network_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
+
+	function news()
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$data['news_list'] = $this->Custom_model->fetch_data(NEWS,
+               array(
+                   NEWS.'.id',
+                   NEWS.'.news_date',
+                   NEWS_LANG.'.title',
+				   NEWS_LANG.'.short_desc',
+                   MEDIA.'.url',
+                   MEDIA.'.media_name',
+                   MEDIA.'.extension',
+                   MEDIA.'.raw_name'
+                   ),
+               array(NEWS.'.isblocked'=>0, NEWS.'.isdeleted'=>0),
+               array(
+                   NEWS_LANG=>NEWS_LANG.'.news_id='.NEWS.'.id AND ' . NEWS_LANG . '.language_id=' . $selected_lang,
+                   MEDIA=>MEDIA.'.id='.NEWS.'.media_id'),
+			   $search = '', $order = NEWS . '.created_on', $by = 'desc'
+		);
+		//print_r($data['values']); exit;
+
+        $partials = array('content' => 'cms/news_content', 'banner'=>'cms/news_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
+
+	function news_details($news_id=null)
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$news_details = $this->Custom_model->fetch_data(NEWS,
+               array(
+                   NEWS.'.id',
+                   NEWS.'.news_date',
+                   NEWS_LANG.'.title',
+				   NEWS_LANG.'.content',
+                   MEDIA.'.url',
+                   MEDIA.'.media_name',
+                   MEDIA.'.extension',
+                   MEDIA.'.raw_name'
+                   ),
+               array(NEWS.'.id'=>$news_id),
+               array(
+                   NEWS_LANG=>NEWS_LANG.'.news_id='.NEWS.'.id AND ' . NEWS_LANG . '.language_id=' . $selected_lang,
+                   MEDIA=>MEDIA.'.id='.NEWS.'.media_id')
+		);
+		$data['news_details'] = $news_details[0];
+
+        $partials = array('content' => 'cms/news_details_content', 'banner'=>'cms/news_details_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
+
+	function events()
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$data['event_list'] = $this->Custom_model->fetch_data(EVENTS,
+               array(
+                   EVENTS.'.id',
+                   EVENTS.'.event_date',
+                   EVENTS.'.event_time',
+                   EVENTS_LANG.'.title',
+				   EVENTS_LANG.'.event_place',
+				   EVENTS_LANG.'.short_desc',
+                   MEDIA.'.url',
+                   MEDIA.'.media_name',
+                   MEDIA.'.extension',
+                   MEDIA.'.raw_name'
+                   ),
+               array(EVENTS.'.isblocked'=>0, EVENTS.'.isdeleted'=>0),
+               array(
+                   EVENTS_LANG=>EVENTS_LANG.'.event_id='.EVENTS.'.id AND ' . EVENTS_LANG . '.language_id=' . $selected_lang,
+                   MEDIA=>MEDIA.'.id='.EVENTS.'.media_id'),
+			   $search = '', $order = EVENTS . '.created_on', $by = 'desc'
+		);
+		//print_r($data['values']); exit;
+
+        $partials = array('content' => 'cms/event_content', 'banner'=>'cms/event_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
+
+	function event_details($event_id=null)
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$event_details = $this->Custom_model->fetch_data(EVENTS,
+               array(
+                   EVENTS.'.id',
+                   EVENTS.'.event_date',
+                   EVENTS.'.event_time',
+                   EVENTS_LANG.'.title',
+				   EVENTS_LANG.'.event_place',
+				   EVENTS_LANG.'.content',
+                   MEDIA.'.url',
+                   MEDIA.'.media_name',
+                   MEDIA.'.extension',
+                   MEDIA.'.raw_name'
+                   ),
+               array(EVENTS.'.id'=>$event_id),
+               array(
+                   EVENTS_LANG=>EVENTS_LANG.'.event_id='.EVENTS.'.id AND ' . EVENTS_LANG . '.language_id=' . $selected_lang,
+                   MEDIA=>MEDIA.'.id='.EVENTS.'.media_id'),
+			   $search = '', $order = EVENTS . '.created_on', $by = 'desc'
+		);
+		$data['event_details'] = $event_details[0];
+
+        $partials = array('content' => 'cms/event_details_content', 'banner'=>'cms/event_details_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
     
 }

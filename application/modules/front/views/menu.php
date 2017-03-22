@@ -24,8 +24,14 @@
 							<a href="<?php echo base_url(); ?>" class="logo"><img src="<?php echo base_url(); ?>front/images/logo-overlay.png" alt="ILA"/></a>
 							<ul class="popup-menu-list">
 								<li class="language-list">
-									<a href="javascript:void(0);" onclick="javascript:set_lang('vietnamese');"><img src="<?php echo base_url(); ?>front/images/flag-vietnam.png" alt="Vietnam"/></a>
-									<a href="javascript:void(0);" onclick="javascript:set_lang('english');"><img src="<?php echo base_url(); ?>front/images/flag-england.jpg" alt="England"/></a>
+								<?php
+								  $selected_language = "";
+								  if($this->session->userdata('site_language')){
+									 $selected_language =  $this->session->userdata('site_language');								   
+								  }
+								 ?>
+									<a href="javascript:void(0);" onclick="javascript:set_lang('vietnamese');"><img src="<?php echo base_url(); ?>front/images/<?php echo $selected_language == 'vietnamese' ? "flag-vietnam.png" : "vietnam_b&w.jpg"; ?>" alt="Vietnam"/></a>
+									<a href="javascript:void(0);" onclick="javascript:set_lang('english');"><img src="<?php echo base_url(); ?>front/images/<?php echo ($selected_language == '') || ($selected_language == 'english') ? "flag-england.jpg" : "english_b&w.jpg"; ?>" alt="England"/></a>
 								</li>
 								<li><a href="#" class="icon-cancel cancel">cancel</a></li>
 							</ul>

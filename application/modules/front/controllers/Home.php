@@ -92,5 +92,46 @@ class Home extends MY_Controller {
         $partials = array('content' => 'site/contact_us_content', 'banner'=>'site/contact_us_banner', 'menu'=>'menu', 'footer'=>'footer');
         $this->template->load('home_template', $partials, $data);
     }
+
+	function teachers()
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$data['all_teachers'] = $this->Custom_model->fetch_data(TEACHERS,
+               array(
+                   TEACHERS.'.id',
+				   TEACHERS.'.country',
+				   TEACHERS.'.img_url',
+                   TEACHERS_LANG.'.first_name',
+				   TEACHERS_LANG.'.last_name',
+				   TEACHERS_LANG.'.certificate_details'
+                   ),
+               array(TEACHERS.'.isblocked'=>0, TEACHERS.'.isdeleted'=>0),
+               array(
+                   TEACHERS_LANG=>TEACHERS_LANG.'.teacher_id='.TEACHERS.'.id AND ' . TEACHERS_LANG . '.language_id=' . $selected_lang),
+			   $search = '', $order = TEACHERS_LANG . '.first_name', $by = 'asc'
+		);
+		//print_r($data['all_teachers']); exit;
+
+		$data['teachers'] = $this->Custom_model->fetch_data(TEACHERS,
+               array(
+                   TEACHERS.'.id',
+				   TEACHERS.'.country',
+				   TEACHERS.'.img_url',
+                   TEACHERS_LANG.'.first_name',
+				   TEACHERS_LANG.'.last_name',
+				   TEACHERS_LANG.'.certificate_details'
+                   ),
+               array(TEACHERS.'.isblocked'=>0, TEACHERS.'.isdeleted'=>0),
+               array(
+                   TEACHERS_LANG=>TEACHERS_LANG.'.teacher_id='.TEACHERS.'.id AND ' . TEACHERS_LANG . '.language_id=' . $selected_lang),
+			   $search = '', $order = TEACHERS_LANG . '.first_name', $by = 'asc', 1, 5
+		);
+
+        $partials = array('content' => 'site/teacher_content', 'banner'=>'site/teacher_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
     
 }

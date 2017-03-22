@@ -139,3 +139,6 @@ defined('USERS') ? null : define('USERS', 'ila_users');
 defined('NEWSLETTER_USERS') ? null : define('NEWSLETTER_USERS', 'ila_newsletter_users');
 defined('CONTACT_USERS') ? null : define('CONTACT_USERS', 'ila_contact_users');
 defined('REQUEST_CALLBACK_USERS') ? null : define('REQUEST_CALLBACK_USERS', 'ila_request_callback_users');
+
+//******** google map api key *********//
+define('GOOGLE_MAP_API', 'AIzaSyB9OPlowoZejYiiZqRbSxtuzffvD6ekq_U');

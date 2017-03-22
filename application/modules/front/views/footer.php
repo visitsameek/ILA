@@ -46,17 +46,17 @@
 					</div>
 				</div>
 				<div class="Contact-us clearfix">
-						<h5><?php echo $this->lang->line('home_contact');?></h5>
+						<!-- <h5><?php //echo $this->lang->line('home_contact');?></h5> -->
 						<div id="map" style="height: 505px;width: 100%;"></div>
 				</div>
 				<div class="footer-copyright clearfix">
 					<div class="container">
 						<a href="<?php echo base_url(); ?>" class="footer-logo"><img src="<?php echo base_url(); ?>front/images/logo-footer.png" alt="<?php echo SITE_TITLE;?>"/></a>
 						<ul class="social-links clearfix">
-							<li><a href="https://www.facebook.com/ilavn/" class="icon-fb"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="https://twitter.com/ilavietnam" class="icon-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							<li><a href="https://www.youtube.com/user/ILAVietnam1" class="icon-youtube"><i class="fa fa-inverse fa-youtube" aria-hidden="true"></i></a></li>
-							<li><a href="https://www.instagram.com/ilavietnam/" class="icon-instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							<li><a href="https://www.facebook.com/ilavn/" class="icon-fb" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<li><a href="https://twitter.com/ilavietnam" class="icon-twitter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+							<li><a href="https://www.youtube.com/user/ILAVietnam1" class="icon-youtube" target="_blank"><i class="fa fa-inverse fa-youtube" aria-hidden="true"></i></a></li>
+							<li><a href="https://www.instagram.com/ilavietnam/" class="icon-instagram" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 						</ul>
 						<a href="#" class="terms-and-policy"><?php echo $this->lang->line('home_terms');?></a>
 						<p class="copyright-txt"><?php echo $this->lang->line('home_copyright');?> &copy; <?php echo date('Y');?> <?php echo SITE_TITLE;?> Vietnam - <?php echo $this->lang->line('home_rights');?></p>

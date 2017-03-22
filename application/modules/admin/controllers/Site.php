@@ -824,6 +824,12 @@ class Site extends MY_Controller {
         $selected_lang = ($this->session->userdata('language'))?$this->session->userdata('language'):1;
         $data['selected_lang'] = $selected_lang;
 
+		$data['course_list'] = $this->Custom_model->fetch_data(COURSES, array(
+            COURSES . '.id',
+            COURSES_LANG . '.course_title'
+                ), array(COURSES . '.isblocked' => 0, COURSES . '.isdeleted' => 0), array(COURSES_LANG => COURSES_LANG . '.course_id=' . COURSES . '.id AND ' . COURSES_LANG . '.language_id=' . $selected_lang . '|left')
+        );
+
         //$this->load->helper('custom_helper');
 		//load_editor();//to load niceditor.
         
@@ -835,7 +841,7 @@ class Site extends MY_Controller {
                 $this->session->set_flashdata('error_message', 'Please enter story title');
                 redirect(base_url() . 'admin/site/add_story');
             } elseif ($this->input->post('story_type') == "") {
-                $this->session->set_flashdata('error_message', 'Please select story type');
+                $this->session->set_flashdata('error_message', 'Please select user type');
                 redirect(base_url() . 'admin/site/add_story');
             } elseif ($this->input->post('short_desc') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter short description');
@@ -843,6 +849,7 @@ class Site extends MY_Controller {
             } else {
                 $ins_data['story']   = $this->input->post('story');
 				$ins_data['story_type']   = $this->input->post('story_type');
+				$ins_data['course_id']   = $this->input->post('course_id');
 				$ins_data['video_link'] = $this->input->post('video_link');
                 $ins_data['media_id']   = $this->input->post('media_id');
 				$ins_data['created_on'] = date('Y-m-d');
@@ -889,6 +896,12 @@ class Site extends MY_Controller {
             redirect(base_url() . 'admin/site/list_stories');
         }
 
+		$data['course_list'] = $this->Custom_model->fetch_data(COURSES, array(
+            COURSES . '.id',
+            COURSES_LANG . '.course_title'
+                ), array(COURSES . '.isblocked' => 0, COURSES . '.isdeleted' => 0), array(COURSES_LANG => COURSES_LANG . '.course_id=' . COURSES . '.id AND ' . COURSES_LANG . '.language_id=' . $selected_lang . '|left')
+        );
+
         $story_details = $this->Custom_model->fetch_data(STORIES, array(
             STORIES . '.*',
             STORIES_LANG . '.language_id',
@@ -912,7 +925,7 @@ class Site extends MY_Controller {
                 $this->session->set_flashdata('error_message', 'Please enter story title');
                 redirect(base_url() . 'admin/site/edit_story/'.encode_url($story_id));
             } elseif ($this->input->post('story_type') == "") {
-                $this->session->set_flashdata('error_message', 'Please select story type');
+                $this->session->set_flashdata('error_message', 'Please select user type');
                 redirect(base_url() . 'admin/site/edit_story/'.encode_url($story_id));
             } elseif ($this->input->post('short_desc') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter short description');
@@ -920,6 +933,7 @@ class Site extends MY_Controller {
             } else {
                 $ins_data['story']   = $this->input->post('story');
 				$ins_data['story_type']   = $this->input->post('story_type');
+				$ins_data['course_id']   = $this->input->post('course_id');
 				$ins_data['video_link'] = $this->input->post('video_link');
                 $ins_data['media_id']   = $this->input->post('media_id');
 				$ins_data['modified_on'] = date('Y-m-d');
@@ -1195,7 +1209,7 @@ class Site extends MY_Controller {
         $data['network_list'] = $this->Custom_model->fetch_data(COMMUNITY_NETWORKS,
                 array(COMMUNITY_NETWORKS.'.*', COMMUNITY_NETWORKS_LANG.'.community_network_id', COMMUNITY_NETWORKS_LANG.'.title', COMMUNITY_NETWORKS_LANG.'.content', COMMUNITY_NETWORKS_LANG.'.language_id'),
                 array(),
-                array(COMMUNITY_NETWORKS_LANG => COMMUNITY_NETWORKS_LANG.'.community_network_id='.COMMUNITY_NETWORKS.'.id AND '.COMMUNITY_NETWORKS_LANG.'.language_id='.$selected_lang. '| inner'),
+                array(COMMUNITY_NETWORKS_LANG => COMMUNITY_NETWORKS_LANG.'.community_network_id='.COMMUNITY_NETWORKS.'.id AND '.COMMUNITY_NETWORKS_LANG.'.language_id='.$selected_lang),
                 $search='',//CMS_LANG.'language_id'.$selected_lang,
                 $order = COMMUNITY_NETWORKS . '.id',
                 $by = 'desc'

@@ -49,13 +49,29 @@
                             </div>
                         </div>  
 						<div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city_id">Story Type <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city_id">User Type <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="story_type" name="story_type" class="form-control col-md-7 col-xs-12">
                                     <option value="">Select Type</option>
                                     <option value="1">Parent</option>
 									<option value="2">Student</option>
+                                </select>                               
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city_id">Course <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="course_id" name="course_id" class="form-control col-md-7 col-xs-12">
+                                    <option value="0">General</option>
+                                    <?php 
+                                    if(!empty($course_list)){
+                                        foreach ($course_list as $course){ ?>
+                                            <option value="<?php echo $course->id; ?>"><?php echo $course->course_title; ?></option>
+                                       <?php  }
+                                    }
+                                    ?>
                                 </select>                               
                             </div>
                         </div>
@@ -129,7 +145,7 @@
                $("#title").parent().append("<div class='validation'>Please enter story title </div>");
                 return false;
            }else if($('#story_type').val()==""){         
-               $("#story_type").parent().append("<div class='validation'>Please select story type </div>");
+               $("#story_type").parent().append("<div class='validation'>Please select user type </div>");
                 return false;
            }else if($('#short_desc').val()==""){         
                $("#short_desc").parent().append("<div class='validation'>Please enter short description </div>");

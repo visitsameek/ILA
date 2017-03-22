@@ -56,6 +56,22 @@
                             </div>
                         </div>
 						<div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city_id">Course <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="course_id" name="course_id" class="form-control col-md-7 col-xs-12">
+                                    <option value="0">General</option>
+                                    <?php 
+                                    if(!empty($course_list)){
+                                        foreach ($course_list as $course){ ?>
+                                            <option value="<?php echo $course->id; ?>" <?php echo $story_details->course_id == $course->id ? 'selected' : '';?>><?php echo $course->course_title; ?></option>
+                                       <?php  }
+                                    }
+                                    ?>
+                                </select>                               
+                            </div>
+                        </div>
+						<div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Content">Short Description in <?php echo ($selected_lang==1)?"English":"Vietnamese"; ?> <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">

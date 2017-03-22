@@ -1,5 +1,6 @@
 					<div class="inner-sections" id="inner-sections">
 						<div class="contact-list">
+							<h5>Head Office</h5>
 							<address>
 								<p><i class="fa fa-map-marker"></i> <span><?php echo $contact->site_address;?></span></p>
 								<p><i class="fa fa-phone"></i> <span><a href="tel: <?php echo $contact->site_contact_no;?>;"><?php echo $contact->site_contact_no;?></a></span></p>
@@ -22,10 +23,4 @@
 								<a href="mailto:vacancies@ilavietnam.com">vacancies@ilavietnam.com</a>
 							</div>
 						</div>
-						<!-- <div class="Contact-us clearfix">
-							<div class="select-location">
-								<h4>select location</h4>
-							</div>
-							<div id="map" style="height: 505px;width: 100%;"></div>
-						</div> -->
 					</div>
