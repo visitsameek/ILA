@@ -1694,7 +1694,8 @@ body {
       .teacher-slideshow .teacher-slides .slick-list {
         padding: 0vw 2.96296vw 0vw 2.96296vw; } }
     .teacher-slideshow .teacher-slides .slick-list .slide-item {
-      margin: 0vw 1.11111vw 0vw 1.11111vw; }
+      margin: 0vw 1.11111vw 0vw 1.11111vw;
+	  min-height: 295px; }
       @media (min-width: 1080px) {
         .teacher-slideshow .teacher-slides .slick-list .slide-item {
           margin: 0vw 1.11111vw 0vw 1.11111vw; } }
@@ -1816,8 +1817,8 @@ body {
       .teacher-block .teacher-img {
         height: 296px; } }
     .teacher-block .teacher-img img {
-      width: 100%;
-      height: 100%; }
+      /*width: 100%;
+      height: 100%;*/ }
 
 .slide-item {
   padding: 20.22222vw 6.07407vw 7.03704vw 6.07407vw; }

@@ -19,7 +19,7 @@
 												<div class="arrow-wrapper"><i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></div>
 											</a>
 											<a href="jump-start.html" class="course-info course-title">
-												English for children from <span>3 to 6 years old</span>
+												English for children from <span><?php echo $courses[0]->age_from;?> to <?php echo $courses[0]->age_to;?> years old</span>
 											</a>
 										</div>
 										<div class="course-img">
@@ -45,7 +45,7 @@
 													<div class="arrow-wrapper"><i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></div>
 												</a>
 												<a href="super-junior.html" class="course-info course-title">
-													English for children from <span>6 to 11 years old</span>
+													English for children from <span><?php echo $courses[1]->age_from;?> to <?php echo $courses[1]->age_to;?> years old</span>
 												</a>
 											</div>
 											<div class="course-img">
@@ -70,7 +70,7 @@
 													<div class="arrow-wrapper"><i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></div>
 												</a>
 												<a href="#" class="course-info course-title">
-													English for Teenagers from <span>11 to 15 years old</span>
+													English for Teenagers from <span><?php echo $courses[2]->age_from;?> to <?php echo $courses[2]->age_to;?> years old</span>
 												</a>
 										</div>
 										<div class="course-img">

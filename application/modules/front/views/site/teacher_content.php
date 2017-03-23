@@ -48,7 +48,7 @@
 							 ?>
 								<div class="slide-item teacher-block" data-index="<?php echo ($i+1);?>">
 									<div class="teacher-img">
-										<img src="<?php echo base_url(); ?>front/images/aaron-carter.png" alt="<?php echo $all_teachers[$i]->first_name.' '.$all_teachers[$i]->last_name;?>"/>
+										<img src="<?php echo !empty($all_teachers[$i]->img_url) ? $all_teachers[$i]->img_url : base_url().'front/images/no_person.jpg';?>" alt="<?php echo $all_teachers[$i]->first_name.' '.$all_teachers[$i]->last_name;?>"/>
 									</div>
 									<div class="teacher-info">
 										<h5><?php echo $all_teachers[$i]->first_name.' '.$all_teachers[$i]->last_name;?></h5>
@@ -75,7 +75,7 @@
 							 ?>
 								<div class="teacher-block clearfix">
 									<div class="teacher-img">
-										<img src="<?php echo base_url(); ?>front/images/adam-brown.png" alt="<?php echo $rec->first_name.' '.$rec->last_name;?>"/>
+										<img src="<?php echo !empty($rec->img_url) ? $rec->img_url : base_url().'front/images/no_person.jpg';?>" alt="<?php echo $rec->first_name.' '.$rec->last_name;?>"/>
 									</div>
 									<div class="teacher-info">
 										<h5><?php echo $rec->first_name.' '.$rec->last_name;?></h5>

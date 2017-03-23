@@ -5,7 +5,6 @@
 								<h5><?php echo $this->lang->line('home_elite_gen_title');?></h5>
 			            <div class="video-play-wrap video-blcok">
 			            		<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>
-			                </a>
 			            </div>
 							</div>
 						</div>

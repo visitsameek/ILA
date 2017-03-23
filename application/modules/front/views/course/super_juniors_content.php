@@ -2,11 +2,11 @@
 						<!-- BE THE PART OF VIETNAM EG Section-->
 						<div class="video-wrapper clearfix">
 							<div class="container">
-								<h5>Take a look at <span>our Jumpstart Class</span></h5>
+								<h5>Take a look at our <span>Super Juniors Class</span></h5>
 			            <div class="video-play-wrap video-blcok">
 			            		<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>
 			            </div>
-			            <p>Jumpstart classes are based on communicative principles. We believe that fun is a key motivating factor when </p>
+			            <p>The core curriculum of Super Juniors covers the four language skills: speaking, listening, reading and writing, with a strong emphasis on speaking and listening.</p>
 							</div>
 						</div>
 						<!-- age-category section-->
@@ -22,10 +22,10 @@
 										<img src="<?php echo base_url(); ?>front/images/img-3to4year-kids.jpg" alt="<?php echo $rec->program_name;?>"/>
 									</div>
 									<div class="age-categories-container">
-										<p>In early Jumpstart classes, students learn through fun and inspiring activities.</p>
+										<p>Each ILA Super Juniors level has a carefully constructed curriculum which takes into account the age and competencies of the students.</p>
 										<div class="btn-common-wrapper">
-											<a href="jump-start-3to4.html" class="btn-blue btn-common">Know More</a>
-											<a href="course-schedule.html" class="btn-blue btn-common btn-black">View Schedule</a>
+											<a href="#" class="btn-blue btn-common">Know More</a>
+											<a href="#" class="btn-blue btn-common btn-black">View Schedule</a>
 										</div>
 									</div>
 								</div>
@@ -36,7 +36,7 @@
 						<div class="videos-section">
 							<div class="ila-areas-video superjunior-class-video video-bg-green clearfix">
 								<div class="container">
-									<h5>Jumpstart Class <span>Virtual Tour</span></h5>
+									<h5>Super Juniors Class <span>Virtual Tour</span></h5>
 				            <div class="video-play-wrap video-blcok">
 				            		<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>
 				            </div>
@@ -45,11 +45,11 @@
 							</div>
 							<div class="ila-areas-video superjunior-parent-video video-bg-yellow clearfix">
 								<div class="container">
-									<h5>Meet Jumpstarts Parents</h5>
+									<h5>Meet Super Juniors Parents</h5>
 				            <div class="video-play-wrap video-blcok">
 				            		<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>
 				            </div>
-				            <p>Parents of baby Truong Nguyen Quynh Tram - Jumpstart Level - Three</p>
+				            <p>Parents of Truong Nguyen Quynh Super Junior Level - Beginner</p>
 				            <a href="#" class="content-link">See All Testimonials</a>
 								</div>
 							</div>

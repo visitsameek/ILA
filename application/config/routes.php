@@ -50,21 +50,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'front/home';
+
 $route['about-us'] = "front/cms/about_us";
 $route['values'] = "front/cms/values";
 $route['awards'] = "front/cms/awards";
 $route['community-network'] = "front/cms/community_network";
+$route['why-choose-us'] = "front/cms/why_choose_us";
+$route['learning-guarantees'] = "front/cms/learning_guarantees";
+$route['contact-us'] = "front/home/contact_us";
+$route['teachers'] = "front/home/teachers";
+$route['career'] = "front/site/career";
+$route['beyond-english'] = "front/site/beyond_english";
+$route['21c-skills/(:num)'] = "front/site/century_skills/$1";
+$route['21c-learning-environment/(:num)'] = "front/site/century_learning_environment/$1";
+$route['21c-inspiration/(:num)'] = "front/site/century_inspiration/$1";
+
 $route['stories'] = "front/cms/stories";
 $route['news'] = "front/cms/news";
 $route['news/(:num)'] = "front/cms/news_details/$1";
 $route['events'] = "front/cms/events";
 $route['events/(:num)'] = "front/cms/event_details/$1";
-$route['why-choose-us'] = "front/cms/why_choose_us";
-$route['learning-guarantees'] = "front/cms/learning_guarantees";
-$route['contact-us'] = "front/home/contact_us";
-$route['teachers'] = "front/home/teachers";
+
 $route['english-kids/(:num)'] = "front/course/english_kids/$1";
 $route['jumpstart/(:num)'] = "front/course/jumpstart/$1";
 $route['jumpstart-levels/(:num)/(:num)'] = "front/course/jumpstart_levels/$1/$2";
+$route['super-juniors/(:num)'] = "front/course/super_juniors/$1";
+$route['super-juniors-levels/(:num)/(:num)'] = "front/course/super_juniors_levels/$1/$2";
+$route['smart-teens/(:num)'] = "front/course/smart_teens/$1";
+$route['smart-teens-levels/(:num)/(:num)'] = "front/course/smart_teens_levels/$1/$2";
+
+$route['english-adults/(:num)'] = "front/course/english_adults/$1";
+
+$route['centers/(:num)'] = "front/home/centers/$1";
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

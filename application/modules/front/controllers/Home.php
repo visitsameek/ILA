@@ -133,5 +133,62 @@ class Home extends MY_Controller {
         $partials = array('content' => 'site/teacher_content', 'banner'=>'site/teacher_banner', 'menu'=>'menu', 'footer'=>'footer');
         $this->template->load('home_template', $partials, $data);
     }
+
+	function centers($city_id=null)
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$city = $this->Custom_model->fetch_data(CITIES_LANG, array(CITIES_LANG.'.city_name'),
+               array(CITIES_LANG.'.city_id'=>$city_id, CITIES_LANG.'.language_id'=>$selected_lang),
+               array()
+		);
+		$data['city'] = $city[0];
+
+		$data['city_id'] = $city_id;
+
+		$data['city_list'] = $this->Custom_model->fetch_data(CITIES, array('id', 'city'), array(), array());
+
+		$where_cond = array(TRAINING_CENTERS.'.city_id'=>$city_id);
+		if(!empty($district_id))
+			$where_cond = array(TRAINING_CENTERS.'.city_id'=>$city_id, TRAINING_CENTERS.'.district_id'=>$district_id);
+
+		$data['centers'] = $this->Custom_model->fetch_data(TRAINING_CENTERS,
+               array(
+                   TRAINING_CENTERS.'.phone',
+				   TRAINING_CENTERS.'.email_id',
+                   TRAINING_CENTERS_LANG.'.title',
+				   TRAINING_CENTERS_LANG.'.address',
+                   MEDIA.'.url',
+                   MEDIA.'.media_name',
+                   MEDIA.'.extension',
+                   MEDIA.'.raw_name'
+                   ),
+               $where_cond,
+               array(
+                   TRAINING_CENTERS_LANG=>TRAINING_CENTERS_LANG.'.center_id='.TRAINING_CENTERS.'.id AND ' . TRAINING_CENTERS_LANG . '.language_id=' . $selected_lang,
+				   MEDIA=>MEDIA.'.id='.TRAINING_CENTERS.'.media_id')
+		);
+
+        $partials = array('content' => 'site/centers_content', 'banner'=>'site/centers_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
+
+	function get_district_list($city_id) {
+
+		$district_list = '';
+
+		$district_arr = $this->Custom_model->fetch_data(DISTRICTS, array('id', 'district'), array(DISTRICTS.'.city_id' => $city_id), array());
+		if(!empty($district_arr))
+		{
+			for($i=0;$i<sizeof($district_arr);$i++)
+			{
+				$district_list .= '<li><a href="'.$district_arr[$i]->id.'">'.$district_arr[$i]->district.'</a></li>';
+			}
+		}
+		echo $district_list;
+		exit;
+	}
     
 }
