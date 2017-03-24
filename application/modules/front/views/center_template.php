@@ -35,20 +35,24 @@
 		<script type="text/javascript">
 		<!--
 			function initMap() {
+			  var city = '<?php echo $city_id;?>';
+			  var lati = '<?php echo $lat;?>';
+			  var longi = '<?php echo $long;?>';
 			  var map = new google.maps.Map(document.getElementById('map'), {
-					  center: new google.maps.LatLng(14.0583, 108.2772),
-					  zoom: 5
+					  center: new google.maps.LatLng(lati, longi),
+					  zoom: 11,
+					  mapTypeId: 'roadmap'
 					});
 					var infoWindow = new google.maps.InfoWindow;
 
 					  // Change this depending on the name of your PHP or XML file
-					  downloadUrl('<?php echo base_url();?>front/home/get_map_data/1', function(data) {
+					  downloadUrl('<?php echo base_url();?>front/home/get_map_data/'+city, function(data) {
 						var xml = data.responseXML;
 						var markers = xml.documentElement.getElementsByTagName('marker');
 						Array.prototype.forEach.call(markers, function(markerElem) {
 						  var name = markerElem.getAttribute('name');
 						  var address = markerElem.getAttribute('address');
-						  var type = markerElem.getAttribute('type');
+						  //var type = markerElem.getAttribute('type');
 						  var point = new google.maps.LatLng(
 							  parseFloat(markerElem.getAttribute('lat')),
 							  parseFloat(markerElem.getAttribute('lng')));

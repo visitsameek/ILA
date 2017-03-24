@@ -64,6 +64,7 @@ $route['beyond-english'] = "front/site/beyond_english";
 $route['21c-skills/(:num)'] = "front/site/century_skills/$1";
 $route['21c-learning-environment/(:num)'] = "front/site/century_learning_environment/$1";
 $route['21c-inspiration/(:num)'] = "front/site/century_inspiration/$1";
+$route['gallery/(:num)'] = "front/site/gallery/$1";
 
 $route['stories'] = "front/cms/stories";
 $route['news'] = "front/cms/news";
@@ -78,6 +79,16 @@ $route['super-juniors/(:num)'] = "front/course/super_juniors/$1";
 $route['super-juniors-levels/(:num)/(:num)'] = "front/course/super_juniors_levels/$1/$2";
 $route['smart-teens/(:num)'] = "front/course/smart_teens/$1";
 $route['smart-teens-levels/(:num)/(:num)'] = "front/course/smart_teens_levels/$1/$2";
+$route['global-english/(:num)'] = "front/course/global_english/$1";
+$route['exam-english/(:num)'] = "front/course/exam_english/$1";
+
+$route['schedules'] = "front/course/schedules";
+$route['schedules/(:num)'] = "front/course/schedules/$1";
+$route['schedules/(:num)/(:num)'] = "front/course/schedules/$1/$2";
+$route['schedules/(:num)/(:num)/(:num)'] = "front/course/schedules/$1/$2/$3";
+$route['schedules/(:num)/(:num)/(:num)/(:num)'] = "front/course/schedules/$1/$2/$3/$4";
+$route['schedules/(:num)/(:num)/(:num)/(:num)/(:any)'] = "front/course/schedules/$1/$2/$3/$4/$5";
+$route['schedules/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)'] = "front/course/schedules/$1/$2/$3/$4/$5/$6";
 
 $route['english-adults/(:num)'] = "front/course/english_adults/$1";
 

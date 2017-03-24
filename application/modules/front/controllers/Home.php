@@ -140,19 +140,31 @@ class Home extends MY_Controller {
         $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
         $data['selected_lang'] = $selected_lang;
 
-		$city = $this->Custom_model->fetch_data(CITIES_LANG, array(CITIES_LANG.'.city_name'),
-               array(CITIES_LANG.'.city_id'=>$city_id, CITIES_LANG.'.language_id'=>$selected_lang),
-               array()
+		$city = $this->Custom_model->fetch_data(CITIES,
+               array(
+                   CITIES.'.lat',
+				   CITIES.'.long',
+                   CITIES_LANG.'.city_name'
+                   ),
+               array(CITIES.'.id'=>$city_id),
+               array(
+                   CITIES_LANG=>CITIES_LANG.'.city_id='.CITIES.'.id AND ' . CITIES_LANG . '.language_id=' . $selected_lang)
 		);
-		$data['city'] = $city[0];
+		$data['city_name'] = $city[0]->city_name;
+		$data['lat'] = $city[0]->lat;
+		$data['long'] = $city[0]->long;
 
 		$data['city_id'] = $city_id;
 
-		$data['city_list'] = $this->Custom_model->fetch_data(CITIES, array('id', 'city'), array(), array());
-
-		$where_cond = array(TRAINING_CENTERS.'.city_id'=>$city_id);
-		if(!empty($district_id))
-			$where_cond = array(TRAINING_CENTERS.'.city_id'=>$city_id, TRAINING_CENTERS.'.district_id'=>$district_id);
+		$data['city_list'] = $this->Custom_model->fetch_data(CITIES,
+               array(
+				   CITIES.'.id',
+                   CITIES_LANG.'.city_name'
+                   ),
+               array(),
+               array(
+                   CITIES_LANG=>CITIES_LANG.'.city_id='.CITIES.'.id AND ' . CITIES_LANG . '.language_id=' . $selected_lang)
+		);
 
 		$data['centers'] = $this->Custom_model->fetch_data(TRAINING_CENTERS,
                array(
@@ -165,30 +177,82 @@ class Home extends MY_Controller {
                    MEDIA.'.extension',
                    MEDIA.'.raw_name'
                    ),
-               $where_cond,
+               array(TRAINING_CENTERS.'.city_id'=>$city_id),
                array(
                    TRAINING_CENTERS_LANG=>TRAINING_CENTERS_LANG.'.center_id='.TRAINING_CENTERS.'.id AND ' . TRAINING_CENTERS_LANG . '.language_id=' . $selected_lang,
 				   MEDIA=>MEDIA.'.id='.TRAINING_CENTERS.'.media_id')
 		);
 
         $partials = array('content' => 'site/centers_content', 'banner'=>'site/centers_banner', 'menu'=>'menu', 'footer'=>'footer');
-        $this->template->load('home_template', $partials, $data);
-    }
+        $this->template->load('center_template', $partials, $data);
+    }	
 
-	function get_district_list($city_id) {
+	function get_map_data($city_id=null)
+    {
+		// Start XML file, create parent node
+		$dom = new DOMDocument("1.0");
+		$node = $dom->createElement("markers");
+		$parnode = $dom->appendChild($node);			
 
-		$district_list = '';
+		$site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
 
-		$district_arr = $this->Custom_model->fetch_data(DISTRICTS, array('id', 'district'), array(DISTRICTS.'.city_id' => $city_id), array());
-		if(!empty($district_arr))
+		$centers = $this->Custom_model->fetch_data(TRAINING_CENTERS,
+               array(
+                   TRAINING_CENTERS_LANG.'.title',
+				   TRAINING_CENTERS_LANG.'.address',
+                   ),
+               array(TRAINING_CENTERS.'.city_id'=>$city_id),
+               array(
+                   TRAINING_CENTERS_LANG=>TRAINING_CENTERS_LANG.'.center_id='.TRAINING_CENTERS.'.id AND ' . TRAINING_CENTERS_LANG . '.language_id=' . $selected_lang)
+		);
+		//print_r($centers); exit;
+		
+		header("Content-type: text/xml");
+
+		// Iterate through the rows, adding XML nodes for each
+		if(!empty($centers))
 		{
-			for($i=0;$i<sizeof($district_arr);$i++)
+			foreach($centers AS $rec)
 			{
-				$district_list .= '<li><a href="'.$district_arr[$i]->id.'">'.$district_arr[$i]->district.'</a></li>';
+				  if(!empty($rec->address)) {
+					  $record = $this->getLatLong($rec->address);
+				  }
+
+				  // Add to XML document node
+				  $node = $dom->createElement("marker");
+				  $newnode = $parnode->appendChild($node);
+
+				  $newnode->setAttribute("name", $rec->title);
+				  $newnode->setAttribute("address", $rec->address);
+				  $newnode->setAttribute("lat", $record['latitude']);
+				  $newnode->setAttribute("lng", $record['longitude']);
+				  //$newnode->setAttribute("type", $row['type']);
 			}
 		}
-		echo $district_list;
-		exit;
+		echo $dom->saveXML();
 	}
+
+	function getLatLong($address) {
+		$record['latitude'] = 0;
+		$record['longitude'] = 0;
+
+		if(!empty($address)) {
+			//Formatted address
+		    $formattedAddr = str_replace(' ', '+', $address);
+
+		    //Send request and receive json data by address
+		    $json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=$formattedAddr&sensor=false");
+		    $json = json_decode($json);
+
+		    if(!empty($json->{'results'}))
+		    {
+			    $record['latitude'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+			    $record['longitude'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+		    }
+		}
+		return $record;
+	}			
     
 }

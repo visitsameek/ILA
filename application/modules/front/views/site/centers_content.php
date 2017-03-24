@@ -5,13 +5,13 @@
 								<h5>Select your Centre</h5>
 								<div class="select-center-fields">
 									<div class="dropdown-wrapper inp-field">
-										<input class="select-input" type="text" readonly="true" name="city" value="<?php echo $city->city_name; ?>" />
+										<input class="select-input" type="text" readonly="true" name="city" value="<?php echo $city_name; ?>" />
 										<label>Select your City</label>
 										<ul class="dropdown">
 										<?php 
 											if(!empty($city_list)){
 												foreach ($city_list as $city){ ?>
-													<li><a href="<?php echo base_url('centers/'.$city->id); ?>"><?php echo $city->city; ?></a></li>
+													<li><a href="<?php echo base_url('centers/'.$city->id); ?>"><?php echo $city->city_name; ?></a></li>
 										<?php } } ?>
 										</ul>
 										<span class="bar"></span>
@@ -44,7 +44,7 @@
 							<div class="select-location">
 								<h4>Select Location</h4>
 							</div>
-							<div id="map1" style="height: 505px;width: 100%;"></div>
+							<div id="map" style="height: 505px;width: 100%;"></div>
 						</div>
 					</div>
 				</div>

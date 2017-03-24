@@ -148,5 +148,37 @@ class Site extends MY_Controller {
         $partials = array('content' => 'site/21c_inspiration_content', 'banner'=>'site/21c_inspiration_banner', 'menu'=>'menu', 'footer'=>'footer');
         $this->template->load('home_template', $partials, $data);
     }
+
+	function gallery($city_id=null)
+    {
+		$site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$city = $this->Custom_model->fetch_data(CITIES,
+               array(
+                   CITIES_LANG.'.city_name'
+                   ),
+               array(CITIES.'.id'=>$city_id),
+               array(
+                   CITIES_LANG=>CITIES_LANG.'.city_id='.CITIES.'.id AND ' . CITIES_LANG . '.language_id=' . $selected_lang)
+		);
+		$data['city_name'] = $city[0]->city_name;
+
+		$data['city_id'] = $city_id;
+
+		$data['city_list'] = $this->Custom_model->fetch_data(CITIES,
+               array(
+				   CITIES.'.id',
+                   CITIES_LANG.'.city_name'
+                   ),
+               array(),
+               array(
+                   CITIES_LANG=>CITIES_LANG.'.city_id='.CITIES.'.id AND ' . CITIES_LANG . '.language_id=' . $selected_lang)
+		);
+
+		$partials = array('content' => 'site/gallery_content', 'banner'=>'site/gallery_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+	}
     
 }
