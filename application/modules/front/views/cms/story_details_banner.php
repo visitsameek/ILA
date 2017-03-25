@@ -1,4 +1,4 @@
-					<div class="banner-section clearfix">
+					<div class="banner-section banner-stories clearfix">
 						<div class="container clearfix">
 							<div class="banner-title">
 								<h1>Story <span>Details</span></h1>

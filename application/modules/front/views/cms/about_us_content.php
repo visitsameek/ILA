@@ -21,7 +21,7 @@
 										<h3>Vision, Mission &amp; <span>Core Values</span></h3>
 									</div>
 									<div class="btn-wrapper">
-										<a href="#" class="btn-blue btn-common">View</a>
+										<a href="<?php echo base_url('values'); ?>" class="btn-blue btn-common">View</a>
 									</div>
 								</div>
 								<div class="about-block">
@@ -32,7 +32,7 @@
 										<h3>Awards &amp; <span>Recognition</span></h3>
 									</div>
 									<div class="btn-wrapper">
-										<a href="awards-and-recognition.html" class="btn-blue btn-common">View</a>
+										<a href="<?php echo base_url('awards'); ?>" class="btn-blue btn-common">View</a>
 									</div>
 								</div>
 								<div class="about-block">
@@ -43,7 +43,7 @@
 										<h3>Centres</h3>
 									</div>
 									<div class="btn-wrapper">
-										<a href="#" class="btn-blue btn-common">View</a>
+										<a href="<?php echo base_url('centers/1'); ?>" class="btn-blue btn-common">View</a>
 									</div>
 								</div>
 							</div>

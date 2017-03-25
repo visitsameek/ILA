@@ -25,7 +25,7 @@
 										<p>&quot;<?php echo $rec->short_desc;?>&quot;</p>
 									</div>
 									<div class="align-center">
-										<a href="learning-guarantee.html" class="see-more">See More</a>
+										<a href="<?php echo base_url('stories/'.$rec->id); ?>" class="see-more">See More</a>
 									</div>
 								</div>
 							<?php } } ?>								
@@ -58,7 +58,7 @@
 										<p>&quot;<?php echo $rec->short_desc;?>&quot;</p>
 									</div>
 									<div class="align-center">
-										<a href="learning-guarantee.html" class="see-more">See More</a>
+										<a href="<?php echo base_url('stories/'.$rec->id); ?>" class="see-more">See More</a>
 									</div>
 								</div>
 							<?php } } ?>

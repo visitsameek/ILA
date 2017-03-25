@@ -4,14 +4,14 @@
 							<li class="sub-menu-wrapper">
 								<a href="javascript:void(0);"><?php echo $this->lang->line('home_about_us');?></a>
 								<ul class="sub-menu">
-									<li><a href="about-us.html"><?php echo $this->lang->line('home_introduction');?></a></li>
-									<li><a href="vision-mission-corevalue.html"><?php echo $this->lang->line('home_vision');?></a></li>
-									<li><a href="awards-and-recognition.html"><?php echo $this->lang->line('home_awards');?></a></li>
-									<li><a href="#"><?php echo $this->lang->line('home_centres');?></a></li>
+									<li><a href="<?php echo base_url('about-us'); ?>"><?php echo $this->lang->line('home_introduction');?></a></li>
+									<li><a href="<?php echo base_url('values'); ?>"><?php echo $this->lang->line('home_vision');?></a></li>
+									<li><a href="<?php echo base_url('awards'); ?>"><?php echo $this->lang->line('home_awards');?></a></li>
+									<li><a href="<?php echo base_url('centers/1'); ?>"><?php echo $this->lang->line('home_centres');?></a></li>
 								</ul>
 							</li>
-							<li class="sub-menu-wrapper">
-								<a href="javascript:void(0);"><?php echo $this->lang->line('home_why_choose_ila');?></a>
+							<li>
+								<a href="<?php echo base_url('why-choose-us'); ?>"><?php echo $this->lang->line('home_why_choose_ila');?></a>
 								<ul class="sub-menu">
 									<li><a href="why-choose-ila.html"><?php echo $this->lang->line('home_introduction');?></a></li>
 									<li><a href="#"><?php echo $this->lang->line('home_learning');?></a></li>
@@ -26,14 +26,14 @@
 							<li class="sub-menu-wrapper">
 								<a href="javascript:void(0);"><?php echo $this->lang->line('home_explore_more');?></a>
 								<ul class="sub-menu">
-									<li><a href="#"><?php echo $this->lang->line('home_gallery');?></a></li>
-									<li><a href="#"><?php echo $this->lang->line('home_teacher_training');?></a></li>
-									<li><a href="#"><?php echo $this->lang->line('home_community_network');?></a></li>
-									<li><a href="#"><?php echo $this->lang->line('home_cafe');?></a></li>
+									<li><a href="<?php echo base_url('gallery/1'); ?>"><?php echo $this->lang->line('home_gallery');?></a></li>
+									<li><a href="http://teachenglishilavietnam.com/" target="_blank"><?php echo $this->lang->line('home_teacher_training');?></a></li>
+									<li><a href="<?php echo base_url('community-network'); ?>"><?php echo $this->lang->line('home_community_network');?></a></li>
+									<li><a href="http://ilage-hoctienganh.edu.vn/ila-cafe/dang-ky.html" target="_blank"><?php echo $this->lang->line('home_cafe');?></a></li>
 								</ul>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><?php echo $this->lang->line('home_career');?></a>
+								<a href="<?php echo base_url('career'); ?>"><?php echo $this->lang->line('home_career');?></a>
 							</li>
 					</ul>
 					<div class="career-section">						

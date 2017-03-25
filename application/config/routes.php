@@ -101,6 +101,7 @@ $route['register/(:num)'] = "front/course/register/$1";
 $route['register/(:num)/(:num)'] = "front/course/register/$1/$2";
 $route['register/(:num)/(:num)/(:num)'] = "front/course/register/$1/$2/$3";
 
+$route['centers'] = "front/home/centers";
 $route['centers/(:num)'] = "front/home/centers/$1";
 
 $route['404_override'] = '';

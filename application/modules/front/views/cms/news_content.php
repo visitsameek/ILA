@@ -29,7 +29,7 @@
 												<li class="release icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Press Release</li>
 											</ul>
 											<p><?php echo $rec->short_desc;?></p>
-											<a href="news-details.html" class="see-more">See More</a>
+											<a href="<?php echo base_url('news/'.$rec->id); ?>" class="see-more">See More</a>
 										</div>
 									</div>
 								<?php } } ?>

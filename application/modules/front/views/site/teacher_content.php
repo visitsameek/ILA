@@ -59,6 +59,9 @@
 										</div>
 										<p><?php echo $all_teachers[$i]->certificate_details;?></p>
 									</div>
+									<div class="align-center">
+										<a href="<?php echo base_url('teachers/'.$all_teachers[$i]->id); ?>" class="see-more">See More</a>
+									</div>
 								</div>
 							<?php } ?>
 							</div>
@@ -73,6 +76,7 @@
 							<?php
 							  foreach($teachers AS $rec) {
 							 ?>
+								<a href="<?php echo base_url('teachers/'.$rec->id); ?>">
 								<div class="teacher-block clearfix">
 									<div class="teacher-img">
 										<img src="<?php echo !empty($rec->img_url) ? $rec->img_url : base_url().'front/images/no_person.jpg';?>" alt="<?php echo $rec->first_name.' '.$rec->last_name;?>"/>
@@ -84,7 +88,7 @@
 											<span><?php echo $rec->country;?></span>
 										</div>
 									</div>
-								</div>
+								</div></a>
 							<?php } ?>	
 								<div class="btn-common-wrapper align-center">
 									<a href="#" class="see-more">See More</a>

@@ -304,7 +304,6 @@ body {
   padding: 0;
   background-color: #fff;
   font-family: "Open Sans", sans-serif;
-  font-weight: 600;
   font-size: 3.55556vw;
   color: #333; }
   @media (min-width: 1080px) {
@@ -1604,7 +1603,9 @@ body {
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
   -ms-box-sizing: border-box;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  color: #333;
+  display: block; }
   @media (min-width: 1080px) {
     .member-info-block {
       margin: 13.33333vw 0vw 0vw 0vw; } }
@@ -1612,7 +1613,8 @@ body {
     .member-info-block {
       padding: 11.85185vw 6.22222vw 6.66667vw 6.22222vw; } }
   .member-info-block h5 {
-    margin: 0; }
+    margin: 0;
+    dispaly: block; }
   .member-info-block p {
     margin: 2.96296vw 0vw 0vw 0vw; }
     @media (min-width: 1080px) {
@@ -1755,6 +1757,11 @@ body {
         margin: 0; }
       .teacher-slideshow .action a.active {
         background-color: #4dbbdb; }
+    .teacher-slideshow .action .slick-list {
+      height: 5.18519vw; }
+      @media (min-width: 1080px) {
+        .teacher-slideshow .action .slick-list {
+          height: 70px; } }
     .teacher-slideshow .action .slick-arrow {
       text-indent: -9999px;
       display: block;
@@ -1801,7 +1808,8 @@ body {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
-  -o-border-radius: 6px; }
+  -o-border-radius: 6px;
+  color: #333; }
   .teacher-block .teacher-img {
     position: absolute;
     top: -2em;
@@ -1854,10 +1862,8 @@ body {
     .teachers-list .teacher-block {
       padding: 5.40741vw 6.51852vw 6.66667vw 6.51852vw; } }
 .teachers-list .teacher-info {
-  margin: 0vw 0vw 0vw 29.62963vw; }
-  @media (min-width: 1080px) {
-    .teachers-list .teacher-info {
-      margin: 0vw 0vw 0vw 29.62963vw; } }
+  width: 60%;
+  float: right; }
 
 /* Why choose ILA page */
 .why-choose-block, .ila-areas-video {
@@ -1992,6 +1998,12 @@ body {
   @media (min-width: 1080px) {
     .stories-list {
       padding: 6.81481vw 2.07407vw 6.81481vw 2.07407vw; } }
+
+.story-detail-block {
+  margin: 5.92593vw 0vw 0vw 0vw; }
+  @media (min-width: 1080px) {
+    .story-detail-block {
+      margin: 5.92593vw 0vw 0vw 0vw; } }
 
 /* Super Junior page */
 .content-link {
@@ -2762,6 +2774,159 @@ address {
 /* Get in touch */
 .inner-sections {
   border: 0 none; }
+
+.global-study-plan {
+  padding-top: 0; }
+
+.teacher-detail-box {
+  background-color: #f4f4f4;
+  margin: 0; }
+
+.teacher-detail {
+  padding: 7.40741vw 0vw 6.51852vw 0vw; }
+  @media (min-width: 1080px) {
+    .teacher-detail {
+      padding: 7.40741vw 0vw 6.51852vw 0vw; } }
+  .teacher-detail p:last-child {
+    margin-bottom: 0; }
+
+.about-teacher {
+  padding: 4.74074vw 0vw 5.92593vw 0vw; }
+  @media (min-width: 1080px) {
+    .about-teacher {
+      padding: 4.74074vw 0vw 5.92593vw 0vw; } }
+  .about-teacher p {
+    margin: 6.51852vw 0vw 0vw 0vw; }
+    @media (min-width: 1080px) {
+      .about-teacher p {
+        margin: 6.51852vw 0vw 0vw 0vw; } }
+    .about-teacher p:first-child {
+      margin: 0; }
+
+/* Search Result */
+/* Study pathway */
+.study-page .course-header {
+  padding: 7.25926vw 4.74074vw 4.81481vw 4.74074vw; }
+  @media (min-width: 1080px) {
+    .study-page .course-header {
+      padding: 7.25926vw 4.74074vw 4.81481vw 4.74074vw; } }
+  .study-page .course-header h2 {
+    margin: 0; }
+    .study-page .course-header h2 span {
+      display: block; }
+  .study-page .course-header a {
+    display: block;
+    color: #fff; }
+  .study-page .course-header .course-logo-wrap {
+    display: inline-block;
+    width: 80%;
+    padding-right: 3%; }
+    .study-page .course-header .course-logo-wrap img {
+      width: 50%; }
+  .study-page .course-header .course-title {
+    text-decoration: underline;
+    display: inline-block;
+    width: 90%;
+    padding-right: 5%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box; }
+  .study-page .course-header .course-info {
+    color: #666;
+    margin: 7.25926vw 0vw 5.33333vw 0vw;
+    font-weight: 700; }
+    @media (min-width: 1080px) {
+      .study-page .course-header .course-info {
+        margin: 7.25926vw 0vw 5.33333vw 0vw; } }
+    .study-page .course-header .course-info span {
+      display: block; }
+
+.study-pathway > h5 {
+  margin: 0;
+  padding: 7.40741vw 7.40741vw 7.40741vw 7.40741vw;
+  color: #333; }
+  @media (min-width: 1080px) {
+    .study-pathway > h5 {
+      padding: 7.40741vw 7.40741vw 7.40741vw 7.40741vw; } }
+
+.study-pathway-blocks .study-pathway-item {
+  margin: 0vw 0vw 2.96296vw 0vw; }
+  @media (min-width: 1080px) {
+    .study-pathway-blocks .study-pathway-item {
+      margin: 0vw 0vw 2.96296vw 0vw; } }
+
+.study-pathway-item {
+  background-color: #f3faff;
+  padding: 2.22222vw 7.25926vw 2.22222vw 7.25926vw;
+  color: #333;
+  position: relative;
+  clear: both;
+  overflow: hidden; }
+  @media (min-width: 1080px) {
+    .study-pathway-item {
+      padding: 2.22222vw 7.25926vw 2.22222vw 7.25926vw; } }
+  .study-pathway-item label {
+    color: #333;
+    float: left;
+    width: 20%; }
+  .study-pathway-item:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-left: 1px solid #e5e5e5;
+    height: 100%; }
+  .study-pathway-item .study-timetable-list {
+    list-style-type: none;
+    margin: 1.62963vw 0vw 0vw 0vw; }
+    @media (min-width: 1080px) {
+      .study-pathway-item .study-timetable-list {
+        margin: 1.62963vw 0vw 0vw 0vw; } }
+    .study-pathway-item .study-timetable-list li {
+      margin: 2.22222vw 0vw 0vw 0vw; }
+      @media (min-width: 1080px) {
+        .study-pathway-item .study-timetable-list li {
+          margin: 2.22222vw 0vw 0vw 0vw; } }
+      .study-pathway-item .study-timetable-list li:first-child {
+        margin-top: 0; }
+  .study-pathway-item .study-timetable {
+    width: 80%;
+    float: left;
+    padding: 0vw 0vw 0vw 6.37037vw;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative; }
+    @media (min-width: 1080px) {
+      .study-pathway-item .study-timetable {
+        padding: 0vw 0vw 0vw 6.37037vw; } }
+    .study-pathway-item .study-timetable:before {
+      content: "";
+      display: block;
+      width: 2.07407vw;
+      height: 2.07407vw;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      background-color: #0f0e9f;
+      position: absolute;
+      left: 0;
+      top: 5px; }
+      @media (min-width: 1080px) {
+        .study-pathway-item .study-timetable:before {
+          width: 28px; } }
+      @media (min-width: 1080px) {
+        .study-pathway-item .study-timetable:before {
+          height: 28px; } }
+    .study-pathway-item .study-timetable h5 {
+      margin: 0; }
 
 /* Footer CSS */
 footer {

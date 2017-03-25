@@ -67,7 +67,7 @@
 									<div class="age-categories-container">
 										<p><?php echo $rec->short_desc;?></p>
 									</div>
-									<a href="learning-environment.html" class="see-more">know More</a> 
+									<a href="<?php echo base_url('centers/'.$rec->id); ?>" class="see-more">know More</a> 
 								</div>
 							</div>
 						<?php } } ?>

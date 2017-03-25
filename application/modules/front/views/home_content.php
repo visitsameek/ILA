@@ -57,7 +57,7 @@
 							<div class="courses-list">
 								<div class="course-block clearfix">
 									<div class="course-header">
-										<h2><a href="ila-english-for-young-learners.html"><span class="course-title"><?php echo $this->lang->line('home_ey_title_1');?> <span><?php echo $this->lang->line('home_ey_title_2');?></span></span> <i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></a></h2>
+										<h2><a href="<?php echo base_url('english-kids/1'); ?>"><span class="course-title"><?php echo $this->lang->line('home_ey_title_1');?> <span><?php echo $this->lang->line('home_ey_title_2');?></span></span> <i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></a></h2>
 									</div>
 									<div class="course-img">
 										<img src="<?php echo base_url(); ?>front/images/img-english-for-young.jpg" alt="English for Young Learners"/>
@@ -85,7 +85,7 @@
 
 								<div class="course-block clearfix">
 									<div class="course-header">
-										<h2><a href="#"><span class="course-title"><?php echo $this->lang->line('home_ey_title_1');?> <span><?php echo $this->lang->line('home_ea_title_1');?></span></span> <i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></a></h2>
+										<h2><a href="<?php echo base_url('english-adults/2'); ?>"><span class="course-title"><?php echo $this->lang->line('home_ey_title_1');?> <span><?php echo $this->lang->line('home_ea_title_1');?></span></span> <i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></a></h2>
 									</div>
 									<div class="course-img">
 										<img src="<?php echo base_url(); ?>front/images/img-english-for-adult.jpg" alt="English for Young Learners"/>
@@ -112,7 +112,7 @@
 
 								<div class="course-block clearfix">
 									<div class="course-header">
-										<h2><a href="#"><span class="course-title"><?php echo $this->lang->line('home_ey_title_1');?> <span><?php echo $this->lang->line('home_ec_title_1');?></span></span> <i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></a> </h2>
+										<h2><a href="http://en.ilace-hoctienganh.edu.vn/" target="_blank"><span class="course-title"><?php echo $this->lang->line('home_ey_title_1');?> <span><?php echo $this->lang->line('home_ec_title_1');?></span></span> <i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></a> </h2>
 									</div>
 									<div class="course-img">
 										<img src="<?php echo base_url(); ?>front/images/img-english-for-corporates.jpg" alt="English for Young Learners"/>
@@ -177,7 +177,7 @@
 									<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>
 								</div>
 								<p><?php echo $this->lang->line('home_stories_text');?></p>
-								<a href="ila-stories.html"><?php echo $this->lang->line('home_see_more');?></a>
+								<a href="<?php echo base_url('stories'); ?>"><?php echo $this->lang->line('home_see_more');?></a>
 							</div>
 						</div>
 						<!-- Why Choose ILA Section-->
@@ -193,7 +193,7 @@
 							</div>
 							<div class="book-img"><img src="<?php echo base_url(); ?>front/images/img-workbook.jpg" alt="The 7 habits of highly effective teenagers personal Workbook"/></div>
 							<div class="btn-common-wrapper">
-								<a href="#" class="btn-blue btn-common"><?php echo $this->lang->line('home_request_book');?></a>
+								<a href="<?php echo base_url('register'); ?>" class="btn-blue btn-common"><?php echo $this->lang->line('home_request_book');?></a>
 							</div>
 						</div>
 						<!-- upcoming Events Section-->
@@ -223,7 +223,7 @@
 													<li class="time icon sprite-icon-before"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $events->event_time; ?></li>
 												</ul>
 												<div class="map icon sprite-icon-before"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $events->event_place; ?></div>
-												<a href="#" class="see-more"><?php echo $this->lang->line('home_see_more');?></a>
+												<a href="<?php echo base_url('events'); ?>" class="see-more"><?php echo $this->lang->line('home_see_more');?></a>
 											</div>
 										</div>
 									</div>
@@ -251,7 +251,7 @@
 													 ?></li>
 													<li class="release icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Press Release</li>
 												</ul>
-												<a href="#" class="see-more"><?php echo $this->lang->line('home_see_more');?></a>
+												<a href="<?php echo base_url('news'); ?>" class="see-more"><?php echo $this->lang->line('home_see_more');?></a>
 											</div>
 										</div>
 									</div>

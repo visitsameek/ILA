@@ -30,7 +30,7 @@
 											</ul>
 											<div class="map icon sprite-icon-before"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $rec->event_place;?></div>
 											<p><?php echo $rec->short_desc;?></p>
-											<a href="event-details.html" class="see-more">See More</a>
+											<a href="<?php echo base_url('events/'.$rec->id); ?>" class="see-more">See More</a>
 										</div>
 									</div>
 								<?php } } ?>
