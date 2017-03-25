@@ -11,7 +11,7 @@
 										<?php 
 											if(!empty($city_list)){
 												foreach ($city_list as $city){ ?>
-													<li><a href="<?php echo base_url('centers/'.$city->id); ?>"><?php echo $city->city_name; ?></a></li>
+													<li><a href="javascript: void(0);" onclick="javascript: get_centers(<?php echo $city->id; ?>);"><?php echo $city->city_name; ?></a></li>
 										<?php } } ?>
 										</ul>
 										<span class="bar"></span>
@@ -48,3 +48,11 @@
 						</div>
 					</div>
 				</div>
+				<script type="text/javascript">
+				<!--
+					function get_centers(city_id)
+					{
+						window.location.href = '<?php echo base_url("centers/");?>'+city_id;
+					}
+				//-->
+				</script>

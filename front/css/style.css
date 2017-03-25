@@ -164,6 +164,9 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     outline: none;
     box-shadow: none; }
 
+input[type="submit"] {
+  border: 0; }
+
 input[type="text"]:focus + label, input[type="email"]:focus + label, input[type="password"]:focus + label, input[type="number"]:focus + label {
   top: -3em;
   font-size: 2.59259vw;
@@ -301,6 +304,7 @@ body {
   padding: 0;
   background-color: #fff;
   font-family: "Open Sans", sans-serif;
+  font-weight: 600;
   font-size: 3.55556vw;
   color: #333; }
   @media (min-width: 1080px) {
@@ -928,12 +932,12 @@ body {
 .option-list li {
   float: left;
   width: 46%;
-  margin: 0vw 0vw 2.37037vw 0vw;
+  margin: 0vw 1.48148vw 2.37037vw 0vw;
   margin-right: 8%;
   list-style-type: none; }
   @media (min-width: 1080px) {
     .option-list li {
-      margin: 0vw 0vw 2.37037vw 0vw; } }
+      margin: 0vw 1.48148vw 2.37037vw 0vw; } }
   .option-list li:nth-child(2n) {
     margin-right: 0; }
   .option-list li a {
@@ -2277,11 +2281,11 @@ address {
 .select-location {
   padding: 6.22222vw 2.66667vw 6.22222vw 2.66667vw;
   color: #333;
-  -webkit-box-shadow: 0 4px 23px 0 #ccc;
-  -moz-box-shadow: 0 4px 23px 0 #ccc;
-  -o-box-shadow: 0 4px 23px 0 #ccc;
-  -ms-box-shadow: 0 4px 23px 0 #ccc;
-  box-shadow: 0 4px 23px 0 #ccc;
+  -webkit-box-shadow: 0 4px 23px 0 #aaa;
+  -moz-box-shadow: 0 4px 23px 0 #aaa;
+  -o-box-shadow: 0 4px 23px 0 #aaa;
+  -ms-box-shadow: 0 4px 23px 0 #aaa;
+  box-shadow: 0 4px 23px 0 #aaa;
   z-index: 999;
   position: relative; }
   @media (min-width: 1080px) {
@@ -2755,6 +2759,10 @@ address {
     .address-block {
       padding: 5.92593vw 4.74074vw 5.92593vw 4.74074vw; } }
 
+/* Get in touch */
+.inner-sections {
+  border: 0 none; }
+
 /* Footer CSS */
 footer {
   background-color: #3c3c3c;
@@ -2771,7 +2779,7 @@ footer {
     color: #fff; }
   footer .news-letter {
     /*margin: 6.2963vw 0vw 0vw 0vw;*/
-	margin: 0vw 0vw 0vw 0vw;}
+	margin: 0vw 0vw 0vw 0vw; }
     @media (min-width: 1080px) {
       footer .news-letter {
         margin: 6.2963vw 0vw 0vw 0vw; } }

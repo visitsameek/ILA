@@ -8,6 +8,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 		<link rel="icon" type="image/png" href="<?php echo base_url(); ?>front/images/favicon.png">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>front/css/jquery.fancybox.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>front/js/jqueryui/jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>front/js/jqueryui/jquer-ui-timepicker.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>front/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>front/css/slick.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>front/css/style.css">

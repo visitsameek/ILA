@@ -190,6 +190,33 @@ class Cms extends MY_Controller {
         $this->template->load('home_template', $partials, $data);
     }
 
+	function story_details($story_id=null)
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$story_details = $this->Custom_model->fetch_data(STORIES,
+               array(
+                   STORIES.'.id',
+                   STORIES_LANG.'.title',
+				   STORIES_LANG.'.long_desc',
+                   MEDIA.'.url',
+                   MEDIA.'.media_name',
+                   MEDIA.'.extension',
+                   MEDIA.'.raw_name'
+                   ),
+               array(STORIES.'.id'=>$story_id),
+               array(
+                   STORIES_LANG=>STORIES_LANG.'.story_id='.STORIES.'.id AND ' . STORIES_LANG . '.language_id=' . $selected_lang,
+                   MEDIA=>MEDIA.'.id='.STORIES.'.media_id')
+		);
+		$data['story_details'] = $story_details[0];
+
+        $partials = array('content' => 'cms/story_details_content', 'banner'=>'cms/story_details_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
+
 	function community_network()
     {        
         $site_language = $this->session->userdata('site_language');

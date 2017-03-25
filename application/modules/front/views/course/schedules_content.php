@@ -4,6 +4,12 @@
 							<div class="select-center">
 								<div class="container">
 									<h5>Select your Centre</h5>
+									<input type="hidden" name="hidcourseid" id="hidcourseid" value="<?php echo !empty($course_id) ? $course_id : '';?>">
+									<input type="hidden" name="hidcityid" id="hidcityid" value="<?php echo !empty($city_id) ? $city_id : '';?>">
+									<input type="hidden" name="hidcenterid" id="hidcenterid" value="<?php echo !empty($center_id) ? $center_id : '';?>">
+									<input type="hidden" name="hidlevelid" id="hidlevelid" value="<?php echo !empty($level_id) ? $level_id : '';?>">
+									<input type="hidden" name="hidtimeid" id="hidtimeid" value="<?php echo !empty($time_id) ? $time_id : '';?>">
+									<input type="hidden" name="hidstatusid" id="hidstatusid" value="<?php echo !empty($status_id) ? $status_id : '';?>">
 									<div class="select-center-fields">
 										<div class="dropdown-wrapper inp-field">
 											<input class="select-input" type="text" readonly="true" name="course" value="<?php echo !empty($course_name) ? $course_name : ''; ?>" />
@@ -12,7 +18,7 @@
 											<?php 
 												if(!empty($course_list)){
 													foreach ($course_list as $course){ ?>
-														<li><a href="<?php echo base_url('centers/'.$course->id); ?>"><?php echo $course->course_title; ?></a></li>
+														<li><a href="javascript: void(0);" onclick="javascript: get_schedules(1, <?php echo $course->id; ?>);"><?php echo $course->course_title; ?></a></li>
 											<?php } } ?>
 											</ul>
 											<span class="bar"></span>
@@ -24,7 +30,7 @@
 											<?php 
 												if(!empty($city_list)){
 													foreach ($city_list as $city){ ?>
-														<li><a href="<?php echo base_url('centers/'.$city->id); ?>"><?php echo $city->city_name; ?></a></li>
+														<li><a href="javascript: void(0);" onclick="javascript: get_schedules(2, <?php echo $city->id; ?>);"><?php echo $city->city_name; ?></a></li>
 											<?php } } ?>
 											</ul>
 											<span class="bar"></span>
@@ -36,7 +42,7 @@
 											<?php 
 												if(!empty($center_list)){
 													foreach ($center_list as $center){ ?>
-														<li><a href="<?php echo base_url('centers/'.$center->id); ?>"><?php echo $center->title; ?></a></li>
+														<li><a href="javascript: void(0);" onclick="javascript: get_schedules(3, <?php echo $center->id; ?>);"><?php echo $center->title; ?></a></li>
 											<?php } } ?>
 											</ul>
 											<span class="bar"></span>
@@ -52,7 +58,7 @@
 										<?php 
 											if(!empty($level_list)){
 												foreach ($level_list as $level){ ?>
-													<li><a href="<?php echo base_url('centers/'.$level->id); ?>"><?php echo $level->title; ?></a></li>
+													<li><a href="javascript: void(0);" onclick="javascript: get_schedules(4, <?php echo $level->id; ?>);"><?php echo $level->title; ?></a></li>
 										<?php } } ?>
 										</ul>
 										<span class="bar"></span>
@@ -64,7 +70,7 @@
 										<?php 
 											if(!empty($time_list)){
 												foreach ($time_list as $time){ ?>
-													<li><a href="#"><?php echo $time->time_period; ?></a></li>
+													<li><a href="javascript: void(0);" onclick="javascript: get_schedules(5, '<?php echo $time->time_period; ?>');"><?php echo $time->time_period; ?></a></li>
 										<?php } } ?>
 									</ul>
 									<span class="bar"></span>
@@ -73,8 +79,8 @@
 									<input class="select-input" type="text" readonly="true" name="status" value="<?php echo !empty($status_name) ? $status_name : ''; ?>" />
 									<label>Select Status</label>
 									<ul class="dropdown">
-										<li><a href="#">Brand New</a></li>
-										<li><a href="#">Next Class</a></li>
+										<li><a href="javascript: void(0);" onclick="javascript: get_schedules(6, 'Brand New');">Brand New</a></li>
+										<li><a href="javascript: void(0);" onclick="javascript: get_schedules(6, 'Next Class');">Next Class</a></li>
 									</ul>
 									<span class="bar"></span>
 								</div>
@@ -135,3 +141,22 @@
 						</div>
 					</div>
 				</div>
+				<script type="text/javascript">
+				<!--
+					function get_schedules(flag, rec)
+					{
+						if(flag == 1)
+							window.location.href = '<?php echo base_url("schedules/");?>'+rec;
+						else if(flag == 2)
+							window.location.href = '<?php echo base_url("schedules/");?>'+$("#hidcourseid").val()+'/'+rec;
+						else if(flag == 3)
+							window.location.href = '<?php echo base_url("schedules/");?>'+$("#hidcourseid").val()+'/'+$("#hidcityid").val()+'/'+rec;
+						else if(flag == 4)
+							window.location.href = '<?php echo base_url("schedules/");?>'+$("#hidcourseid").val()+'/'+$("#hidcityid").val()+'/'+$("#hidcenterid").val()+'/'+rec;
+						else if(flag == 5)
+							window.location.href = '<?php echo base_url("schedules/");?>'+$("#hidcourseid").val()+'/'+$("#hidcityid").val()+'/'+$("#hidcenterid").val()+'/'+$("#hidlevelid").val()+'/'+rec;
+						else if(flag == 6)
+							window.location.href = '<?php echo base_url("schedules/");?>'+$("#hidcourseid").val()+'/'+$("#hidcityid").val()+'/'+$("#hidcenterid").val()+'/'+$("#hidlevelid").val()+'/'+$("#hidtimeid").val()+'/'+rec;
+					}
+				//-->
+				</script>

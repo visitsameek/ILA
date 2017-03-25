@@ -6,6 +6,7 @@ class Home extends MY_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('Custom_model');
+		$this->load->helper('mailer');
 
 		$this->lang->load('menu', $this->session->userdata('site_language'));
 		$this->lang->load('home', $this->session->userdata('site_language'));
@@ -134,6 +135,32 @@ class Home extends MY_Controller {
         $this->template->load('home_template', $partials, $data);
     }
 
+	function teacher_details($teacher_id=null)
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$teacher_details = $this->Custom_model->fetch_data(TEACHERS,
+               array(
+                   TEACHERS.'.id',
+				   TEACHERS.'.country',
+				   TEACHERS.'.img_url',
+                   TEACHERS_LANG.'.first_name',
+				   TEACHERS_LANG.'.last_name',
+				   TEACHERS_LANG.'.certificate_details',
+				   TEACHERS_LANG.'.content'
+                   ),
+               array(TEACHERS.'.id'=>$teacher_id),
+               array(
+                   TEACHERS_LANG=>TEACHERS_LANG.'.teacher_id='.TEACHERS.'.id AND ' . TEACHERS_LANG . '.language_id=' . $selected_lang)
+		);
+		$data['teacher_details'] = $teacher_details[0];
+
+        $partials = array('content' => 'site/teacher_details_content', 'banner'=>'site/teacher_details_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
+
 	function centers($city_id=null)
     {        
         $site_language = $this->session->userdata('site_language');
@@ -253,6 +280,74 @@ class Home extends MY_Controller {
 		    }
 		}
 		return $record;
-	}			
+	}	
+	
+	function request_callback()
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		if($this->input->post('btnSubmit')) { 
+          
+          if($this->input->post('first_name') == ""){
+              $this->session->set_flashdata('error_message', 'Please enter First Name');
+              redirect(base_url() . 'request-callback');
+          }else if($this->input->post('last_name') == ""){
+              $this->session->set_flashdata('error_message', 'Please enter Last Name');
+              redirect(base_url() . 'request-callback');
+          }else if($this->input->post('phone') == ""){
+              $this->session->set_flashdata('error_message', 'Please enter Phone');
+              redirect(base_url() . 'request-callback');
+          }else if($this->input->post('email_id') == ""){
+              $this->session->set_flashdata('error_message', 'Please enter Email Address');
+              redirect(base_url() . 'request-callback');
+          }else{
+              $ins_data['first_name'] = $this->input->post('first_name');
+              $ins_data['last_name'] = $this->input->post('last_name');
+              $ins_data['preffered_call_date'] = $this->input->post('preffered_call_date');
+              $ins_data['preffered_call_time'] = $this->input->post('preffered_call_time');
+              $ins_data['phone'] = $this->input->post('phone');
+              $ins_data['email_id'] = $this->input->post('email_id');
+              $ins_data['user_type'] = 2;
+              $ins_data['created_on'] = date('Y-m-d');              
+              
+              $res = $this->Custom_model->insert_data($ins_data, USERS);
+              if($res!=FALSE){
+				   $mail_temp = $this->Custom_model->fetch_data(EMAIL_TEMPLATE, array('subject', 'content', 'mailto'), array('slug'=>'callback'), array());
+
+				  /************* mail to user *************/
+				  $mailTo         = $this->input->post('email_id');
+				  $mailFrom       = $mail_temp[0]->mailto;
+				  $subject        = $mail_temp[0]->subject;
+				  $mailcontain    = $mail_temp[0]->content;
+
+				  send_mail($mailTo, $mailFrom, $subject, $mailcontain);
+
+				  /************* mail to user ends *************/
+
+				  /************* mail to admin *************/
+				  $mailTo         = $mail_temp[0]->mailto;
+				  $mailFrom       = MAIL_FROM;
+				  $subject        = $mail_temp[0]->subject;
+				  $mailcontain    = "An user with Email id: ".$this->input->post('email_id')." has just requested for a callback.";
+
+				  send_mail($mailTo, $mailFrom, $subject, $mailcontain);
+
+				  /************* mail to admin ends *************/
+
+                  $this->session->set_flashdata('success_message', 'Request sent successfully.');
+                  redirect(base_url() . 'request-callback');
+              }else{
+                  $this->session->set_flashdata('error_message', 'Error Occurred! Please try again.');
+                  redirect(base_url() . 'request-callback');
+              }
+           }
+          
+        }
+
+        $partials = array('content' => 'site/request_callback_content', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
     
 }

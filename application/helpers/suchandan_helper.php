@@ -18,6 +18,6 @@ function __debug($data) {
 
 function get_email_template($name) {
     $CI = &get_instance();
-    $CI->load->module("Etemp");
+    $CI->load->module("admin/Etemp");
     return $CI->etemp->get_template($name);
 }

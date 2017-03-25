@@ -89,6 +89,7 @@ define('UPLOAD_PATH', 'uploads');
 
 define('SITE_TITLE', 'ILA');
 define('FRONT_TITLE', 'ILA');
+define('MAIL_FROM', 'visitsameek@gmail.com');
 
 //******** database table *********//
 defined('ADMIN') ? null : define('ADMIN', 'ila_admin');
@@ -139,6 +140,8 @@ defined('USERS') ? null : define('USERS', 'ila_users');
 defined('NEWSLETTER_USERS') ? null : define('NEWSLETTER_USERS', 'ila_newsletter_users');
 defined('CONTACT_USERS') ? null : define('CONTACT_USERS', 'ila_contact_users');
 defined('REQUEST_CALLBACK_USERS') ? null : define('REQUEST_CALLBACK_USERS', 'ila_request_callback_users');
+
+defined('EMAIL_TEMPLATE') ? null : define('EMAIL_TEMPLATE', 'ila_email_template');
 
 //******** google map api key *********//
 define('GOOGLE_MAP_API', 'AIzaSyB9OPlowoZejYiiZqRbSxtuzffvD6ekq_U');

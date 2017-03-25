@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2017 at 07:50 PM
+-- Generation Time: Mar 25, 2017 at 01:32 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `ila_admin` (
 --
 
 INSERT INTO `ila_admin` (`id`, `name`, `user_name`, `user_pass`, `contact_email`, `last_login_time`, `last_login_ip`) VALUES
-(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-24 16:55:32', '::1');
+(1, 'Vivian Nguyen', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'visitsameek@gmail.com', '2017-03-25 06:51:36', '::1');
 
 -- --------------------------------------------------------
 
@@ -1442,9 +1442,9 @@ CREATE TABLE IF NOT EXISTS `ila_email_template` (
 --
 
 INSERT INTO `ila_email_template` (`id`, `name`, `subject`, `slug`, `content`, `mailto`, `created_on`) VALUES
-(1, 'Request a Callback', '', 'callback', '', '', '2016-12-18'),
+(1, 'Request a Callback', 'Request Callback', 'callback', '<p>Hi,</p><p>Your request for callback has been sent successfully. We will get back to you shortly.</p><p>&nbsp;</p><p>Regards,</p><p>ILA Team</p>', '', '2016-12-18'),
 (2, 'Make an Enquiry', '', 'enquary', '', '', '2016-12-18'),
-(3, 'Registration', '', 'registration', '<p>asdsdsa&nbsp;</p>\r\n', 'visitsameek@gmail.com', '2017-02-04');
+(3, 'Registration', 'Successful Registration', 'registration', '<p>Hi,</p><p>Your registration on ILA is successful. We will get back to you shortly.</p><p>&nbsp;</p><p>Regards,</p><p>ILA Team</p>', 'visitsameek@gmail.com', '2017-02-04');
 
 -- --------------------------------------------------------
 
@@ -3616,17 +3616,19 @@ CREATE TABLE IF NOT EXISTS `ila_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(100) CHARACTER SET utf16 NOT NULL,
   `last_name` varchar(100) CHARACTER SET utf16 NOT NULL,
+  `parent_name` varchar(100) DEFAULT NULL,
   `email_id` varchar(255) CHARACTER SET utf16 NOT NULL,
   `country_code` int(11) NOT NULL,
   `phone` varchar(20) NOT NULL,
+  `course_id` int(11) NOT NULL,
   `city_id` int(11) NOT NULL,
   `center_id` int(11) NOT NULL,
-  `current_student` smallint(1) NOT NULL COMMENT '0=>not current student, 1=>current student',
+  `current_student` varchar(10) NOT NULL,
   `country_id` int(11) NOT NULL,
-  `preffered_call_date` date NOT NULL,
-  `preffered_call_time` time NOT NULL,
-  `sex` char(1) NOT NULL COMMENT 'f=>female, m=>male, o=>other',
-  `age` int(11) NOT NULL,
+  `preffered_call_date` varchar(50) NOT NULL,
+  `preffered_call_time` varchar(50) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `birthdate` varchar(50) NOT NULL,
   `action_taken` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not taken, 1=>taken',
   `message` text CHARACTER SET utf16 NOT NULL,
   `user_type` smallint(1) NOT NULL COMMENT '1=>registered user, 2=>callback user, 3=>contact user, 4=>event user',
@@ -3634,16 +3636,19 @@ CREATE TABLE IF NOT EXISTS `ila_users` (
   `isblocked` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not blocked, 1=>blocked',
   `isdeleted` smallint(1) NOT NULL DEFAULT '0' COMMENT '0=>not deleted, 1=>deleted',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `ila_users`
 --
 
-INSERT INTO `ila_users` (`id`, `first_name`, `last_name`, `email_id`, `country_code`, `phone`, `city_id`, `center_id`, `current_student`, `country_id`, `preffered_call_date`, `preffered_call_time`, `sex`, `age`, `action_taken`, `message`, `user_type`, `created_on`, `isblocked`, `isdeleted`) VALUES
-(1, 'Ben', 'Affleck', 'ben.affleck@gmail.com', 0, '9832320431', 1, 2, 0, 0, '0000-00-00', '00:00:00', 'm', 35, 0, '', 1, '2017-03-01', 0, 0),
-(2, 'Meg', 'Ryan', 'meg.ryan@gmail.com', 0, '9875235051', 2, 1, 1, 0, '2017-03-24', '09:00:00', 'f', 27, 0, '', 2, '2017-03-06', 0, 0),
-(3, 'Marlon', 'Brando', 'marlon@gmail.com', 0, '8087256330', 1, 2, 1, 0, '0000-00-00', '00:00:00', 'm', 30, 1, 'Hi, Pls call me', 3, '2017-03-02', 0, 0);
+INSERT INTO `ila_users` (`id`, `first_name`, `last_name`, `parent_name`, `email_id`, `country_code`, `phone`, `course_id`, `city_id`, `center_id`, `current_student`, `country_id`, `preffered_call_date`, `preffered_call_time`, `gender`, `birthdate`, `action_taken`, `message`, `user_type`, `created_on`, `isblocked`, `isdeleted`) VALUES
+(1, 'Ben', 'Affleck', NULL, 'ben.affleck@gmail.com', 0, '9832320431', 0, 1, 2, '0', 0, '0000-00-00', '00:00:00', 'm', '0000-00-00', 0, '', 1, '2017-03-01', 0, 0),
+(2, 'Meg', 'Ryan', NULL, 'meg.ryan@gmail.com', 0, '9875235051', 0, 2, 1, '1', 0, '2017-03-24', '09:00:00', 'f', '0000-00-00', 0, '', 2, '2017-03-06', 0, 0),
+(3, 'Marlon', 'Brando', NULL, 'marlon@gmail.com', 0, '8087256330', 0, 1, 2, '1', 0, '0000-00-00', '00:00:00', 'm', '0000-00-00', 1, 'Hi, Pls call me', 3, '2017-03-02', 0, 0),
+(4, 'ssd', 'fff', 'abcd', 'ddada@gmail.com', 0, '686785678', 3, 2, 17, 'No', 0, '0000-00-00', '00:00:00', 'Female', 'March 09, 2017', 0, '', 1, '2017-03-25', 0, 0),
+(5, 'sda', 'asd', '', 'sdfsdf@sds.fsf', 0, '3453543535', 0, 0, 0, '', 0, '0000-00-00', '00:00:00', '', '', 0, '', 1, '2017-03-25', 0, 0),
+(6, 'ddd', 'ggg', NULL, 'sdfsf@sfs.sdf', 0, '34234245353', 0, 0, 0, '', 0, 'March 30, 2017', '12:30 PM', '', '', 0, '', 2, '2017-03-25', 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
