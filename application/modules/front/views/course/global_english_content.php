@@ -23,8 +23,8 @@
 									<div class="age-categories-container">
 										<p>Starting from the pre-intermediate level, Global English courses are in line with IELTS, TOEFL, and TOEIC exams.</p>
 										<div class="btn-common-wrapper">
-											<a href="jump-start-3to4.html" class="btn-blue btn-common">Know More</a>
-											<a href="course-schedule.html" class="btn-blue btn-common btn-black">View Schedule</a>
+											<a href="<?php echo base_url('global-english-levels/'.$rec->course_id.'/'.$rec->id); ?>" class="btn-blue btn-common">Know More</a>
+											<a href="<?php echo base_url('schedules/'.$rec->course_id); ?>" class="btn-blue btn-common btn-black">View Schedule</a>
 										</div>
 									</div>
 								</div>
@@ -48,7 +48,7 @@
 				            </div>
 				            <p>Parents of baby Truong Nguyen Quynh Tram - Jumpstart Level - Three</p>
 								</div>
-								<div class="align-center"><a href="#" class="see-more">See All Testimonials</a></div>
+								<div class="align-center"><a href="<?php echo base_url('stories'); ?>" class="see-more">See All Testimonials</a></div>
 							</div>
 						<!-- Why Choose ILA Section-->
 						<?php

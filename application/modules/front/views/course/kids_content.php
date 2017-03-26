@@ -14,11 +14,11 @@
 								<div class="container courses-list">
 									<div class="course-block course-category clearfix">
 										<div class="course-header">
-											<a href="jump-start.html" class="clearfix">
+											<a href="<?php echo base_url('jumpstart/'.$courses[0]->id); ?>" class="clearfix">
 												<div class="course-logo-wrap"><img src="<?php echo base_url(); ?>front/images/img-jumpstart.png" alt="Jumpstart"/></div>
 												<div class="arrow-wrapper"><i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></div>
 											</a>
-											<a href="jump-start.html" class="course-info course-title">
+											<a href="<?php echo base_url('jumpstart/'.$courses[0]->id); ?>" class="course-info course-title">
 												English for children from <span><?php echo $courses[0]->age_from;?> to <?php echo $courses[0]->age_to;?> years old</span>
 											</a>
 										</div>
@@ -30,21 +30,21 @@
 												<li><a href="jump-start.html"><span class="option-text">Jumpstart</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 												<li><a href="super-junior.html"><span class="option-text">Super Juniors</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 												<li><a href="#"><span class="option-text">Smart Teens</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-												<li><a href="#"><span class="option-text">Schedule</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+												<li><a href="<?php echo base_url('schedules/'.$courses[0]->id); ?>"><span class="option-text">Schedule</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 											</ul>
 											<div class="btn-wrapper">
-												<a href="#" class="btn-blue btn-common">Register</a>
+												<a href="<?php echo base_url('register'); ?>" class="btn-blue btn-common">Register</a>
 											</div>
 										</div>
 									</div>
 
 									<div class="course-block course-category clearfix">
 											<div class="course-header">
-												<a href="super-junior.html" class="clearfix">
+												<a href="<?php echo base_url('super-juniors/'.$courses[1]->id); ?>" class="clearfix">
 													<div class="course-logo-wrap"><img src="<?php echo base_url(); ?>front/images/img-super-juniors.png" alt="Jumpstart"/></div>
 													<div class="arrow-wrapper"><i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></div>
 												</a>
-												<a href="super-junior.html" class="course-info course-title">
+												<a href="<?php echo base_url('super-juniors/'.$courses[1]->id); ?>" class="course-info course-title">
 													English for children from <span><?php echo $courses[1]->age_from;?> to <?php echo $courses[1]->age_to;?> years old</span>
 												</a>
 											</div>
@@ -56,20 +56,20 @@
 													<li><a href="jump-start.html"><span class="option-text">Jumpstart</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 													<li><a href="super-junior.html"><span class="option-text">Super Juniors</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 													<li><a href="#"><span class="option-text">Smart Teens</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-													<li><a href="#"><span class="option-text">Schedule</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+													<li><a href="<?php echo base_url('schedules/'.$courses[1]->id); ?>"><span class="option-text">Schedule</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 												</ul>
 												<div class="btn-wrapper">
-													<a href="#" class="btn-blue btn-common">Register</a>
+													<a href="<?php echo base_url('register'); ?>" class="btn-blue btn-common">Register</a>
 												</div>
 											</div>
 									</div>
 									<div class="course-block course-category clearfix">
 										<div class="course-header">
-												<a href="#" class="clearfix">
+												<a href="<?php echo base_url('smart-teens/'.$courses[2]->id); ?>" class="clearfix">
 													<div class="course-logo-wrap"><img src="<?php echo base_url(); ?>front/images/img-smart-teens.png" alt="Jumpstart"/></div>
 													<div class="arrow-wrapper"><i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></div>
 												</a>
-												<a href="#" class="course-info course-title">
+												<a href="<?php echo base_url('smart-teens/'.$courses[2]->id); ?>" class="course-info course-title">
 													English for Teenagers from <span><?php echo $courses[2]->age_from;?> to <?php echo $courses[2]->age_to;?> years old</span>
 												</a>
 										</div>
@@ -81,10 +81,10 @@
 												<li><a href="jump-start.html"><span class="option-text">Jumpstart</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 												<li><a href="super-junior.html"><span class="option-text">Super Juniors</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 												<li><a href="#"><span class="option-text">Smart Teens</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-												<li><a href="#"><span class="option-text">Schedule</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>					
+												<li><a href="<?php echo base_url('schedules/'.$courses[2]->id); ?>"><span class="option-text">Schedule</span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>					
 											</ul>
 											<div class="btn-wrapper">
-												<a href="#" class="btn-blue btn-common">Register</a>
+												<a href="<?php echo base_url('register'); ?>" class="btn-blue btn-common">Register</a>
 											</div>
 										</div>
 									</div>
@@ -132,7 +132,7 @@
 										</div>
 									</div>
 								</div>
-								<a href="#" class="see-more">See More</a>
+								<a href="<?php echo base_url('teachers'); ?>" class="see-more">See More</a>
 							</div>
 						</div>
 						<!-- Trainning center-->

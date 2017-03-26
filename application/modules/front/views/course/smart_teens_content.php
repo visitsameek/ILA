@@ -23,8 +23,8 @@
 									<div class="age-categories-container">
 										<p>ILA Smart Teens courses are designed to give teenagers the language and skills they need to interact with the English-speaking world in the 21st century.</p>
 										<div class="btn-common-wrapper">
-											<a href="smart-teen-levels.html" class="btn-blue btn-common">Know More</a>
-											<a href="course-schedule.html" class="btn-blue btn-common btn-black">View Schedule</a>
+											<a href="<?php echo base_url('smart-teens-levels/'.$rec->course_id.'/'.$rec->id); ?>" class="btn-blue btn-common">Know More</a>
+											<a href="<?php echo base_url('schedules/'.$rec->course_id); ?>" class="btn-blue btn-common btn-black">View Schedule</a>
 										</div>
 									</div>
 								</div>
@@ -48,7 +48,7 @@
 				            </div>
 				            <p>Truong Nguyen Quynh Smart Teen Level - Beginner</p>
 								</div>
-								<div class="align-center"><a href="#" class="see-more">See All Testimonials</a></div>
+								<div class="align-center"><a href="<?php echo base_url('stories'); ?>" class="see-more">See All Testimonials</a></div>
 							</div>
 						<!-- Why Choose ILA Section-->
 						<?php

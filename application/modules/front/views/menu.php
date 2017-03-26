@@ -83,7 +83,7 @@
 							</ul>
 						</li>
 						<li class="sub-menu-wrapper">
-							<a href="<?php echo base_url('centers/1'); ?>"><?php echo $this->lang->line('menu_centers');?></a>
+							<a href="javascript: void(0);"><?php echo $this->lang->line('menu_centers');?></a>
 						<?php
 						  //print_r($this->cities); exit;
 						  //if(!empty($this->cities)) {

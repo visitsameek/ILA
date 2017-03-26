@@ -95,7 +95,7 @@
 												</div>
 											</div>
 											<div class="btn-wrapper">
-												<a href="course-schedule.html" class="btn-blue btn-common btn-black">View Schedule</a>
+												<a href="<?php echo base_url('schedules/'.$rec->course_id.'/0/0/'.$rec->id); ?>" class="btn-blue btn-common btn-black">View Schedule</a>
 											</div>
 										</div>
 									</div>

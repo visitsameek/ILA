@@ -47,6 +47,7 @@ class Course extends MY_Controller {
 		$data['courses'] = $this->Custom_model->fetch_data(PROGRAMS,
                array(
                    PROGRAMS.'.id',
+				   PROGRAMS.'.course_id',
 				   PROGRAMS_LANG.'.program_name'
                    ),
                array(PROGRAMS.'.course_id'=>$course_id),
@@ -67,6 +68,7 @@ class Course extends MY_Controller {
 		$data['levels'] = $this->Custom_model->fetch_data(COURSE_LEVELS,
                array(
                    COURSE_LEVELS.'.id',
+				   COURSE_LEVELS.'.course_id',
 				   COURSE_LEVELS.'.duration_hours',
 				   COURSE_LEVELS.'.duration_months',
 				   COURSE_LEVELS.'.age_from',
@@ -91,6 +93,7 @@ class Course extends MY_Controller {
 		$data['courses'] = $this->Custom_model->fetch_data(PROGRAMS,
                array(
                    PROGRAMS.'.id',
+			       PROGRAMS.'.course_id',
 				   PROGRAMS_LANG.'.program_name'
                    ),
                array(PROGRAMS.'.course_id'=>$course_id),
@@ -111,6 +114,7 @@ class Course extends MY_Controller {
 		$data['levels'] = $this->Custom_model->fetch_data(COURSE_LEVELS,
                array(
                    COURSE_LEVELS.'.id',
+				   COURSE_LEVELS.'.course_id',
 				   COURSE_LEVELS.'.duration_hours',
 				   COURSE_LEVELS.'.duration_months',
 				   COURSE_LEVELS.'.age_from',
@@ -137,6 +141,7 @@ class Course extends MY_Controller {
 		$data['courses'] = $this->Custom_model->fetch_data(PROGRAMS,
                array(
                    PROGRAMS.'.id',
+				   PROGRAMS.'.course_id',
 				   PROGRAMS_LANG.'.program_name'
                    ),
                array(PROGRAMS.'.course_id'=>$course_id),
@@ -157,6 +162,7 @@ class Course extends MY_Controller {
 		$data['levels'] = $this->Custom_model->fetch_data(COURSE_LEVELS,
                array(
                    COURSE_LEVELS.'.id',
+				   COURSE_LEVELS.'.course_id',
 				   COURSE_LEVELS.'.duration_hours',
 				   COURSE_LEVELS.'.duration_months',
 				   COURSE_LEVELS.'.age_from',
@@ -207,6 +213,7 @@ class Course extends MY_Controller {
 		$data['courses'] = $this->Custom_model->fetch_data(PROGRAMS,
                array(
                    PROGRAMS.'.id',
+				   PROGRAMS.'.course_id',
 				   PROGRAMS_LANG.'.program_name'
                    ),
                array(PROGRAMS.'.course_id'=>$course_id),
@@ -227,6 +234,7 @@ class Course extends MY_Controller {
 		$data['levels'] = $this->Custom_model->fetch_data(COURSE_LEVELS,
                array(
                    COURSE_LEVELS.'.id',
+				   COURSE_LEVELS.'.course_id',
 				   COURSE_LEVELS.'.duration_hours',
 				   COURSE_LEVELS.'.duration_months',
 				   COURSE_LEVELS.'.age_from',
@@ -438,7 +446,7 @@ class Course extends MY_Controller {
               $ins_data['email_id'] = $this->input->post('email_id');
               $ins_data['course_id'] = $this->input->post('id_course');
               $ins_data['city_id'] = $this->input->post('id_city');
-              $ins_data['center_id'] = $this->input->post('id_center');
+              $ins_data['center_id'] = 1;
               $ins_data['current_student'] = $this->input->post('current_student');
               $ins_data['user_type'] = 1;
               $ins_data['created_on'] = date('Y-m-d');              

@@ -69,15 +69,15 @@
 									</div>
 									<div class="container course-option">
 											<ul class="option-list clearfix">
-												<li><a href="#"><span class="option-text"><?php echo $this->lang->line('home_ey_module_1');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+												<li><a href="<?php echo base_url('jumpstart/1'); ?>"><span class="option-text"><?php echo $this->lang->line('home_ey_module_1');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 												<li><a href="#"><span class="option-text"><?php echo $this->lang->line('home_centres');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-												<li><a href="jump-start.html"><span class="option-text"><?php echo $this->lang->line('home_ey_module_2');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+												<li><a href="<?php echo base_url('super-juniors/2'); ?>"><span class="option-text"><?php echo $this->lang->line('home_ey_module_2');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 												<li><a href="super-junior.html"><span class="option-text"><?php echo $this->lang->line('home_ey_module_5');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-												<li><a href="#"><span class="option-text"><?php echo $this->lang->line('home_ey_module_3');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-												<li><a href="#"><span class="option-text"><?php echo $this->lang->line('home_ey_module_6');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+												<li><a href="<?php echo base_url('smart-teens/3'); ?>"><span class="option-text"><?php echo $this->lang->line('home_ey_module_3');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+												<li><a href="<?php echo base_url('schedules'); ?>"><span class="option-text"><?php echo $this->lang->line('home_ey_module_6');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 											</ul>
 											<div class="btn-wrapper">
-												<a href="#" class="btn-blue btn-common"><?php echo $this->lang->line('home_register');?></a>
+												<a href="<?php echo base_url('register'); ?>" class="btn-blue btn-common"><?php echo $this->lang->line('home_register');?></a>
 											</div>
 									</div>
 									
@@ -101,11 +101,11 @@
 												<li><a href="#"><span class="option-text"><?php echo $this->lang->line('home_ey_module_5');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 												<li><a href="#"><span class="option-text"><?php echo $this->lang->line('home_ea_module_1');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 												<li><a href="#"><span class="option-text"><?php echo $this->lang->line('home_ea_module_2');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-												<li><a href="#"><span class="option-text"><?php echo $this->lang->line('home_ey_module_6');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-												<li><a href="#"><span class="option-text"><?php echo $this->lang->line('home_ea_module_3');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+												<li><a href="<?php echo base_url('schedules'); ?>"><span class="option-text"><?php echo $this->lang->line('home_ey_module_6');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+												<li><a href="http://ilage-hoctienganh.edu.vn/ila-cafe/dang-ky.html" target="_blank"><span class="option-text"><?php echo $this->lang->line('home_ea_module_3');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 											</ul>
 											<div class="btn-wrapper">
-												<a href="#" class="btn-blue btn-common"><?php echo $this->lang->line('home_register');?></a>
+												<a href="<?php echo base_url('register'); ?>" class="btn-blue btn-common"><?php echo $this->lang->line('home_register');?></a>
 											</div>
 									</div>
 								</div>
@@ -128,7 +128,7 @@
 												<li><a href="#"><span class="option-text"><?php echo $this->lang->line('home_ey_module_6');?></span> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 											</ul>
 											<div class="btn-wrapper">
-												<a href="#" class="btn-blue btn-common"><?php echo $this->lang->line('home_register');?></a>
+												<a href="<?php echo base_url('register'); ?>" class="btn-blue btn-common"><?php echo $this->lang->line('home_register');?></a>
 											</div>
 									</div>
 								</div>

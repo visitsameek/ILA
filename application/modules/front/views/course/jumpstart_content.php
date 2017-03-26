@@ -24,8 +24,8 @@
 									<div class="age-categories-container">
 										<p>In early Jumpstart classes, students learn through fun and inspiring activities.</p>
 										<div class="btn-common-wrapper">
-											<a href="jump-start-3to4.html" class="btn-blue btn-common">Know More</a>
-											<a href="course-schedule.html" class="btn-blue btn-common btn-black">View Schedule</a>
+											<a href="<?php echo base_url('jumpstart-levels/'.$rec->course_id.'/'.$rec->id); ?>" class="btn-blue btn-common">Know More</a>
+											<a href="<?php echo base_url('schedules/'.$rec->course_id); ?>" class="btn-blue btn-common btn-black">View Schedule</a>
 										</div>
 									</div>
 								</div>
@@ -50,7 +50,7 @@
 				            		<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>
 				            </div>
 				            <p>Parents of baby Truong Nguyen Quynh Tram - Jumpstart Level - Three</p>
-				            <a href="#" class="content-link">See All Testimonials</a>
+				            <a href="<?php echo base_url('stories'); ?>" class="content-link">See All Testimonials</a>
 								</div>
 							</div>
 						</div>

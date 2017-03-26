@@ -24,8 +24,8 @@
 									<div class="age-categories-container">
 										<p>Each ILA Super Juniors level has a carefully constructed curriculum which takes into account the age and competencies of the students.</p>
 										<div class="btn-common-wrapper">
-											<a href="#" class="btn-blue btn-common">Know More</a>
-											<a href="#" class="btn-blue btn-common btn-black">View Schedule</a>
+											<a href="<?php echo base_url('super-juniors-levels/'.$rec->course_id.'/'.$rec->id); ?>" class="btn-blue btn-common">Know More</a>
+											<a href="<?php echo base_url('schedules/'.$rec->course_id); ?>" class="btn-blue btn-common btn-black">View Schedule</a>
 										</div>
 									</div>
 								</div>
@@ -50,7 +50,7 @@
 				            		<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>
 				            </div>
 				            <p>Parents of Truong Nguyen Quynh Super Junior Level - Beginner</p>
-				            <a href="#" class="content-link">See All Testimonials</a>
+				            <a href="<?php echo base_url('stories'); ?>" class="content-link">See All Testimonials</a>
 								</div>
 							</div>
 						</div>

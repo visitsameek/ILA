@@ -31,7 +31,7 @@
 		<script type="text/javascript" src="<?php echo base_url(); ?>front/js/jquery.fancybox.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>front/js/slick.min.js"></script>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_MAP_API;?>&callback=initMap" type="text/javascript"></script>
-		<script type="text/javascript" src="<?php echo base_url(); ?>front/js/script.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>front/js/script.js"></script>		
 		<script type="text/javascript">
 		<!--
 			function initMap() {
@@ -115,15 +115,6 @@
 
 			function doNothing() {}
 
-			jQuery(".slideshow").slick({
-				 slidesToScroll: 1,
-				 slidesToShow: 1,
-				   infinite: false,
-				   autoplay: true,
-				   arrows: false,
-				   dots: true
-			});
-
 			function set_lang(lang) {
 				$.ajax({
 					type: 'POST',
@@ -135,42 +126,7 @@
 						}
 					}
 				});
-			}
-			$('.teacher-slides').slick({
-			   slidesToScroll: 1,
-			   infinite: true,
-			   autoplay: true,
-			   arrows: false,
-			});
-			$('.action').slick({
-			 	slidesToScroll: 1,
-			 	slidesToShow: 5,
-			 	infinite: false,
-			 	arrows: true,
-			 	variableWidth: true
-			});	
-			jQuery('.action a').first().addClass('active');
-			$('.teacher-slides').on('afterChange', function(event, slick, currentSlide){
-			  var currentSlideItem = jQuery('.slide-item[data-slick-index='+ currentSlide +']').find('.teacher-info h5').text().charAt(0);
-			  jQuery('.action a').removeClass('active');
-			  var pos = jQuery('a[data-slide='+ currentSlideItem +']').addClass('active').position();
-			  jQuery('.action .slick-track').css({'transform': 'translate3d('+ -Math.floor(pos.left) +'px' +', 0px, 0px)'});
-			  console.log(jQuery('a[data-slide='+ currentSlideItem +']')[0]);
-			});
-
-			 var slideItems = jQuery('.slide-item');
-			 $('a[data-slide]').click(function(e) {
-			   e.preventDefault();
-			   var slideAlphabet = $(this).data('slide');
-			   for(i=0; i<slideItems.length; i++){
-			   	var slideFirstChar =	$(slideItems[i]).find('.teacher-info h5').text().charAt(0);
-			   	if(slideAlphabet == slideFirstChar){
-			   		$('.teacher-slides').slick('slickGoTo', $(slideItems[i]).data('index') -1);
-			   	}
-			   }
-			    
-			   
-			 });
+			}			
 		//-->
 		</script>
 	</body>

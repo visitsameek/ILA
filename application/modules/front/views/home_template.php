@@ -165,9 +165,7 @@
 			   	if(slideAlphabet == slideFirstChar){
 			   		$('.teacher-slides').slick('slickGoTo', $(slideItems[i]).data('index') -1);
 			   	}
-			   }
-			    
-			   
+			   } 			   
 			 });
 		//-->
 		</script>
