@@ -51,7 +51,7 @@
 				</div>
 				<div class="footer-copyright clearfix">
 					<div class="container">
-						<a href="<?php echo base_url(); ?>" class="footer-logo"><img src="<?php echo base_url(); ?>front/images/logo-footer.png" alt="<?php echo SITE_TITLE;?>"/></a>
+						<a href="<?php echo base_url('home'); ?>" class="footer-logo"><img src="<?php echo base_url(); ?>front/images/logo-footer.png" alt="<?php echo SITE_TITLE;?>"/></a>
 						<ul class="social-links clearfix">
 							<li><a href="https://www.facebook.com/ilavn/" class="icon-fb" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 							<li><a href="https://twitter.com/ilavietnam" class="icon-twitter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

@@ -54,7 +54,7 @@
 										<h5><?php echo $all_teachers[$i]->first_name.' '.$all_teachers[$i]->last_name;?></h5>
 										<!-- <span class="teacher-experience">2 years of Experience</span> -->
 										<div class="teacher-country">
-											<span class="flag-img"><img src="<?php echo base_url(); ?>front/images/flag-country-vietnam.jpg" alt="Vietnam"/></span>
+											<span class="flag-img"><img src="<?php echo base_url(); ?>front/images/flag-country-vietnam.jpg" alt="<?php echo $all_teachers[$i]->country;?>"/></span>
 											<span><?php echo $all_teachers[$i]->country;?></span>
 										</div>
 										<p><?php echo $all_teachers[$i]->certificate_details;?></p>
@@ -84,7 +84,7 @@
 									<div class="teacher-info">
 										<h5><?php echo $rec->first_name.' '.$rec->last_name;?></h5>
 										<div class="teacher-country">
-											<span class="flag-img"><img src="<?php echo base_url(); ?>front/images/flag-country-england.jpg" alt="England"/></span>
+											<span class="flag-img"><img src="<?php echo base_url(); ?>front/images/flag-country-england.jpg" alt="<?php echo $rec->country;?>"/></span>
 											<span><?php echo $rec->country;?></span>
 										</div>
 									</div>

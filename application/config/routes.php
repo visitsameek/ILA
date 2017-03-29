@@ -49,8 +49,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'front/home';
+$route['default_controller'] = 'front/consumer';
 
+$route['career-inspiration-kids'] = "front/consumer/career_inspiration_kids";
+$route['kids-name'] = "front/consumer/kids_name";
+$route['kids-age'] = "front/consumer/kids_age";
+$route['kids-start-level'] = "front/consumer/kids_start_level";
+$route['kids-reach-level'] = "front/consumer/kids_reach_level";
+
+$route['career-inspiration-adults'] = "front/consumer/career_inspiration_adults";
+$route['adults-name'] = "front/consumer/adults_name";
+$route['adults-start-level'] = "front/consumer/adults_start_level";
+$route['adults-reach-level'] = "front/consumer/adults_reach_level";
+
+$route['home'] = "front/home";
 $route['about-us'] = "front/cms/about_us";
 $route['values'] = "front/cms/values";
 $route['awards'] = "front/cms/awards";

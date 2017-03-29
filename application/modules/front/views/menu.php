@@ -1,6 +1,6 @@
 				<header class="ila-header clearfix">
 					<div class="container clearfix">
-						<a href="<?php echo base_url(); ?>" class="logo"><img src="<?php echo base_url(); ?>front/images/logo.png" alt="<?php echo SITE_TITLE;?>"/></a>
+						<a href="<?php echo base_url('home'); ?>" class="logo"><img src="<?php echo base_url(); ?>front/images/logo.png" alt="<?php echo SITE_TITLE;?>"/></a>
 						<ul class="menu-list">
 							<li><a href="javascript: void(0);" data-href="getintouch" class="icon-contact"><i class="fa fa-phone phone-icon"></i></a></li>
 							<li><a href="javascript: void(0);" data-href="header-menu" class="icon-menu"><i class="fa fa-bars menu-icon"></i></a></li>
@@ -21,7 +21,7 @@
 				<div class="menu overlay" id="header-menu">
 					<div class="clearfix navigation-header">
 						<div class="navigation-inner">
-							<a href="<?php echo base_url(); ?>" class="logo"><img src="<?php echo base_url(); ?>front/images/logo-overlay.png" alt="<?php echo SITE_TITLE;?>"/></a>
+							<a href="<?php echo base_url('home'); ?>" class="logo"><img src="<?php echo base_url(); ?>front/images/logo-overlay.png" alt="<?php echo SITE_TITLE;?>"/></a>
 							<ul class="popup-menu-list">
 								<li class="language-list">
 								<?php
@@ -38,7 +38,7 @@
 						</div>
 					</div>
 					<ul class="header-menu navigation">
-						<li><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('menu_home');?></a></li>
+						<li><a href="<?php echo base_url('home'); ?>"><?php echo $this->lang->line('menu_home');?></a></li>
 						<li class="sub-menu-wrapper">
 							<a href="javascript:void(0);"><?php echo $this->lang->line('menu_beyond_english');?></a>
 							<ul class="sub-menu">
