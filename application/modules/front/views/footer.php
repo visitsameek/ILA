@@ -26,10 +26,14 @@
 							<li class="sub-menu-wrapper">
 								<a href="javascript:void(0);"><?php echo $this->lang->line('home_explore_more');?></a>
 								<ul class="sub-menu">
+									<li><a href="#">OSC</a></li>
+									<li><a href="#">OSC Summer</a></li>
+									<li><a href="#">EY Summer</a></li>
 									<li><a href="<?php echo base_url('gallery/1'); ?>"><?php echo $this->lang->line('home_gallery');?></a></li>
 									<li><a href="http://teachenglishilavietnam.com/" target="_blank"><?php echo $this->lang->line('home_teacher_training');?></a></li>
 									<li><a href="<?php echo base_url('community-network'); ?>"><?php echo $this->lang->line('home_community_network');?></a></li>
 									<li><a href="http://ilage-hoctienganh.edu.vn/ila-cafe/dang-ky.html" target="_blank"><?php echo $this->lang->line('home_cafe');?></a></li>
+									<li><a href="http://www.ilavietnam.com/ilaportal/index.php?option=com_userdetail&view=user&task=login&Itemid=107" target="_blank">Member Login</a></li>
 								</ul>
 							</li>
 							<li>
@@ -37,11 +41,12 @@
 							</li>
 					</ul>
 					<div class="career-section">						
-						<div class="news-letter"><span><?php echo $this->lang->line('home_newsletter');?></span>
-							<form class="form-news-letter clearfix">
-								<input type="email" name="" placeholder="contact@mail.com" />
-								<input type="submit" value="Submit" class="btn-blue email-submit sprite-icon"/>
+						<div class="news-letter"><span><?php echo $this->lang->line('home_newsletter');?></span>						
+							<form name="frmnewsletter" id="frmnewsletter" action="" method="POST" class="form-news-letter clearfix">
+								<input type="email" name="newsletter_email" id="newsletter_email" placeholder="Enter email address" />
+								<input type="submit" value="Submit" name="btnNewsletter" id="btnNewsletter" class="btn-blue email-submit sprite-icon"/>
 							</form>
+							<div id="msg_newsletter" style="display:none;"></div>
 						</div>
 					</div>
 				</div>
@@ -63,3 +68,39 @@
 					</div>
 				</div>
 			</footer>
+<script type="text/javascript">
+<!--
+$("#btnNewsletter").click(function(e) {
+
+	e.preventDefault();
+
+	$("#msg_newsletter").hide();
+
+	if($("#newsletter_email").val() == '')
+	{
+		$("#msg_newsletter").show();
+		$("#msg_newsletter").html('Please enter email address');
+		return false;
+	}
+	else
+	{
+		$.ajax({
+			  type: "POST",
+			  url: "<?php echo base_url(); ?>front/home/newsletter_subscribe",
+			  data: { newsletter_email: $("#newsletter_email").val() },
+			  success: function(msg){
+					//alert(msg);
+					$("#msg_newsletter").show();
+					if(msg == 0)
+						$("#msg_newsletter").html('Please enter email address');
+					else if(msg == 1)
+						$("#msg_newsletter").html('Newsletter subsribed successfully.');
+					else if(msg == 2)
+						$("#msg_newsletter").html('Error occurred! Please try again.');
+					else
+						$("#msg_newsletter").html('Error occurred! Please try again.');
+			  }
+		});
+	}
+});
+</script>

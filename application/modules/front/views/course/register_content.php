@@ -14,7 +14,7 @@
 									</div>
 								<?php } ?>
 									<h5>Register</h5>
-									<form name="frmregister" id="frmregister" action="" class="" method="POST" class="select-center-fields">
+									<form name="frmregister" id="frmregister" action="" method="POST" class="select-center-fields">
 									<input type="hidden" name="hidcourseid" id="hidcourseid" value="<?php echo !empty($course_id) ? $course_id : '';?>">
 									<input type="hidden" name="hidlevelid" id="hidlevelid" value="<?php echo !empty($level_id) ? $level_id : '';?>">
 									<input type="hidden" name="hidscheduleid" id="hidscheduleid" value="<?php echo !empty($schedule_id) ? $schedule_id : '';?>">

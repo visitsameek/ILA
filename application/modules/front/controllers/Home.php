@@ -214,7 +214,7 @@ class Home extends MY_Controller {
         $this->template->load('center_template', $partials, $data);
     }	
 
-	function get_map_data($city_id=null)
+	function get_map_data()
     {
 		// Start XML file, create parent node
 		$dom = new DOMDocument("1.0");
@@ -227,10 +227,11 @@ class Home extends MY_Controller {
 
 		$centers = $this->Custom_model->fetch_data(TRAINING_CENTERS,
                array(
+				   TRAINING_CENTERS.'.phone',
                    TRAINING_CENTERS_LANG.'.title',
 				   TRAINING_CENTERS_LANG.'.address',
                    ),
-               array(TRAINING_CENTERS.'.city_id'=>$city_id),
+               array(TRAINING_CENTERS.'.isblocked'=>0, TRAINING_CENTERS.'.isdeleted'=>0),
                array(
                    TRAINING_CENTERS_LANG=>TRAINING_CENTERS_LANG.'.center_id='.TRAINING_CENTERS.'.id AND ' . TRAINING_CENTERS_LANG . '.language_id=' . $selected_lang)
 		);
@@ -252,6 +253,7 @@ class Home extends MY_Controller {
 				  $newnode = $parnode->appendChild($node);
 
 				  $newnode->setAttribute("name", $rec->title);
+				  $newnode->setAttribute("phone", $rec->phone);
 				  $newnode->setAttribute("address", $rec->address);
 				  $newnode->setAttribute("lat", $record['latitude']);
 				  $newnode->setAttribute("lng", $record['longitude']);
@@ -348,6 +350,24 @@ class Home extends MY_Controller {
 
         $partials = array('content' => 'site/request_callback_content', 'menu'=>'menu', 'footer'=>'footer');
         $this->template->load('home_template', $partials, $data);
+    }
+
+	function newsletter_subscribe()
+    {          
+	  if($this->input->post('newsletter_email') == ""){
+		  echo 0;
+	  }else{
+		  $ins_data['email_id'] = $this->input->post('newsletter_email');
+		  $ins_data['created_on'] = date('Y-m-d');              
+		  
+		  $res = $this->Custom_model->insert_data($ins_data, NEWSLETTER_USERS);
+		  if($res!=FALSE){
+			  echo 1;
+		  }else{
+			  echo 2;
+		  }
+	   } 
+	   exit;
     }
     
 }

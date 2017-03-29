@@ -44,7 +44,7 @@
 					var infoWindow = new google.maps.InfoWindow;
 
 					  // Change this depending on the name of your PHP or XML file
-					  downloadUrl('<?php echo base_url();?>front/home/get_map_data/1', function(data) {
+					  downloadUrl('<?php echo base_url();?>front/home/get_map_data', function(data) {
 						var xml = data.responseXML;
 						var markers = xml.documentElement.getElementsByTagName('marker');
 						Array.prototype.forEach.call(markers, function(markerElem) {
@@ -80,11 +80,11 @@
 						  infowincontent2.appendChild(text);
 
 						  var iconBase = '<?php echo base_url();?>front/images/';
-						  var icon = iconBase + 'map_logo.png';
+						  var icon = iconBase + 'ic-map-pin.svg';
 						  var marker = new google.maps.Marker({
 							map: map,
-							position: point,
-							icon: icon
+							position: point
+							/*icon: icon*/
 						  });
 						  marker.addListener('click', function() {
 							infoWindow.setContent(infowincontent);

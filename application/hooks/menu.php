@@ -57,6 +57,9 @@ class Menu {
            
         }
 		//echo '<pre>'; print_r($CI->all_courses); exit;
+
+		$site_contact = $CI->Custom_model->fetch_data(BASIC_SETTINGS, array(BASIC_SETTINGS.'.site_contact_no'), array(BASIC_SETTINGS.'.id'=>1), array());
+		$CI->site_contact = $site_contact[0]->site_contact_no;
 	}
 
 }

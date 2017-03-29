@@ -55,7 +55,7 @@ class Course extends MY_Controller {
             COURSES_LANG . '.course_id',
             COURSES_LANG . '.course_title',
             COURSES_LANG . '.language_id'
-                ), array(), array(COURSES_LANG => COURSES_LANG . '.course_id=' . COURSES . '.id AND ' . COURSES_LANG . '.language_id=' . $selected_lang), $search = '', $order = COURSES . '.id', $by = 'desc'
+                ), array(), array(COURSES_LANG => COURSES_LANG . '.course_id=' . COURSES . '.id AND ' . COURSES_LANG . '.language_id=' . $selected_lang), $search = '', $order = COURSES . '.id'
         );
 
         $partials = array('content' => 'courses/list_courses', 'left_menu' => 'left_menu', 'header' => 'header');

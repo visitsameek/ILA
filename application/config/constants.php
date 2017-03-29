@@ -130,6 +130,8 @@ defined('TEACHERS') ? null : define('TEACHERS', 'ila_teachers');
 defined('TEACHERS_LANG') ? null : define('TEACHERS_LANG', 'ila_teachers_lang');
 defined('COMMUNITY_NETWORKS') ? null : define('COMMUNITY_NETWORKS', 'ila_community_networks');
 defined('COMMUNITY_NETWORKS_LANG') ? null : define('COMMUNITY_NETWORKS_LANG', 'ila_community_networks_lang');
+defined('JOBS') ? null : define('JOBS', 'ila_jobs');
+defined('JOBS_LANG') ? null : define('JOBS_LANG', 'ila_jobs_lang');
 
 defined('EVENTS') ? null : define('EVENTS', 'ila_events');
 defined('EVENTS_LANG') ? null : define('EVENTS_LANG', 'ila_events_lang');

@@ -3,7 +3,7 @@
 							<h5>Head Office</h5>
 							<address>
 								<p><i class="fa fa-map-marker"></i> <span><?php echo $contact->site_address;?></span></p>
-								<p><i class="fa fa-phone"></i> <span><a href="tel: <?php echo $contact->site_contact_no;?>;"><?php echo $contact->site_contact_no;?></a></span></p>
+								<p><i class="fa fa-phone"></i> <span><a href="tel: <?php echo '+'.str_replace(' ', '', str_replace('-','',$contact->site_contact_no));?>;"><?php echo $contact->site_contact_no;?></a></span></p>
 								<p><i class="fa fa-envelope"></i> <span><a href="mailto: <?php echo $contact->site_email;?>"><?php echo $contact->site_email;?></a></span></p>
 							</address>
 							<div class="contact-block">

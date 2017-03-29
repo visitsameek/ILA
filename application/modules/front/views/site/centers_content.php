@@ -19,6 +19,12 @@
 								</div>
 							</div>
 						</div>
+						<div class="Contact-us clearfix">
+							<div class="select-location">
+								<h4>Select Location</h4>
+							</div>
+							<div id="map" style="height: 505px;width: 100%;"></div>
+						</div>
 						<?php
 						  if(!empty($centers)) {
 						 ?>
@@ -28,24 +34,17 @@
 							  foreach($centers AS $rec) {
 							 ?>
 								<div class="address-block">
-									<h5><?php echo $rec->title;?></h5>
+									<h5 style="margin: 0vw 0vw 2.74074vw 0vw !important;"><?php echo $rec->title;?></h5>
 									<address>
 										<p><i class="fa fa-map-marker"></i> <span><?php echo $rec->address;?></span></p>
-										<p><i class="fa fa-phone"></i> <span><a href="tel: <?php echo $rec->phone;?>;"><?php echo $rec->phone;?></a></span></p>
+										<p><i class="fa fa-phone"></i> <span><a href="tel: <?php echo '+'.str_replace(' ', '', str_replace('-','',$rec->phone));?>;"><?php echo $rec->phone;?></a></span></p>
 										<p><i class="fa fa-envelope"></i> <span><a href="mailto: <?php echo $rec->email_id;?>;"><?php echo $rec->email_id;?></a></span></p>
 									</address>
 								</div>
 							<?php } ?>
 							</div>							
 						</div>
-						<?php } ?>
-
-						<div class="Contact-us clearfix">
-							<div class="select-location">
-								<h4>Select Location</h4>
-							</div>
-							<div id="map" style="height: 505px;width: 100%;"></div>
-						</div>
+						<?php } ?>						
 					</div>
 				</div>
 				<script type="text/javascript">

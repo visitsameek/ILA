@@ -13,7 +13,7 @@
 					<ul class="getintouch-menu">
 						<li><a href="javascript: void(0);" class="chat-with-team"><?php echo $this->lang->line('menu_chat');?></a></li>
 						<li><a href="<?php echo base_url('request-callback'); ?>" class="request-callback"><?php echo $this->lang->line('menu_callback');?></a></li>
-						<li><a href="tel:+0835218788" class="skype"><?php echo $this->lang->line('menu_skype');?></a></li>
+						<li><a href="tel: <?php echo '+'.str_replace(' ', '', str_replace('-','',$this->site_contact));?>" class="skype"><?php echo $this->lang->line('menu_skype');?></a></li>
 						<li><a href="javascript: void(0);" class="cancel"><?php echo $this->lang->line('menu_cancel');?></a></li>
 					</ul>
 				</div>

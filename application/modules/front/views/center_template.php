@@ -52,6 +52,7 @@
 						Array.prototype.forEach.call(markers, function(markerElem) {
 						  var name = markerElem.getAttribute('name');
 						  var address = markerElem.getAttribute('address');
+						  var phone = markerElem.getAttribute('phone');
 						  //var type = markerElem.getAttribute('type');
 						  var point = new google.maps.LatLng(
 							  parseFloat(markerElem.getAttribute('lat')),
@@ -80,13 +81,18 @@
 						  var text = document.createElement('text');
 						  text.textContent = address
 						  infowincontent2.appendChild(text);
+						  infowincontent2.appendChild(document.createElement('br'));
+
+						  var text = document.createElement('text');
+						  text.textContent = 'Call: ' + phone
+						  infowincontent2.appendChild(text);
 
 						  var iconBase = '<?php echo base_url();?>front/images/';
 						  var icon = iconBase + 'map_logo.png';
 						  var marker = new google.maps.Marker({
 							map: map,
-							position: point,
-							icon: icon
+							position: point
+							/*icon: icon*/
 						  });
 						  marker.addListener('click', function() {
 							infoWindow.setContent(infowincontent);

@@ -7,7 +7,8 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Newsletter Subscriber List</h2>
+                    <h2>Job List</h2>
+					<a href="<?php echo base_url();?>admin/cms/add_job" class="btn btn-info pull-right">Add Job</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -26,17 +27,21 @@
                             <thead>
                                 <tr class="headings">
                                     <th>Sl.No.</th>
-									<th>Subscriber Email</th> 
-									<th>Subscribed Date</th>
+                                    <th>Job Title in <?php echo ($selected_lang==1)?"English":"Vietnamese"; ?></th>
+                                    <th>Action</th>              
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (!empty($newsletter_users)) { ?>
-                                    <?php foreach ($newsletter_users as $key => $con) { ?>
+                                <?php if (!empty($job_list)) { ?>
+                                    <?php foreach ($job_list as $key => $con) { ?>
                                         <tr>
-                                            <td><?php echo ($key + 1) . '.' ?></td>
-											<td><?php echo isset($con->email_id) ? $con->email_id : "---"; ?></td>
-											<td><?php echo isset($con->created_on) ? $con->created_on : "---"; ?></td>
+                                            <td><?php echo ($key + 1) . '.' ?></td>  
+                                            <td><?php echo isset($con->job_title) ? $con->job_title : "---"; ?></td>
+                                            <td>
+                                                <a href="<?php echo base_url('admin/cms/edit_job') . '/' . encode_url($con->id); ?>" class="btn btn-info btn-xs">
+                                                    <i class="fa fa-pencil"></i> Edit
+                                                </a>
+                                            </td>
                                         </tr>
                                         <?php
                                     }

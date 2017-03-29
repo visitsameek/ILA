@@ -13,7 +13,7 @@
 									<div class="select-center-fields">
 										<div class="dropdown-wrapper inp-field">
 											<input class="select-input" type="text" readonly="true" name="course" value="<?php echo !empty($course_name) ? $course_name : ''; ?>" />
-											<label>Select Course</label>
+											<label>Select Course*</label>
 											<ul class="dropdown">
 											<?php 
 												if(!empty($course_list)){
@@ -25,7 +25,7 @@
 										</div>
 										<div class="dropdown-wrapper inp-field">
 											<input class="select-input" type="text" readonly="true" name="city" value="<?php echo !empty($city_name) ? $city_name : ''; ?>" />
-											<label>Select City</label>
+											<label>Select City*</label>
 											<ul class="dropdown">
 											<?php 
 												if(!empty($city_list)){
@@ -37,7 +37,7 @@
 										</div>
 										<div class="dropdown-wrapper inp-field">
 											<input class="select-input" type="text" readonly="true" name="center" value="<?php echo !empty($center_name) ? $center_name : ''; ?>" />
-											<label>Select Training Center</label>
+											<label>Select Training Center*</label>
 											<ul class="dropdown">
 											<?php 
 												if(!empty($center_list)){
@@ -136,7 +136,7 @@
 										<a href="#" class="btn-blue btn-common">Register</a>
 									</div>
 								</div>
-							<?php } } ?>
+							<?php } } else { echo "<div style='text-align:center; color:#ff0000;'>No Schedules Found!</div>"; } ?>
 							</div>
 						</div>
 					</div>

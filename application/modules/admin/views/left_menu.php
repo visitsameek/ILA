@@ -116,19 +116,18 @@
                         <li><a href="<?php echo base_url(); ?>admin/site/add_event">Add Event</a></li>
                     </ul>
                 </li>
-				<li>
-                    <a href="<?php echo base_url(); ?>admin/etemp"><i class="fa fa-image"></i>Gallery </a>
+				<li><a><i class="fa fa-briefcase"></i> Jobs <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li class="sub_menu"><a href="<?php echo base_url(); ?>admin/cms/list_jobs">List Jobs</a></li>
+                        <li><a href="<?php echo base_url(); ?>admin/cms/add_job">Add Job</a></li>
+                    </ul>
                 </li>
 				<li>
                     <a href="<?php echo base_url(); ?>admin/etemp"><i class="fa fa-envelope"></i>Email Template </a>
                 </li>
 				
                 <li>
-                    <a><i class="fa fa-cog"></i>Settings <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="<?php echo base_url(); ?>admin/settings/general_settings">General Settings<span class="fa "></span></a></li>
-                        <li><a href="<?php echo base_url(); ?>admin/settings/home_page_settings">HomePage Settings<span class="fa "></span></a></li>
-                    </ul>
+                    <a href="<?php echo base_url(); ?>admin/settings/general_settings"><i class="fa fa-cog"></i>Settings</a>
                 </li>
                 <!-- <li><a><i class="fa fa-video-camera"></i> Media <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
