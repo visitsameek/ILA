@@ -343,7 +343,7 @@ class Course extends MY_Controller {
 		$data['course_id'] = decode_url($course_id);
 		$data['program_list'] = $this->Custom_model->fetch_data(PROGRAMS, array('id', 'program'), array('course_id' => $data['course_id']), array());
 
-        if ($this->input->post('submit')) {
+        if ($this->input->post('submit')) { print_r($this->input->post()); exit;
 
             if ($this->input->post('course_level') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter course level');
@@ -384,6 +384,23 @@ class Course extends MY_Controller {
                     $inner = $this->Custom_model->insert_data($ins_inner, COURSE_LEVEL_LANG);
 
                     if ($inner != FALSE) {
+						$sub_level_title = $this->input->post('sub_level_title');
+						$sub_cambridge_exam = $this->input->post('sub_cambridge_exam');
+
+						if(!empty($sub_level_title))
+						{
+							for($i=0;$i<sizeof($sub_level_title);$i++)
+							{
+								if(!empty($sub_level_title[$i]) && !empty($sub_cambridge_exam[$i]))
+								{
+									$ins_inner['level_id'] = $res;
+									$ins_inner['sub_level_title'] = $sub_level_title[$i];
+									$ins_inner['cambridge_exam'] = $sub_cambridge_exam[$i];
+
+									$inner = $this->Custom_model->insert_data($ins_inner, COURSE_SUB_LEVELS);
+								}
+							}
+						}
                         $this->session->set_flashdata('success_message', 'Course level added successfully.');
                         redirect(base_url() . 'admin/course/view_course/'.encode_url($this->input->post('hid_course_id')));
                     } else {
@@ -427,6 +444,13 @@ class Course extends MY_Controller {
 		$data['course_id'] = $course_id;
 		$data['course_level_id'] = $course_level_id;
 
+		$course_sub_levels = $this->Custom_model->fetch_data(COURSE_SUB_LEVELS, array(
+            COURSE_SUB_LEVELS . '.sub_level_title',
+            COURSE_SUB_LEVELS . '.cambridge_exam'
+                ), array(COURSE_SUB_LEVELS . '.level_id' => $course_level_id), array()
+        );
+		$data['course_sub_levels'] = $course_sub_levels;
+
         if ($this->input->post('submit')) {
             if ($this->input->post('course_level') == "") {
                 $this->session->set_flashdata('error_message', 'Please enter course level');
@@ -458,6 +482,27 @@ class Course extends MY_Controller {
 				$ins_type['toeic_writing'] = $this->input->post('toeic_writing');
 
                 $this->Custom_model->edit_data($ins_type, array('id' => $course_level_id), COURSE_LEVELS);
+
+				if(!empty($course_sub_levels)){
+					$this->Custom_model->delete_row(COURSE_SUB_LEVELS, array('level_id'=>$course_level_id));
+                }
+				$sub_level_title = $this->input->post('sub_level_title');
+				$sub_cambridge_exam = $this->input->post('sub_cambridge_exam');
+
+				if(!empty($sub_level_title))
+				{
+					for($i=0;$i<sizeof($sub_level_title);$i++)
+					{
+						if(!empty($sub_level_title[$i]) && !empty($sub_cambridge_exam[$i]))
+						{
+							$ins_inner['level_id'] = $course_level_id;
+							$ins_inner['sub_level_title'] = $sub_level_title[$i];
+							$ins_inner['cambridge_exam'] = $sub_cambridge_exam[$i];
+
+							$inner = $this->Custom_model->insert_data($ins_inner, COURSE_SUB_LEVELS);
+						}
+					}
+				}
 
                 $chk_row = $this->Custom_model->row_present_check(COURSE_LEVEL_LANG, array('course_level_id' => $course_level_id, 'language_id' => $selected_lang));
 

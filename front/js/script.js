@@ -106,7 +106,8 @@ jQuery(document).ready(function(){
     }        
   });
    
-  initMap();
+  //initMap();
+  //initMap1();
 });
 
 function containerPadding(){

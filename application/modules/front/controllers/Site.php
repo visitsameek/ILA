@@ -24,7 +24,60 @@ class Site extends MY_Controller {
         $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
         $data['selected_lang'] = $selected_lang;
 
+		$career = $this->Custom_model->fetch_data(CMS_PAGE,
+               array(
+                   CMS_PAGE.'.id',
+				   CMS_LANG.'.content'
+                   ),
+               array(CMS_PAGE.'.id'=>12),
+               array(
+                   CMS_LANG=>CMS_LANG.'.cms_page_id='.CMS_PAGE.'.id AND ' . CMS_LANG . '.language_id=' . $selected_lang
+			   )
+		);
+		$data['career'] = $career[0];
+
+		$data['job_list'] = $this->Custom_model->fetch_data(JOBS,
+               array(
+                   JOBS.'.id',
+				   JOBS_LANG.'.job_title'
+                   ),
+               array(JOBS.'.isblocked'=>0, JOBS.'.isdeleted'=>0),
+               array(
+                   JOBS_LANG=>JOBS_LANG.'.job_id='.JOBS.'.id AND ' . JOBS_LANG . '.language_id=' . $selected_lang
+			   ), $search = '', $order = JOBS . '.id', $by = 'asc'
+		);
+
         $partials = array('content' => 'site/career_content', 'banner'=>'site/career_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $this->template->load('home_template', $partials, $data);
+    }
+
+	function career_details($career_id=null)
+    {        
+        $site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$job_details = $this->Custom_model->fetch_data(JOBS,
+               array(
+                   JOBS.'.id',
+				   JOBS.'.contact_phone',
+				   JOBS.'.contact_email',
+				   JOBS_LANG.'.job_title',
+				   JOBS_LANG.'.job_info',
+				   JOBS_LANG.'.job_requirement',
+				   JOBS_LANG.'.job_level',
+				   JOBS_LANG.'.job_department',
+				   CITIES_LANG.'.city_name'
+                   ),
+               array(JOBS.'.id'=>$career_id),
+               array(
+                   JOBS_LANG=>JOBS_LANG.'.job_id='.JOBS.'.id AND ' . JOBS_LANG . '.language_id=' . $selected_lang,
+				   CITIES_LANG=>CITIES_LANG.'.city_id='.JOBS.'.city_id AND ' . CITIES_LANG . '.language_id=' . $selected_lang
+			   )
+		);
+		$data['job_details'] = $job_details[0];
+
+        $partials = array('content' => 'site/career_details_content', 'banner'=>'site/career_details_banner', 'menu'=>'menu', 'footer'=>'footer');
         $this->template->load('home_template', $partials, $data);
     }
 

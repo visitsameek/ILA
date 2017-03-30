@@ -69,12 +69,12 @@
 						</div>
 						<!-- Course Categories-->
 						<?php 
-						  if(!empty($teachers)) {
+						  if(!empty($all_teachers)) {
 						 ?>
 						<div class="ila-teachers">
 							<div class="container teachers-list">
 							<?php
-							  foreach($teachers AS $rec) {
+							  foreach($all_teachers AS $rec) {
 							 ?>
 								<a href="<?php echo base_url('teachers/'.$rec->id); ?>">
 								<div class="teacher-block clearfix">

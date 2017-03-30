@@ -90,51 +90,6 @@
 									</div>
 							</div>
 						</div>
-						<!-- Meet Our teacher-->
-						<div class="meet-teacher">
-							<div class="container align-center">
-								<h2>Meet Our <span>Teachers</span></h2>
-								<div class="team-list">
-									<div class="team-member">
-										<div class="member-img">
-											<img src="<?php echo base_url(); ?>front/images/img-andrew-mylett.jpg" alt="Andrew Mylett"/>
-										</div>
-										<div class="member-details">
-											<h5>Andrew Mylett</h5>
-											<span>20 Years Experience</span>
-										</div>
-									</div>
-									<div class="team-member">
-										<div class="member-img">
-											<img src="<?php echo base_url(); ?>front/images/img-andrew-mylett.jpg" alt="Steve Austin"/>
-										</div>
-										<div class="member-details">
-											<h5>Steve Austin</h5>
-											<span>10 Years Experience</span>
-										</div>
-									</div>
-									<div class="team-member">
-										<div class="member-img">
-											<img src="<?php echo base_url(); ?>front/images/img-andrew-mylett.jpg" alt="Amber Jay"/>
-										</div>
-										<div class="member-details">
-											<h5>Amber Jay</h5>
-											<span>13 Years Experience</span>
-										</div>
-									</div>
-									<div class="team-member">
-										<div class="member-img">
-											<img src="<?php echo base_url(); ?>front/images/img-andrew-mylett.jpg" alt="Carol Austin"/>
-										</div>
-										<div class="member-details">
-											<h5>Carol Austin</h5>
-											<span>10 Years Experience</span>
-										</div>
-									</div>
-								</div>
-								<a href="<?php echo base_url('teachers'); ?>" class="see-more">See More</a>
-							</div>
-						</div>
 						<!-- Trainning center-->
 						<div class="training-and-facility clearfix">
 							<div class="container">

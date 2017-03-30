@@ -169,6 +169,14 @@
                                 <input type="text" id="toeic_writing" name="toeic_writing"  class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="button" id="add" value="Add Sub Level" class="btn btn-dark" />
+								<input type="button" id="del" value="Remove Sub Level" class="btn btn-danger" />
+							</div>
+						 </div>
+						 <div class="dynamic_text"></div>
                                                 
                         <div class="ln_solid"></div>
                         <div class="form-group">
@@ -210,6 +218,19 @@
            }else{
                return true;                 
            }
+        });
+
+		$('#add').click(function () {
+
+            var days = $('.dynamic_text').find('.form-group').length + 1;
+
+            $('.dynamic_text').append('<div class="form-group"><label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> Sub Level Title </label><div class="col-md-6 col-sm-6 col-xs-12"><input type="text" name="sub_level_title[]" class="form-control col-md-7 col-xs-12" /></div></div><div class="form-group"><label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> Cambridge Exams </label><div class="col-md-6 col-sm-6 col-xs-12"><input type="text" name="sub_cambridge_exam[]" class="form-control col-md-7 col-xs-12" /></div></div>');
+
+
+        });
+        $('#del').click(function () {
+
+            $('.dynamic_text').find('.form-group').last().remove();
         });
     });
 </script>

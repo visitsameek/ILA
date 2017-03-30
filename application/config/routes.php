@@ -73,6 +73,7 @@ $route['contact-us'] = "front/home/contact_us";
 $route['teachers'] = "front/home/teachers";
 $route['teachers/(:num)'] = "front/home/teacher_details/$1";
 $route['career'] = "front/site/career";
+$route['career/(:num)'] = "front/site/career_details/$1";
 $route['beyond-english'] = "front/site/beyond_english";
 $route['21c-skills/(:num)'] = "front/site/century_skills/$1";
 $route['21c-learning-environment/(:num)'] = "front/site/century_learning_environment/$1";
@@ -116,5 +117,5 @@ $route['register/(:num)/(:num)/(:num)'] = "front/course/register/$1/$2/$3";
 $route['centers'] = "front/home/centers";
 $route['centers/(:num)'] = "front/home/centers/$1";
 
-$route['404_override'] = '';
+$route['404_override'] = 'front/home/error_page';
 $route['translate_uri_dashes'] = FALSE;

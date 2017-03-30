@@ -116,6 +116,7 @@ defined('COURSES') ? null : define('COURSES', 'ila_courses');
 defined('COURSES_LANG') ? null : define('COURSES_LANG', 'ila_courses_lang');
 defined('COURSE_LEVELS') ? null : define('COURSE_LEVELS', 'ila_course_levels');
 defined('COURSE_LEVEL_LANG') ? null : define('COURSE_LEVEL_LANG', 'ila_course_level_lang');
+defined('COURSE_SUB_LEVELS') ? null : define('COURSE_SUB_LEVELS', 'ila_course_sub_levels');
 defined('PROGRAMS') ? null : define('PROGRAMS', 'ila_programs');
 defined('PROGRAMS_LANG') ? null : define('PROGRAMS_LANG', 'ila_programs_lang');
 defined('COURSE_SCHEDULES') ? null : define('COURSE_SCHEDULES', 'ila_course_schedules');
@@ -147,3 +148,4 @@ defined('EMAIL_TEMPLATE') ? null : define('EMAIL_TEMPLATE', 'ila_email_template'
 
 //******** google map api key *********//
 define('GOOGLE_MAP_API', 'AIzaSyB9OPlowoZejYiiZqRbSxtuzffvD6ekq_U');
+define('GOOGLE_MAP_API2', 'AIzaSyCviqnCE8MC-FpoETJ50TyCSY3wZUwMhgw');

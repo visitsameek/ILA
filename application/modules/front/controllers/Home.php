@@ -214,7 +214,7 @@ class Home extends MY_Controller {
         $this->template->load('center_template', $partials, $data);
     }	
 
-	function get_map_data()
+	function get_map_data($city_id=null)
     {
 		// Start XML file, create parent node
 		$dom = new DOMDocument("1.0");
@@ -225,13 +225,18 @@ class Home extends MY_Controller {
         $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
         $data['selected_lang'] = $selected_lang;
 
+		if(!empty($city_id))
+			$where_condn = array(TRAINING_CENTERS.'.city_id'=>$city_id, TRAINING_CENTERS.'.isblocked'=>0, TRAINING_CENTERS.'.isdeleted'=>0);
+		else
+			$where_condn = array(TRAINING_CENTERS.'.isblocked'=>0, TRAINING_CENTERS.'.isdeleted'=>0);
+
 		$centers = $this->Custom_model->fetch_data(TRAINING_CENTERS,
                array(
 				   TRAINING_CENTERS.'.phone',
                    TRAINING_CENTERS_LANG.'.title',
 				   TRAINING_CENTERS_LANG.'.address',
                    ),
-               array(TRAINING_CENTERS.'.isblocked'=>0, TRAINING_CENTERS.'.isdeleted'=>0),
+               $where_condn,
                array(
                    TRAINING_CENTERS_LANG=>TRAINING_CENTERS_LANG.'.center_id='.TRAINING_CENTERS.'.id AND ' . TRAINING_CENTERS_LANG . '.language_id=' . $selected_lang)
 		);
@@ -369,5 +374,10 @@ class Home extends MY_Controller {
 	   } 
 	   exit;
     }
+
+	function error_page()
+	{
+        $this->template->load('error_template');
+	}
     
 }

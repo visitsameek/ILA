@@ -23,7 +23,7 @@
 							<div class="select-location">
 								<h4>Select Location</h4>
 							</div>
-							<div id="map" style="height: 505px;width: 100%;"></div>
+							<div id="map1" style="height: 505px;width: 100%;"></div>
 						</div>
 						<?php
 						  if(!empty($centers)) {
@@ -47,10 +47,32 @@
 						<?php } ?>						
 					</div>
 				</div>
+				<!-- Loader Div -->
+				<div id="loaderdiv" style="display:none; background: transparent url(<?php echo base_url(); ?>front/images/loader-bg-img.jpg) 0 0 no-repeat; background-attachment: fixed; background-size: 100% 100%;  height: 100%; color: #fff;">
+				<div class="overlay-bg"></div>
+				<section class="ila-wrapper ila-loader clearfix">
+					<div class="loader-wrapper table">
+						<div class="loader-section table-cell">
+							<div class="loader">	
+								<div class="rotcircle"></div>
+								<div class="loader-logo">
+									<img src="<?php echo base_url(); ?>front/images/loader-logo.png">
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				</div>
+				<!-- Loader Div -->
 				<script type="text/javascript">
 				<!--
+					function show_loader(){
+						$('#inner-sections').hide();
+						$('#loaderdiv').show();
+					}
 					function get_centers(city_id)
-					{
+					{						
+						setTimeout(show_loader, 100);
 						window.location.href = '<?php echo base_url("centers/");?>'+city_id;
 					}
 				//-->

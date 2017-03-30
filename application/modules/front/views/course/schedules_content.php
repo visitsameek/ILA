@@ -141,10 +141,34 @@
 						</div>
 					</div>
 				</div>
+				<!-- Loader Div -->
+				<div id="loaderdiv" style="display:none; background: transparent url(<?php echo base_url(); ?>front/images/loader-bg-img.jpg) 0 0 no-repeat; background-attachment: fixed; background-size: 100% 100%;  height: 100%; color: #fff;">
+				<div class="overlay-bg"></div>
+				<section class="ila-wrapper ila-loader clearfix">
+					<div class="loader-wrapper table">
+						<div class="loader-section table-cell">
+							<div class="loader">	
+								<div class="rotcircle"></div>
+								<div class="loader-logo">
+									<img src="<?php echo base_url(); ?>front/images/loader-logo.png">
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				</div>
+				<!-- Loader Div -->
 				<script type="text/javascript">
 				<!--
+					function show_loader(){
+						$('#inner-sections').hide();
+						$('#loaderdiv').show();
+					}
+
 					function get_schedules(flag, rec)
 					{
+						setTimeout(show_loader, 100);
+
 						if(flag == 1)
 							window.location.href = '<?php echo base_url("schedules/");?>'+rec;
 						else if(flag == 2)
