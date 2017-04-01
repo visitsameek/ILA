@@ -82,18 +82,18 @@
 											<?php 
 												if(!empty($city_list)){
 													foreach ($city_list as $city){ ?>
-														<li><a href="javascript: void(0);"><?php echo $city->city_name; ?></a></li>
+														<li><a href="javascript: void(0);" onclick="get_centers(<?php echo $city->id; ?>);"><?php echo $city->city_name; ?></a></li>
 											<?php } } ?>
 											</ul>
 											<span class="bar"></span>
 										</div>
-										<!-- <div class="dropdown-wrapper inp-field">
+										<div class="dropdown-wrapper inp-field">
 											<input class="select-input" type="text" readonly="true" name="center" id="center"/>
 											<label>Center</label>
 											<ul class="dropdown" id="center_list">
 											</ul>
 											<span class="bar"></span>
-										</div> -->
+										</div>
 										<div class="dropdown-wrapper inp-field">
 											<input class="select-input" type="text" readonly="true" name="current_student" id="current_student"/>
 											<label>Are you an ILA Student?</label>

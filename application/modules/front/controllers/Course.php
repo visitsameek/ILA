@@ -458,7 +458,7 @@ class Course extends MY_Controller {
 					  $ins_data['email_id'] = $this->input->post('email_id');
 					  $ins_data['course_id'] = $this->input->post('id_course');
 					  $ins_data['city_id'] = $this->input->post('id_city');
-					  $ins_data['center_id'] = 1;
+					  $ins_data['center_id'] = $this->input->post('id_center');
 					  $ins_data['current_student'] = $this->input->post('current_student');
 					  $ins_data['user_type'] = 1;
 					  $ins_data['created_on'] = date('Y-m-d');              

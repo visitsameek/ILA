@@ -55,7 +55,7 @@ jQuery(document).ready(function(){
 	  });
 
 //Dropdowns
-  jQuery('.inp-field li a').click(function(e){
+  jQuery('body').on("click", ".inp-field li a", function(e){
     e.preventDefault();
     e.stopPropagation();
     var selectedText= jQuery(this).text();

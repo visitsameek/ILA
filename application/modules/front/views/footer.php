@@ -28,7 +28,7 @@
 								<ul class="sub-menu">
 									<li><a href="#"><?php echo $this->lang->line('home_osc');?></a></li>
 									<li><a href="#"><?php echo $this->lang->line('home_osc_summer');?></a></li>
-									<li><a href="#"><?php echo $this->lang->line('home_ey_summer');?></a></li>
+									<li><a href="http://ilavietnam.edu.vn/anhvanhe/" target="_blank"><?php echo $this->lang->line('home_ey_summer');?></a></li>
 									<li><a href="<?php echo base_url('beyond-english'); ?>"><?php echo $this->lang->line('menu_beyond_english');?></a></li>
 									<li><a href="<?php echo base_url('gallery/1'); ?>"><?php echo $this->lang->line('home_gallery');?></a></li>
 									<li><a href="http://teachenglishilavietnam.com/" target="_blank"><?php echo $this->lang->line('home_teacher_training');?></a></li>
