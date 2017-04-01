@@ -29,7 +29,7 @@
                                     <th>Sl.No.</th>
                                     <th>Center Name in <?php echo ($selected_lang==1)?"English":"Vietnamese"; ?></th>
 									<th>Address in <?php echo ($selected_lang==1)?"English":"Vietnamese"; ?></th>
-									<th>Phone</th>
+									<th style="width:12%">Phone</th>
 									<th>Email Address</th>
                                     <th>Action</th>              
                                 </tr>

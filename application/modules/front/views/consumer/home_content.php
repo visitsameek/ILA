@@ -24,9 +24,9 @@
 				</section>
 				<div class="bottom-bar clearfix">
 					<div class="container clearfix">
-						<a href="<?php echo base_url('home'); ?>" class="page-link home-link">Home</a>
+						<a href="<?php echo base_url('home'); ?>" title="Home" class="page-link home-link">Home</a>
 						<div class="login-link-wrapper">
-							<a href="<?php echo base_url('register'); ?>" class="login">Register</a>
+							<a href="<?php echo base_url('register'); ?>" title="Register" class="login">Register</a>
 						</div>
 					</div>
 				</div>

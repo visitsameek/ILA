@@ -495,6 +495,12 @@ html, body, .ila-wrapper {
       .navigation a {
         padding: 4.59259vw 4.59259vw 4.59259vw 4.59259vw; } }
 
+.footer-navigation a, .news-letter span {
+  font-size: 4.22222vw; }
+  @media (min-width: 1080px) {
+    .footer-navigation a, .news-letter span {
+      font-size: 57px; } }
+
 .sub-menu {
   background-color: #2f2f2f;
   list-style-type: none;

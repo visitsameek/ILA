@@ -3,7 +3,7 @@
 						<div class="shedule-form">
 							<div class="select-center">
 								<div class="container">
-									<h5>Select your Centre</h5>
+									<h5>To check schedules, please select the course, the city and then the center also.</h5>
 									<input type="hidden" name="hidcourseid" id="hidcourseid" value="<?php echo !empty($course_id) ? $course_id : '';?>">
 									<input type="hidden" name="hidcityid" id="hidcityid" value="<?php echo !empty($city_id) ? $city_id : '';?>">
 									<input type="hidden" name="hidcenterid" id="hidcenterid" value="<?php echo !empty($center_id) ? $center_id : '';?>">
@@ -167,7 +167,7 @@
 
 					function get_schedules(flag, rec)
 					{
-						setTimeout(show_loader, 100);
+						setTimeout(show_loader, 200);
 
 						if(flag == 1)
 							window.location.href = '<?php echo base_url("schedules/");?>'+rec;

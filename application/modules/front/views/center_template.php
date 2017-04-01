@@ -30,7 +30,7 @@
 		</section>
 		<script type="text/javascript" src="<?php echo base_url(); ?>front/js/jquery.fancybox.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>front/js/slick.min.js"></script>
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_MAP_API2;?>&callback=initMap" type="text/javascript"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_MAP_API;?>&callback=initMap" type="text/javascript"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>front/js/script.js"></script>		
 		<script type="text/javascript">
 		<!--
@@ -38,7 +38,7 @@
 			  var city = '<?php echo $city_id;?>';
 			  var lati = '<?php echo $lat;?>';
 			  var longi = '<?php echo $long;?>';
-			  var map = new google.maps.Map(document.getElementById('map1'), {
+			  var map1 = new google.maps.Map(document.getElementById('map1'), {
 					  center: new google.maps.LatLng(lati, longi),
 					  zoom: 11,
 					  mapTypeId: 'roadmap'
@@ -48,7 +48,7 @@
 					  // Change this depending on the name of your PHP or XML file
 					  downloadUrl('<?php echo base_url();?>front/home/get_map_data/'+city, function(data) {
 						var xml = data.responseXML;
-						var markers = xml.documentElement.getElementsByTagName('marker');
+						var markers = xml.documentElement.getElementsByTagName('marker1');
 						Array.prototype.forEach.call(markers, function(markerElem) {
 						  var name = markerElem.getAttribute('name');
 						  var address = markerElem.getAttribute('address');
@@ -90,7 +90,7 @@
 						  var iconBase = '<?php echo base_url();?>front/images/';
 						  var icon = iconBase + 'map_logo.png';
 						  var marker = new google.maps.Marker({
-							map: map,
+							map: map1,
 							position: point
 							/*icon: icon*/
 						  });
@@ -101,45 +101,7 @@
 						});
 					  });
 
-			}
-
-			function downloadUrl(url, callback) {
-				var request = window.ActiveXObject ?
-					new ActiveXObject('Microsoft.XMLHTTP') :
-					new XMLHttpRequest;
-
-				request.onreadystatechange = function() {
-				  if (request.readyState == 4) {
-					request.onreadystatechange = doNothing;
-					callback(request, request.status);
-				  }
-				};
-
-				request.open('GET', url, true);
-				request.send(null);
-			}
-
-			function doNothing() {}
-
-			function set_lang(lang) {
-				$.ajax({
-					type: 'POST',
-					url: "<?php echo base_url(); ?>front/home/set_language",
-					data: {language: lang },
-					success: function (data, textStatus, jqXHR) {
-						if(data==1){
-						   window.location.reload() ;
-						}
-					}
-				});
-			}			
-		//-->
-		</script>
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_MAP_API;?>&callback=initMap1" type="text/javascript"></script>
-		<script type="text/javascript">
-		<!--
-			function initMap1() {
-			  var map = new google.maps.Map(document.getElementById('map'), {
+				var map = new google.maps.Map(document.getElementById('map'), {
 					  center: new google.maps.LatLng(14.0583, 108.2772),
 					  zoom: 5
 					});
@@ -196,6 +158,37 @@
 					  });
 
 			}
+
+			function downloadUrl(url, callback) {
+				var request = window.ActiveXObject ?
+					new ActiveXObject('Microsoft.XMLHTTP') :
+					new XMLHttpRequest;
+
+				request.onreadystatechange = function() {
+				  if (request.readyState == 4) {
+					request.onreadystatechange = doNothing;
+					callback(request, request.status);
+				  }
+				};
+
+				request.open('GET', url, true);
+				request.send(null);
+			}
+
+			function doNothing() {}
+
+			function set_lang(lang) {
+				$.ajax({
+					type: 'POST',
+					url: "<?php echo base_url(); ?>front/home/set_language",
+					data: {language: lang },
+					success: function (data, textStatus, jqXHR) {
+						if(data==1){
+						   window.location.reload() ;
+						}
+					}
+				});
+			}			
 		//-->
 		</script>
 	</body>

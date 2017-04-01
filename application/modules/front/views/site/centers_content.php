@@ -72,7 +72,7 @@
 					}
 					function get_centers(city_id)
 					{						
-						setTimeout(show_loader, 100);
+						setTimeout(show_loader, 200);
 						window.location.href = '<?php echo base_url("centers/");?>'+city_id;
 					}
 				//-->

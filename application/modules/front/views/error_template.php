@@ -23,7 +23,7 @@
 					<div class="img-404">	
 							<img src="<?php echo base_url(); ?>front/images/img-404.png">
 					</div>
-					<span class="txt-404">Oops! Looks like something was broken!</span>
+					<span class="txt-404"><?php echo $this->lang->line('site_broken');?></span>
 					<div class="home-link-wrapper"><a href="<?php echo base_url('home'); ?>" class="page-link home-link">Home</a></div>
 				</div>
 			</div>

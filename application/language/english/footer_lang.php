@@ -61,3 +61,7 @@ $lang['home_contact'] = 'Contact Us';
 $lang['home_terms'] = 'Terms & Policies';
 $lang['home_copyright'] = 'Copyright';
 $lang['home_rights'] = 'All rights reserved';
+$lang['home_osc'] = 'OSC';
+$lang['home_osc_summer'] = 'OSC Summer';
+$lang['home_ey_summer'] = 'ey summer';
+$lang['home_member_login'] = 'Member Login';

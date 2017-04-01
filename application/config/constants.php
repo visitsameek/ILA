@@ -148,4 +148,7 @@ defined('EMAIL_TEMPLATE') ? null : define('EMAIL_TEMPLATE', 'ila_email_template'
 
 //******** google map api key *********//
 define('GOOGLE_MAP_API', 'AIzaSyB9OPlowoZejYiiZqRbSxtuzffvD6ekq_U');
-define('GOOGLE_MAP_API2', 'AIzaSyCviqnCE8MC-FpoETJ50TyCSY3wZUwMhgw');
+
+//******** Recaptcha keys *********//
+define('RECAPTCHA_SITE_KEY', '6LeyKBsUAAAAAMcoWth20sglVjS7Q_YPhOBsuyCw');
+define('RECAPTCHA_SECRET_KEY', '6LeyKBsUAAAAAI-3lR_HrKFK4jlQfgUsHISYvUWv');

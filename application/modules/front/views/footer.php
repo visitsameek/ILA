@@ -26,14 +26,15 @@
 							<li class="sub-menu-wrapper">
 								<a href="javascript:void(0);"><?php echo $this->lang->line('home_explore_more');?></a>
 								<ul class="sub-menu">
-									<li><a href="#">OSC</a></li>
-									<li><a href="#">OSC Summer</a></li>
-									<li><a href="#">EY Summer</a></li>
+									<li><a href="#"><?php echo $this->lang->line('home_osc');?></a></li>
+									<li><a href="#"><?php echo $this->lang->line('home_osc_summer');?></a></li>
+									<li><a href="#"><?php echo $this->lang->line('home_ey_summer');?></a></li>
+									<li><a href="<?php echo base_url('beyond-english'); ?>"><?php echo $this->lang->line('menu_beyond_english');?></a></li>
 									<li><a href="<?php echo base_url('gallery/1'); ?>"><?php echo $this->lang->line('home_gallery');?></a></li>
 									<li><a href="http://teachenglishilavietnam.com/" target="_blank"><?php echo $this->lang->line('home_teacher_training');?></a></li>
 									<li><a href="<?php echo base_url('community-network'); ?>"><?php echo $this->lang->line('home_community_network');?></a></li>
 									<li><a href="http://ilage-hoctienganh.edu.vn/ila-cafe/dang-ky.html" target="_blank"><?php echo $this->lang->line('home_cafe');?></a></li>
-									<li><a href="http://www.ilavietnam.com/ilaportal/index.php?option=com_userdetail&view=user&task=login&Itemid=107" target="_blank">Member Login</a></li>
+									<li><a href="http://www.ilavietnam.com/ilaportal/index.php?option=com_userdetail&view=user&task=login&Itemid=107" target="_blank"><?php echo $this->lang->line('home_member_login');?></a></li>
 								</ul>
 							</li>
 							<li>

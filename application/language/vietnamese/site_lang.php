@@ -37,31 +37,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['home_about_us'] = 'Về chúng tôi';
-$lang['home_introduction'] = 'Giới thiệu';
-$lang['home_vision'] = 'Tầm nhìn, Sứ mệnh & Giá trị cốt lõi';
-$lang['home_awards'] = 'Giải thưởng';
-$lang['home_centres'] = 'Trung tâm';
-$lang['home_why_choose_ila'] = 'Tại sao Chọn ILA';
-$lang['home_learning'] = 'Học thế kỷ 21';
-$lang['home_learning_guarantees'] = 'Bảo đảm học tập';
-$lang['home_accreditation'] = 'Chứng nhận NEAS';
-$lang['home_prof_teachers'] = 'Giáo viên được Chứng nhận Chuyên nghiệp';
-$lang['home_academic_management'] = 'Quản lý Học tập';
-$lang['home_welfare'] = 'Phúc lợi, sức khoẻ và an toàn của ILA';
-$lang['home_customer_care'] = 'Chăm sóc khách hàng';
-$lang['home_explore_more'] = 'Khám phá thêm';
-$lang['home_gallery'] = 'Bộ sưu tập';
-$lang['home_teacher_training'] = 'Khóa đào tạo giáo viên';
-$lang['home_community_network'] = 'Mạng cộng đồng ILA';
-$lang['home_cafe'] = 'Cafe ILA';
-$lang['home_career'] = 'Sự nghiệp với chúng tôi';
-$lang['home_newsletter'] = 'Bản tin';
-$lang['home_contact'] = 'Liên hệ chúng tôi';
-$lang['home_terms'] = 'Điều khoản & Chính sách';
-$lang['home_copyright'] = 'Bản quyền';
-$lang['home_rights'] = 'Tất cả các quyền được bảo lưu';
-$lang['home_osc'] = 'OSC';
-$lang['home_osc_summer'] = 'OSC Summer';
-$lang['home_ey_summer'] = 'ey summer';
-$lang['home_member_login'] = 'Member Login';
+$lang['site_broken'] = 'Oops! Looks like something was broken!';
+$lang['site_about'] = 'About';
+$lang['site_recognition'] = 'Recognition';
+$lang['site_view'] = 'View';

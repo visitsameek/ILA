@@ -1,3 +1,4 @@
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 					<div class="inner-sections" id="inner-sections">
 					<!-- Course Shedule Form -->
 						<div class="shedule-form">
@@ -102,9 +103,10 @@
 											</ul>
 											<span class="bar"></span>
 										</div>
-										<!-- <div class="inp-field">
-									      <div class="g-recaptcha" data-sitekey="6Lf4GRoUAAAAADSPiAwE4-RAVGIWq5L8biEwFOrw"></div>
-										</div> -->
+										<div class="inp-field">
+									      <div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHA_SITE_KEY;?>"></div>
+										  <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha">
+										</div>
 										<div class="btn-common-wrapper corporate-ragister-btn">
 											<input type="submit" class="btn-common btn-blue" name="btnSubmit" id="btnSubmit" value="Submit" />
 										</div>
@@ -172,6 +174,7 @@ $.validator.addMethod("validEmail", function(value, element)
 });
 
 $('#frmregister').validate({
+		ignore: ".ignore",
 		rules:{
 			first_name:{
 				required: true
@@ -187,7 +190,16 @@ $('#frmregister').validate({
 				required: true,
 				digits: true,
 				minlength: 9
-			}
+			},
+            hiddenRecaptcha: {
+                required: function () {
+                    if (grecaptcha.getResponse() == '') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
 		},
 		messages:{
 			first_name:{

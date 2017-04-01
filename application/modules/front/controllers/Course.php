@@ -11,6 +11,7 @@ class Course extends MY_Controller {
 
         $this->lang->load('menu', $this->session->userdata('site_language'));
 		$this->lang->load('home', $this->session->userdata('site_language'));
+		$this->lang->load('site', $this->session->userdata('site_language'));
 		$this->lang->load('why_choose_ila', $this->session->userdata('site_language'));
 		$this->lang->load('footer', $this->session->userdata('site_language'));
     }
@@ -416,73 +417,95 @@ class Course extends MY_Controller {
         $data['selected_lang'] = $selected_lang;
 
 		if($this->input->post('btnSubmit')) { 
-		  $url = ''; $hidcourseid = $this->input->post('hidcourseid'); $hidlevelid = $this->input->post('hidlevelid'); $hidscheduleid = $this->input->post('hidscheduleid');
-		  if(!empty($hidcourseid))
-			  $url .= '/'.$this->input->post('hidcourseid');
-		  if(!empty($hidlevelid))
-			  $url .= '/'.$this->input->post('hidlevelid');
-		  if(!empty($hidscheduleid))
-			  $url .= '/'.$this->input->post('hidscheduleid');
-          
-          if($this->input->post('first_name') == ""){
-              $this->session->set_flashdata('error_message', 'Please enter Student First Name');
-              redirect(base_url() . 'register'.$url);
-          }else if($this->input->post('last_name') == ""){
-              $this->session->set_flashdata('error_message', 'Please enter Student Last Name');
-              redirect(base_url() . 'register'.$url);
-          }else if($this->input->post('phone') == ""){
-              $this->session->set_flashdata('error_message', 'Please enter Phone');
-              redirect(base_url() . 'register'.$url);
-          }else if($this->input->post('email_id') == ""){
-              $this->session->set_flashdata('error_message', 'Please enter Email Address');
-              redirect(base_url() . 'register'.$url);
-          }else{
-              $ins_data['parent_name'] = $this->input->post('parent_name');
-              $ins_data['first_name'] = $this->input->post('first_name');
-              $ins_data['last_name'] = $this->input->post('last_name');
-              $ins_data['birthdate'] = $this->input->post('birthdate');
-              $ins_data['gender'] = $this->input->post('gender');
-              $ins_data['phone'] = $this->input->post('phone');
-              $ins_data['email_id'] = $this->input->post('email_id');
-              $ins_data['course_id'] = $this->input->post('id_course');
-              $ins_data['city_id'] = $this->input->post('id_city');
-              $ins_data['center_id'] = 1;
-              $ins_data['current_student'] = $this->input->post('current_student');
-              $ins_data['user_type'] = 1;
-              $ins_data['created_on'] = date('Y-m-d');              
-              
-              $res = $this->Custom_model->insert_data($ins_data, USERS);
-              if($res!=FALSE){
-				   $mail_temp = $this->Custom_model->fetch_data(EMAIL_TEMPLATE, array('subject', 'content', 'mailto'), array('slug'=>'registration'), array());
 
-				  /************* mail to user *************/
-				  $mailTo         = $this->input->post('email_id');
-				  $mailFrom       = $mail_temp[0]->mailto;
-				  $subject        = $mail_temp[0]->subject;
-				  $mailcontain    = $mail_temp[0]->content;
+			if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+			{
+				//your site secret key
+				$secret = RECAPTCHA_SECRET_KEY;
+				//get verify response data
+				$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+				$responseData = json_decode($verifyResponse);
 
-				  send_mail($mailTo, $mailFrom, $subject, $mailcontain);
+				if($responseData->success)
+				{
+				  $url = ''; $hidcourseid = $this->input->post('hidcourseid'); $hidlevelid = $this->input->post('hidlevelid'); $hidscheduleid = $this->input->post('hidscheduleid');
+				  if(!empty($hidcourseid))
+					  $url .= '/'.$this->input->post('hidcourseid');
+				  if(!empty($hidlevelid))
+					  $url .= '/'.$this->input->post('hidlevelid');
+				  if(!empty($hidscheduleid))
+					  $url .= '/'.$this->input->post('hidscheduleid');
+				  
+				  if($this->input->post('first_name') == ""){
+					  $this->session->set_flashdata('error_message', 'Please enter Student First Name');
+					  redirect(base_url() . 'register'.$url);
+				  }else if($this->input->post('last_name') == ""){
+					  $this->session->set_flashdata('error_message', 'Please enter Student Last Name');
+					  redirect(base_url() . 'register'.$url);
+				  }else if($this->input->post('phone') == ""){
+					  $this->session->set_flashdata('error_message', 'Please enter Phone');
+					  redirect(base_url() . 'register'.$url);
+				  }else if($this->input->post('email_id') == ""){
+					  $this->session->set_flashdata('error_message', 'Please enter Email Address');
+					  redirect(base_url() . 'register'.$url);
+				  }else{
+					  $ins_data['parent_name'] = $this->input->post('parent_name');
+					  $ins_data['first_name'] = $this->input->post('first_name');
+					  $ins_data['last_name'] = $this->input->post('last_name');
+					  $ins_data['birthdate'] = $this->input->post('birthdate');
+					  $ins_data['gender'] = $this->input->post('gender');
+					  $ins_data['phone'] = $this->input->post('phone');
+					  $ins_data['email_id'] = $this->input->post('email_id');
+					  $ins_data['course_id'] = $this->input->post('id_course');
+					  $ins_data['city_id'] = $this->input->post('id_city');
+					  $ins_data['center_id'] = 1;
+					  $ins_data['current_student'] = $this->input->post('current_student');
+					  $ins_data['user_type'] = 1;
+					  $ins_data['created_on'] = date('Y-m-d');              
+					  
+					  $res = $this->Custom_model->insert_data($ins_data, USERS);
+					  if($res!=FALSE){
+						   $mail_temp = $this->Custom_model->fetch_data(EMAIL_TEMPLATE, array('subject', 'content', 'mailto'), array('slug'=>'registration'), array());
 
-				  /************* mail to user ends *************/
+						  /************* mail to user *************/
+						  $mailTo         = $this->input->post('email_id');
+						  $mailFrom       = $mail_temp[0]->mailto;
+						  $subject        = $mail_temp[0]->subject;
+						  $mailcontain    = $mail_temp[0]->content;
 
-				  /************* mail to admin *************/
-				  $mailTo         = $mail_temp[0]->mailto;
-				  $mailFrom       = MAIL_FROM;
-				  $subject        = $mail_temp[0]->subject;
-				  $mailcontain    = "An user with Email id: ".$this->input->post('email_id')." has just registered on the site.";
+						  send_mail($mailTo, $mailFrom, $subject, $mailcontain);
 
-				  send_mail($mailTo, $mailFrom, $subject, $mailcontain);
+						  /************* mail to user ends *************/
 
-				  /************* mail to admin ends *************/
+						  /************* mail to admin *************/
+						  $mailTo         = $mail_temp[0]->mailto;
+						  $mailFrom       = MAIL_FROM;
+						  $subject        = $mail_temp[0]->subject;
+						  $mailcontain    = "An user with Email id: ".$this->input->post('email_id')." has just registered on the site.";
 
-                  $this->session->set_flashdata('success_message', 'Registration Successful.');
-                  redirect(base_url() . 'register'.$url);
-              }else{
-                  $this->session->set_flashdata('error_message', 'Error Occurred! Please try again.');
-                  redirect(base_url() . 'register'.$url);
-              }
-          }
-          
+						  send_mail($mailTo, $mailFrom, $subject, $mailcontain);
+
+						  /************* mail to admin ends *************/
+
+						  $this->session->set_flashdata('success_message', 'Registration Successful.');
+						  redirect(base_url() . 'register'.$url);
+					  }else{
+						  $this->session->set_flashdata('error_message', 'Error Occurred! Please try again.');
+						  redirect(base_url() . 'register'.$url);
+					  }
+				  }
+				}
+				else
+				{
+					$this->session->set_flashdata('error_message', 'Robot verification failed, please try again.');
+					redirect(base_url() . 'register'.$url);
+				}
+			} 
+			else
+			{
+				$this->session->set_flashdata('error_message', 'Please click on the reCAPTCHA box.');
+				redirect(base_url() . 'register'.$url);
+			}
        }
 	   $data['course_id'] = $course_id;
 	   $data['level_id'] = $level_id;

@@ -250,7 +250,7 @@ label {
     width: 3.85185vw;
     height: 4.07407vw;
     padding: 0vw 6.37037vw 0vw 0vw;
-    background: transparent url(../images/icon-home) 0 0 no-repeat;
+    background: transparent url(../images/icon-home.png) 0 0 no-repeat;
     background-size: contain; }
     @media (min-width: 1080px) {
       .bottom-bar .home-link {

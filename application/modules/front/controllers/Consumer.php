@@ -9,6 +9,7 @@ class Consumer extends MY_Controller {
 
 		$this->lang->load('menu', $this->session->userdata('site_language'));
 		$this->lang->load('home', $this->session->userdata('site_language'));
+		$this->lang->load('site', $this->session->userdata('site_language'));
 		$this->lang->load('why_choose_ila', $this->session->userdata('site_language'));
 		$this->lang->load('footer', $this->session->userdata('site_language'));
     }
