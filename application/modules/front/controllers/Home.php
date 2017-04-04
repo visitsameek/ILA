@@ -117,21 +117,6 @@ class Home extends MY_Controller {
 		);
 		//print_r($data['all_teachers']); exit;
 
-		$data['teachers'] = $this->Custom_model->fetch_data(TEACHERS,
-               array(
-                   TEACHERS.'.id',
-				   TEACHERS.'.country',
-				   TEACHERS.'.img_url',
-                   TEACHERS_LANG.'.first_name',
-				   TEACHERS_LANG.'.last_name',
-				   TEACHERS_LANG.'.certificate_details'
-                   ),
-               array(TEACHERS.'.isblocked'=>0, TEACHERS.'.isdeleted'=>0),
-               array(
-                   TEACHERS_LANG=>TEACHERS_LANG.'.teacher_id='.TEACHERS.'.id AND ' . TEACHERS_LANG . '.language_id=' . $selected_lang),
-			   $search = '', $order = TEACHERS_LANG . '.first_name', $by = 'asc', 1, 5
-		);
-
         $partials = array('content' => 'site/teacher_content', 'banner'=>'site/teacher_banner', 'menu'=>'menu', 'footer'=>'footer');
         $this->template->load('home_template', $partials, $data);
     }
@@ -196,6 +181,7 @@ class Home extends MY_Controller {
 
 		$data['centers'] = $this->Custom_model->fetch_data(TRAINING_CENTERS,
                array(
+				   TRAINING_CENTERS.'.id',
                    TRAINING_CENTERS.'.phone',
 				   TRAINING_CENTERS.'.email_id',
                    TRAINING_CENTERS_LANG.'.title',
@@ -211,7 +197,7 @@ class Home extends MY_Controller {
 				   MEDIA=>MEDIA.'.id='.TRAINING_CENTERS.'.media_id')
 		);
 
-        $partials = array('content' => 'site/centers_content', 'banner'=>'site/centers_banner', 'menu'=>'menu', 'footer'=>'footer');
+        $partials = array('content' => 'site/centers_content', 'menu'=>'menu', 'footer'=>'footer');
         $this->template->load('center_template', $partials, $data);
     }	
 
@@ -271,6 +257,52 @@ class Home extends MY_Controller {
 				  $newnode->setAttribute("lng", $record['longitude']);
 				  //$newnode->setAttribute("type", $row['type']);
 			}
+		}
+		echo $dom->saveXML();
+	}
+
+	function get_map_data_center($center_id=null)
+    {
+		// Start XML file, create parent node
+		$dom = new DOMDocument("1.0");
+		$node = $dom->createElement("markers1");
+		$parnode = $dom->appendChild($node);			
+
+		$site_language = $this->session->userdata('site_language');
+        $selected_lang = isset($site_language) ? ($site_language == 'english' ? 1 : 2) : 1;
+        $data['selected_lang'] = $selected_lang;
+
+		$centers = $this->Custom_model->fetch_data(TRAINING_CENTERS,
+               array(
+				   TRAINING_CENTERS.'.phone',
+                   TRAINING_CENTERS_LANG.'.title',
+				   TRAINING_CENTERS_LANG.'.address',
+                   ),
+               array(TRAINING_CENTERS.'.id'=>$center_id, TRAINING_CENTERS.'.isblocked'=>0, TRAINING_CENTERS.'.isdeleted'=>0),
+               array(
+                   TRAINING_CENTERS_LANG=>TRAINING_CENTERS_LANG.'.center_id='.TRAINING_CENTERS.'.id AND ' . TRAINING_CENTERS_LANG . '.language_id=' . $selected_lang)
+		);
+		//echo '<pre>'; print_r($centers); exit;
+		
+		header("Content-type: text/xml");
+
+		// Iterate through the rows, adding XML nodes for each
+		if(!empty($centers[0]))
+		{
+			  if(!empty($centers[0]->address)) {
+				  $record = $this->getLatLong($centers[0]->address);
+			  }
+
+			  // Add to XML document node
+			  $node = $dom->createElement("marker1");
+			  $newnode = $parnode->appendChild($node);
+
+			  $newnode->setAttribute("name", $centers[0]->title);
+			  $newnode->setAttribute("phone", $centers[0]->phone);
+			  $newnode->setAttribute("address", $centers[0]->address);
+			  $newnode->setAttribute("lat", $record['latitude']);
+			  $newnode->setAttribute("lng", $record['longitude']);
+			  //$newnode->setAttribute("type", $row['type']);
 		}
 		echo $dom->saveXML();
 	}

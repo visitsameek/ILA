@@ -6,7 +6,7 @@
 							  if(!empty($levels)) {
 								$no_levels = sizeof($levels);
 							 ?>
-								<h5><?php echo $levels[0]->title.' to '.$levels[($no_levels - 1)]->title;?></h5>
+								<h5><?php echo $levels[0]->title;?> to <?php echo $levels[($no_levels - 1)]->title;?></h5>
 							<?php } ?>
 			            <div class="video-play-wrap video-blcok">
 			            		<iframe src="https://www.youtube.com/embed/ICF3-a0ER3Y" frameborder="0" allowfullscreen></iframe>

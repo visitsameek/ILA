@@ -15,7 +15,7 @@
 									<div class="course-block course-category clearfix">
 										<div class="course-header">
 											<a href="<?php echo base_url('global-english/4'); ?>" class="clearfix">
-												<div class="course-logo-wrap"><img src="<?php echo base_url(); ?>front/images/logo-global-english.png" alt="Jumpstart"/></div>
+												<div class="course-logo-wrap"><img src="<?php echo base_url(); ?>front/images/logo-global-english.png" alt="English training programme for Adults"/></div>
 												<div class="arrow-wrapper"><i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></div>
 											</a>
 											<a href="<?php echo base_url('global-english/4'); ?>" class="course-info course-title">
@@ -40,7 +40,7 @@
 									<div class="course-block course-category clearfix">
 											<div class="course-header">
 												<a href="<?php echo base_url('exam-english/5'); ?>" class="clearfix">
-													<div class="course-logo-wrap"><img src="<?php echo base_url(); ?>front/images/logo-exam-english.png" alt="Jumpstart"/></div>
+													<div class="course-logo-wrap"><img src="<?php echo base_url(); ?>front/images/logo-exam-english.png" alt="English exam Programme for Adults"/></div>
 													<div class="arrow-wrapper"><i class="fa fa-angle-right arrow-right fa-6" aria-hidden="true"> </i></div>
 												</a>
 												<a href="<?php echo base_url('exam-english/5'); ?>" class="course-info course-title">
@@ -80,7 +80,7 @@
 				            </div>
 				            <p>Parents of baby Truong Nguyen Quynh Tram - Jumpstart Level - Three</p>
 								</div>
-								<div class="align-center"><a href="#" class="see-more">See All Testimonials</a></div>
+								<div class="align-center"><a href="<?php echo base_url('stories'); ?>" class="see-more">See All Testimonials</a></div>
 							</div>
 						<!-- Why Choose ILA Section-->
 						<?php

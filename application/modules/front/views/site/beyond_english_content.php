@@ -67,7 +67,15 @@
 									<div class="age-categories-container">
 										<p><?php echo $rec->short_desc;?></p>
 									</div>
-									<a href="<?php echo base_url('centers/'.$rec->id); ?>" class="see-more">know More</a> 
+									<?php
+									  if($rec->id == 14)
+										$url = '21c-skills';
+									  else if($rec->id == 15)
+										$url = '21c-learning-environment';
+									  else if($rec->id == 16)
+										$url = '21c-inspiration';
+									 ?>
+									<a href="<?php echo base_url($url.'/'.$rec->id); ?>" class="see-more">know More</a> 
 								</div>
 							</div>
 						<?php } } ?>

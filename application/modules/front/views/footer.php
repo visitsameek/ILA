@@ -71,37 +71,39 @@
 			</footer>
 <script type="text/javascript">
 <!--
-$("#btnNewsletter").click(function(e) {
+$( document ).ready(function() {
+	$("#btnNewsletter").click(function(e) {
 
-	e.preventDefault();
+		e.preventDefault();
 
-	$("#msg_newsletter").hide();
+		$("#msg_newsletter").hide();
 
-	if($("#newsletter_email").val() == '')
-	{
-		$("#msg_newsletter").show();
-		$("#msg_newsletter").html('Please enter email address');
-		return false;
-	}
-	else
-	{
-		$.ajax({
-			  type: "POST",
-			  url: "<?php echo base_url(); ?>front/home/newsletter_subscribe",
-			  data: { newsletter_email: $("#newsletter_email").val() },
-			  success: function(msg){
-					//alert(msg);
-					$("#msg_newsletter").show();
-					if(msg == 0)
-						$("#msg_newsletter").html('Please enter email address');
-					else if(msg == 1)
-						$("#msg_newsletter").html('Newsletter subsribed successfully.');
-					else if(msg == 2)
-						$("#msg_newsletter").html('Error occurred! Please try again.');
-					else
-						$("#msg_newsletter").html('Error occurred! Please try again.');
-			  }
-		});
-	}
+		if($("#newsletter_email").val() == '')
+		{
+			$("#msg_newsletter").show();
+			$("#msg_newsletter").html('Please enter email address');
+			return false;
+		}
+		else
+		{
+			$.ajax({
+				  type: "POST",
+				  url: "<?php echo base_url(); ?>front/home/newsletter_subscribe",
+				  data: { newsletter_email: $("#newsletter_email").val() },
+				  success: function(msg){
+						//alert(msg);
+						$("#msg_newsletter").show();
+						if(msg == 0)
+							$("#msg_newsletter").html('Please enter email address');
+						else if(msg == 1)
+							$("#msg_newsletter").html('Newsletter subsribed successfully.');
+						else if(msg == 2)
+							$("#msg_newsletter").html('Error occurred! Please try again.');
+						else
+							$("#msg_newsletter").html('Error occurred! Please try again.');
+				  }
+			});
+		}
+	});
 });
 </script>

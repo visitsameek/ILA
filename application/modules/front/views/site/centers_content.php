@@ -33,7 +33,7 @@
 							<?php
 							  foreach($centers AS $rec) {
 							 ?>
-								<div class="address-block">
+								<div class="address-block" data-marker-index="<?php echo $rec->id;?>">
 									<h5 style="margin: 0vw 0vw 2.74074vw 0vw !important;"><?php echo $rec->title;?></h5>
 									<address>
 										<p><i class="fa fa-map-marker"></i> <span><?php echo $rec->address;?></span></p>
